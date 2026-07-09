@@ -3,9 +3,6 @@
   "release_date": "2026-07-09",
   "download_url": "https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip",
   "changelog": [
-    "Dukungan penuh untuk kontak WhatsApp format LID (@lid)",
-    "Sistem lisensi resmi diarahkan langsung ke domain wasender.biz",
-    "Pembersihan informasi kontak developer bawaan (Lebanon)",
-    "Penyesuaian FrmLicense untuk menampilkan pesan error dinamis dari server"
+    "Dukungan penuh untuk kontak WhatsApp format LID (@lid)"
   ]
 }

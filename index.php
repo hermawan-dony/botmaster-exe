@@ -6,717 +6,654 @@
     $respon = filter_input(INPUT_GET, 'respon', FILTER_SANITIZE_SPECIAL_CHARS);
 
     if (!empty($respon)) {
-        // json_encode untuk mencegah injection di dalam alert()
         echo '<script>alert(' . json_encode($respon) . ');</script>';
     }
+
+    $lang = isset($_GET['lang']) && $_GET['lang'] === 'en' ? 'en' : 'id';
+    
+    $t = [
+        'id' => [
+            'meta_title' => 'BotMaster | Business WhatsApp Sender Terbaik',
+            'meta_desc' => 'Tingkatkan omzet bisnis Anda dengan BotMaster. Software pengirim pesan WhatsApp massal otomatis, cepat, aman, dan tanpa biaya bulanan.',
+            'client_area' => 'Client Area',
+            'badge_status' => 'Sistem Stabil & Siap Digunakan',
+            'hero_title_1' => 'Kirim Promosi ke ',
+            'hero_title_span' => 'Ribuan Kontak',
+            'hero_title_2' => ' Tanpa Ribet',
+            'hero_desc' => 'Tingkatkan konversi penjualan Anda dengan sistem broadcast WhatsApp otomatis. Tanpa biaya langganan bulanan, lisensi sekali bayar untuk selamanya.',
+            'feat_1' => 'Multi Device Support',
+            'feat_2' => 'Unlimited Pesan',
+            'feat_3' => 'Grab Kontak Grup',
+            'feat_4' => 'Import/Export Mudah',
+            'feat_5' => 'Pesan Personal (Nama, dll)',
+            'feat_6' => 'Bebas Biaya Bulanan',
+            'price_title' => 'Lisensi Lifetime',
+            'price_unit' => '/ 1 PC',
+            'btn_download' => 'Download Update Terbaru',
+            'btn_gen_license' => 'Generate Lisensi Aktif',
+            'btn_order' => 'Order Lisensi Baru',
+            'guarantee' => '100% Bebas Update Fee Selamanya',
+            'chat_telegram' => 'Chat Support via Telegram',
+            'chat_whatsapp' => 'Chat Support via WhatsApp',
+            'stat_1' => 'Tingkat Keterkiriman',
+            'stat_2' => 'Lebih Cepat dari Manual',
+            'stat_3' => 'Lisensi Tanpa Batas Waktu',
+            'why_title' => 'Mengapa Memilih BotMaster?',
+            'why_desc' => 'Fitur lengkap yang dirancang khusus untuk mempermudah operasional dan meningkatkan omset bisnis Anda.',
+            'ben_1_title' => 'Efisiensi Waktu & Tenaga',
+            'ben_1_desc' => 'Otomatisasi pengiriman promosi dan follow-up. Tim admin Anda tidak perlu lagi copy-paste pesan satu per satu, sehingga bisa fokus melayani pembeli.',
+            'ben_2_title' => 'Meningkatkan Penjualan',
+            'ben_2_desc' => 'Jangkau kembali database pelanggan lama Anda dengan penawaran menarik secara instan. Follow-up konsisten adalah kunci meningkatkan konversi.',
+            'ben_3_title' => 'Auto Reply Bot',
+            'ben_3_desc' => 'Balas pesan pelanggan secara otomatis berdasarkan kata kunci tertentu. Bisa dikombinasikan dengan tombol interaktif dan katalog produk.',
+            'ben_4_title' => 'Pesan Tepat Sasaran',
+            'ben_4_desc' => 'Fitur personalisasi pesan memungkinkan Anda memanggil nama pelanggan atau menyebutkan detail invoice, membuat pesan terasa lebih intim dan tidak seperti robot.',
+            'ben_5_title' => 'Filter Nomor Aktif',
+            'ben_5_desc' => 'Bersihkan database Anda. Sistem akan memverifikasi nomor WhatsApp yang aktif dan tidak aktif sebelum mengirim, menjaga efisiensi kampanye Anda.',
+            'ben_6_title' => 'Hemat Biaya Operasional',
+            'ben_6_desc' => 'Cukup bayar lisensi sekali untuk penggunaan selamanya di PC Anda. Jauh lebih terjangkau dibandingkan layanan WhatsApp berbayar bulanan.',
+            'vid_title' => 'Lihat Cara Kerjanya',
+            'vid_desc' => 'Tonton demo singkat bagaimana BotMaster mempermudah rutinitas marketing Anda setiap harinya.',
+            'vid_1_title' => 'Fitur Broadcast Masal',
+            'vid_2_title' => 'Fitur Filter Nomor Aktif',
+            'footer' => 'BotMaster - Solusi WhatsApp Marketing Otomatis.',
+            'lang_switch_id' => 'Indonesia',
+            'lang_switch_en' => 'English'
+        ],
+        'en' => [
+            'meta_title' => 'BotMaster | Best Business WhatsApp Sender',
+            'meta_desc' => 'Increase your business revenue with BotMaster. Fast, safe, and automated bulk WhatsApp sender without monthly subscription fees.',
+            'client_area' => 'Client Area',
+            'badge_status' => 'System Stable & Ready',
+            'hero_title_1' => 'Send Promotions to ',
+            'hero_title_span' => 'Thousands of Contacts',
+            'hero_title_2' => ' Effortlessly',
+            'hero_desc' => 'Boost your sales conversion with our automated WhatsApp broadcast system. No monthly fees, one-time payment for a lifetime license.',
+            'feat_1' => 'Multi Device Support',
+            'feat_2' => 'Unlimited Messages',
+            'feat_3' => 'Grab Group Contacts',
+            'feat_4' => 'Easy Import/Export',
+            'feat_5' => 'Personalized Messages',
+            'feat_6' => 'No Monthly Fees',
+            'price_title' => 'Lifetime License',
+            'price_unit' => '/ 1 PC',
+            'btn_download' => 'Download Latest Update',
+            'btn_gen_license' => 'Generate Active License',
+            'btn_order' => 'Order New License',
+            'guarantee' => '100% Free Lifetime Updates',
+            'chat_telegram' => 'Chat Support via Telegram',
+            'chat_whatsapp' => 'Chat Support via WhatsApp',
+            'stat_1' => 'Delivery Rate',
+            'stat_2' => 'Faster than Manual',
+            'stat_3' => 'Lifetime License',
+            'why_title' => 'Why Choose BotMaster?',
+            'why_desc' => 'Comprehensive features specifically designed to simplify your operations and boost your business revenue.',
+            'ben_1_title' => 'Time & Effort Efficiency',
+            'ben_1_desc' => 'Automate promotions and follow-ups. Your admin team no longer needs to copy-paste messages one by one.',
+            'ben_2_title' => 'Increase Sales',
+            'ben_2_desc' => 'Instantly reach out to your old customer database with attractive offers. Consistent follow-ups are key to conversions.',
+            'ben_3_title' => 'Auto Reply Bot',
+            'ben_3_desc' => 'Automatically reply to customer messages based on specific keywords. Can be combined with interactive buttons and catalogs.',
+            'ben_4_title' => 'Targeted Messaging',
+            'ben_4_desc' => 'Personalization features allow you to call customers by name or mention invoice details, making messages feel intimate.',
+            'ben_5_title' => 'Active Number Filter',
+            'ben_5_desc' => 'Clean your database. The system verifies active and inactive WhatsApp numbers before sending, maintaining campaign efficiency.',
+            'ben_6_title' => 'Save Operational Costs',
+            'ben_6_desc' => 'Pay the license once for lifetime use on your PC. Much more affordable compared to monthly paid WhatsApp services.',
+            'vid_title' => 'See How It Works',
+            'vid_desc' => 'Watch a short demo of how BotMaster simplifies your daily marketing routine.',
+            'vid_1_title' => 'Mass Broadcast Feature',
+            'vid_2_title' => 'Active Number Filter Feature',
+            'footer' => 'BotMaster - Automated WhatsApp Marketing Solution.',
+            'lang_switch_id' => 'Indonesia',
+            'lang_switch_en' => 'English'
+        ]
+    ];
+    $text = $t[$lang];
 ?>
 <!DOCTYPE html>
-<html lang="id">
+<html lang="<?= $lang ?>">
 <head>
     <meta charset="UTF-8">
-    <title>Business Whatsapp Sender | BotMaster</title>
+    <title><?= $text['meta_title'] ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-    <meta property="og:description"
-          content="Kirim promosi ke RIBUAN nomor WhatsApp hanya dengan sekali klik. Tanpa kirim manual satu per satu.">
-    <meta property="og:url" content="business whatsapp sender|botmaster">
-    <meta name="description"
-          content="Business WhatsApp Sender (BotMaster) membantu kirim promosi ke ribuan nomor WhatsApp hanya dengan sekali klik. Tanpa manual satu per satu, dilengkapi fitur unggulan untuk mempermudah pekerjaan Anda.">
+    <meta name="description" content="<?= $text['meta_desc'] ?>">
 
     <link rel="shortcut icon" href="index_files/botmaster.ico" type="image/x-icon">
     
-    <!-- Google Fonts: Plus Jakarta Sans -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome untuk ikon -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <style>
         :root {
-            --primary: #f59e0b;
-            --primary-hover: #d97706;
-            --primary-soft: #fef3c7;
-            --accent: #8b5cf6;
-            --accent-glow: rgba(139, 92, 246, 0.15);
-            --bg: #090d16;
-            --bg-card: rgba(17, 24, 39, 0.7);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --success: #10b981;
-            --danger: #f43f5e;
-            --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --primary: #25D366; /* WhatsApp Green */
+            --primary-hover: #128C7E;
+            --accent: #F59E0B; /* Gold for premium feel */
+            --bg-main: #0B1120;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --bg-card-hover: rgba(30, 41, 59, 0.9);
+            --text-light: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            font-family: var(--font-family);
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
-                var(--bg);
-            color: var(--text-main);
-            min-height: 100vh;
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-light);
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(37, 211, 102, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
         }
 
-        .page-wrap {
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 1.5rem 5rem;
+            padding: 0 1.5rem;
         }
 
-        .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-            gap: 3rem;
-            align-items: start;
-        }
-
-        @media (max-width: 992px) {
-            .hero {
-                grid-template-columns: minmax(0, 1fr);
-                gap: 2.5rem;
-            }
-        }
-
-        /* Badge */
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 1rem;
-            border-radius: 999px;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Hero Typography */
-        h1.hero-title {
-            font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.25rem;
-            color: #ffffff;
-        }
-
-        h1.hero-title span {
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 38rem;
-        }
-
-        .hero-subtitle strong {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        /* Cards Style */
-        .card {
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 1.5rem;
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Features Section */
-        .feature-card h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-        }
-
-        .feature-card h2 span {
-            color: var(--primary);
-        }
-
-        .feature-lead {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-list {
-            list-style: none;
-            display: grid;
-            gap: 0.85rem;
-        }
-
-        .feature-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            font-size: 0.95rem;
-            color: #d1d5db;
-        }
-
-        .feature-list li i {
-            color: var(--success);
-            font-size: 1.15rem;
-            margin-top: 0.1rem;
-            flex-shrink: 0;
-        }
-
-        .feature-list li span.highlight {
-            background: rgba(245, 158, 11, 0.15);
-            border-radius: 0.375rem;
-            padding: 0.1rem 0.4rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Promo Strip */
-        .promo-strip {
-            margin-top: 1.75rem;
-            padding: 1rem 1.25rem;
-            border-radius: 1rem;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            font-size: 0.9rem;
-        }
-
-        .promo-strip strong {
-            color: #ffffff;
-        }
-
-        .promo-strip span.em {
-            color: var(--primary);
-            font-weight: 800;
-        }
-
-        /* Sticky Price Card */
-        .price-card {
-            background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.08), transparent 70%), var(--bg-card);
-            border: 1px solid rgba(245, 158, 11, 0.25);
-            position: sticky;
-            top: 2rem;
-        }
-
-        .price-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: #000000;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            margin-bottom: 0.75rem;
-        }
-
-        .price-val {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 0.25rem;
-            letter-spacing: -0.03em;
-        }
-
-        .price-val span {
-            color: var(--primary);
-        }
-
-        .price-note {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .price-note strong {
-            color: var(--success);
-            font-weight: 600;
-        }
-
-        /* Dynamic Updates Panel */
-        .update-panel {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 1rem;
-            padding: 1.25rem;
-            margin-bottom: 1.5rem;
-            display: none; /* Diload dinamis via JS */
-        }
-
-        .update-header {
+        /* Navbar & Language Switcher */
+        .navbar {
+            padding: 1.5rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            padding-bottom: 0.5rem;
         }
-
-        .update-header span.v-badge {
-            background: var(--accent);
-            color: #ffffff;
-            font-weight: 700;
-            padding: 0.15rem 0.5rem;
-            border-radius: 0.25rem;
-        }
-
-        .update-list {
-            list-style: none;
-            display: grid;
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
             gap: 0.5rem;
         }
+        .logo i { color: var(--primary); }
 
-        .update-list li {
-            font-size: 0.85rem;
-            color: #d1d5db;
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .lang-switch {
             display: flex;
             gap: 0.5rem;
-            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .lang-switch a {
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .lang-switch a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .lang-switch a:hover:not(.active) {
+            color: white;
         }
 
-        .update-list li::before {
-            content: "•";
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* Buttons Style */
-        .btn-row {
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0 6rem;
             display: grid;
-            gap: 0.75rem;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        @media (max-width: 992px) {
+            .hero { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+            .nav-actions { flex-direction: column-reverse; }
         }
 
-        .btn {
+        .badge-update {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            padding: 0.85rem 1.5rem;
-            border-radius: 0.8rem;
-            border: none;
+            gap: 0.5rem;
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.2);
+        }
+        
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 span { color: var(--primary); position: relative; }
+        .hero h1 span::after {
+            content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 30%; background: rgba(37, 211, 102, 0.2); z-index: -1;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 90%;
+        }
+        @media (max-width: 992px) { .hero p { margin: 0 auto 2.5rem; } }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .feat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
+            background: rgba(255,255,255,0.02);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: inset 0 0 0 1px transparent;
         }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #000000;
-            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
+        .feat-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(37, 211, 102, 0.3);
         }
+        .feat-item i { color: var(--accent); font-size: 1.2rem; }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(245, 158, 11, 0.35);
+        /* Pricing Card (Floating & Sticky) */
+        .pricing-wrapper {
+            position: relative;
         }
+        .pricing-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.1) inset;
+            position: sticky;
+            top: 2rem;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+            border-color: rgba(255,255,255,0.15);
+        }
+        .pricing-card::before {
+            content: ''; position: absolute; inset: -1px;
+            border-radius: 25px; padding: 1px;
+            background: linear-gradient(135deg, var(--primary), transparent, var(--accent));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+        .pricing-card:hover::before { opacity: 1; }
 
+        .price-title {
+            color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.5rem;
+        }
+        .price-amount {
+            font-family: var(--font-display); font-size: 3rem; font-weight: 700; margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .price-amount span { font-size: 1rem; color: var(--text-muted); font-weight: 400; font-family: var(--font-main); -webkit-text-fill-color: var(--text-muted); }
+        
+        /* Dynamic Update Panel */
+        .update-box {
+            background: rgba(0,0,0,0.4); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .update-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem;}
+        .version-tag { background: var(--primary); color: #000; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.8rem; }
+        .date-tag { font-size: 0.8rem; color: var(--text-muted); }
+        .changelog-list { list-style: none; font-size: 0.85rem; color: #cbd5e1; }
+        .changelog-list li { position: relative; padding-left: 1rem; margin-bottom: 0.25rem; }
+        .changelog-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+        .btn-group { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+        
+        .btn {
+            display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;
+            padding: 1rem 1.5rem; border-radius: 12px; font-weight: 600; font-size: 1rem;
+            text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); border: none; cursor: pointer;
+            position: relative; overflow: hidden;
+        }
+        .btn-main {
+            background: var(--primary); color: #000; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+        .btn-main::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg); transition: 0.5s;
+        }
+        .btn-main:hover::after { left: 150%; }
+        .btn-main:hover { transform: translateY(-3px); background: var(--primary-hover); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5); }
+        
         .btn-outline {
-            background: transparent;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255,255,255,0.02); color: white; border: 1px solid var(--border);
         }
-
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
+        .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
         .btn-secondary {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--primary-soft);
-            border: 1px dashed rgba(245, 158, 11, 0.4);
+            background: rgba(245, 158, 11, 0.1); color: var(--accent); border: 1px solid rgba(245, 158, 11, 0.2);
         }
+        .btn-secondary:hover { background: rgba(245, 158, 11, 0.2); transform: translateY(-2px); }
 
-        .btn-secondary:hover {
-            background: rgba(139, 92, 246, 0.2);
-            transform: translateY(-2px);
-        }
+        .guarantee { text-align: center; font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem;}
+        .guarantee i { color: var(--accent); font-size: 1.1rem; }
 
-        .btn-whatsapp {
-            background: #25d366;
-            color: #ffffff;
-            font-weight: 700;
-            border: none;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.15);
-        }
+        /* Social Proof / Stats */
+        .stats-section { padding: 4rem 0; text-align: center; position: relative; }
+        .stats-section::before { content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 800px; margin: 0 auto; }
+        .stat-item h4 { font-family: var(--font-display); font-size: 3rem; color: var(--primary); margin-bottom: 0.5rem; text-shadow: 0 0 20px rgba(37, 211, 102, 0.3); }
+        .stat-item p { color: var(--text-muted); font-weight: 500; font-size: 1.1rem; }
+        @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } }
 
-        .btn-whatsapp:hover {
-            background: #22c35e;
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(37, 211, 102, 0.3);
+        /* Benefits Section */
+        .benefits-section { padding: 6rem 0; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.02); }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .benefit-card {
+            background: rgba(255,255,255,0.015); border: 1px solid var(--border);
+            padding: 2.5rem; border-radius: 20px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden;
         }
+        .benefit-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.1), transparent 60%);
+            opacity: 0; transition: 0.4s; z-index: 0;
+        }
+        .benefit-card > * { position: relative; z-index: 1; }
+        .benefit-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.03); border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .benefit-card:hover::before { opacity: 1; }
+        .benefit-icon { width: 60px; height: 60px; background: rgba(245, 158, 11, 0.1); color: var(--accent); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1.5rem; border: 1px solid rgba(245, 158, 11, 0.2); }
+        .benefit-card h3 { font-size: 1.3rem; font-family: var(--font-display); margin-bottom: 1rem; color: #fff; }
+        .benefit-card p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
 
-        .btn-telegram {
-            background: #0088cc;
-            color: #ffffff;
-            font-weight: 700;
-            border: none;
-            box-shadow: 0 10px 20px rgba(0, 136, 204, 0.15);
+        /* Videos Section */
+        .video-section { padding: 6rem 0; border-top: 1px solid var(--border); position: relative; }
+        .section-title { text-align: center; margin-bottom: 4rem; }
+        .section-title h2 { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(to right, #fff, #94A3B8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-title p { color: var(--text-muted); max-width: 650px; margin: 0 auto; font-size: 1.1rem; }
+        
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
+        .video-wrapper {
+            background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border);
+            transition: transform 0.4s, box-shadow 0.4s;
         }
-
-        .btn-telegram:hover {
-            background: #0077b5;
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(0, 136, 204, 0.3);
-        }
-
-        .trust-text {
-            margin-top: 1.25rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        .trust-text i {
-            color: var(--success);
-            margin-right: 0.35rem;
-        }
-
-        /* Demo Videos Section */
-        .section-title {
-            margin: 5rem 0 2rem;
-            text-align: center;
-        }
-
-        .section-title h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-title p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .video-card {
-            background: var(--bg-card);
-            border-radius: 1.25rem;
-            padding: 1.25rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            transition: border-color 0.3s;
-        }
-
-        .video-card:hover {
-            border-color: rgba(139, 92, 246, 0.3);
-        }
-
-        .video-card h4 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.75rem;
-        }
-
-        .video-card iframe {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 0.75rem;
-            border: none;
-        }
-
-        .contact-box {
-            margin-top: 1.5rem;
-        }
+        .video-wrapper:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.15); }
+        .video-wrapper iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .video-wrapper h3 { margin-top: 1.5rem; font-size: 1.2rem; text-align: center; color: #fff; }
 
         /* Footer */
-        .footer {
-            margin-top: 5rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-align: center;
-        }
+        footer { padding: 3rem 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.95rem; background: rgba(0,0,0,0.3); }
+        footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
 
-        .footer a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
+        /* Mobile Sticky CTA */
+        .mobile-cta { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(11, 17, 32, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid rgba(255,255,255,0.1); padding: 1rem; z-index: 100; text-align: center; box-shadow: 0 -10px 20px rgba(0,0,0,0.5); }
+        .mobile-cta .btn { width: 100%; padding: 1.2rem; font-size: 1.1rem; }
+        @media (max-width: 768px) {
+            .mobile-cta { display: block; }
+            body { padding-bottom: 80px; }
         }
     </style>
 </head>
 <body>
-<div class="page-wrap">
 
-    <header class="hero">
-        <div>
-            <div class="badge"> 
-                <i class="fa-solid fa-bolt"></i>
-                BUSINESS WA SENDER - BOTMASTER
+    <nav class="navbar container">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-robot"></i> BotMaster
+        </a>
+        <div class="nav-actions">
+            <div class="lang-switch">
+                <a href="?lang=id" class="<?= $lang === 'id' ? 'active' : '' ?>">ID</a>
+                <a href="?lang=en" class="<?= $lang === 'en' ? 'active' : '' ?>">EN</a>
             </div>
+            <a href="#order" class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;"><i class="fa-solid fa-user-circle"></i> <?= $text['client_area'] ?></a>
+        </div>
+    </nav>
 
-            <h1 class="hero-title">
-                Kirim promosi ke <span>ribuan kontak WhatsApp</span> hanya dengan sekali klik.
-            </h1>
+    <main class="container hero">
+        <div class="hero-content animate-up">
+            <div class="badge-update" id="badge-update-status">
+                <i class="fa-solid fa-circle-check"></i> <?= $text['badge_status'] ?>
+            </div>
+            <h1><?= $text['hero_title_1'] ?><span><?= $text['hero_title_span'] ?></span><?= $text['hero_title_2'] ?></h1>
+            <p><?= $text['hero_desc'] ?></p>
 
-            <p class="hero-subtitle">
-                BotMaster adalah <strong>Business WhatsApp Sender</strong> yang membantu tim marketing & admin
-                mengirim pesan massal secara <strong>cepat, rapi, dan tetap terasa personal</strong> - 
-                tanpa harus kirim satu per satu.
-            </p>
-
-            <div class="card feature-card">
-                <h2><span>Fitur utama</span> untuk memudahkan pekerjaan Anda</h2>
-                <p class="feature-lead">
-                    Semua yang dibutuhkan untuk campaign WhatsApp yang serius, tanpa biaya bulanan yang
-                    menyakitkan kantong.
-                </p>
-                <ul class="feature-list">
-                    <li>
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span><span class="highlight">Support WhatsApp Multi Device</span> - tetap jalan di akun WA terbaru.</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Unlimited pengiriman pesan (selama mengikuti batas aman penggunaan WA).</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Bisa digunakan beberapa akun WhatsApp sekaligus dalam waktu bersamaan.</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Kirim pesan <strong>lebih personal</strong> sesuai data: nama, nomor invoice, nominal, dst.</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Grab / sedot kontak dari grup-grup WhatsApp dengan cepat.</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>Export / import data kontak WhatsApp dengan mudah.</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span><strong style="color: var(--primary-soft);">Tanpa biaya bulanan.</strong> Tidak ada biaya tambahan saat ada update.</span>
-                    </li>
-                </ul>
-
-                <div class="promo-strip">
-                    <strong>Trial dulu, baru yakin:</strong><br>
-                    <span class="em">GRATIS TRIAL 1 HARI</span> - pastikan cocok, jalan di sistem Anda, dan sesuai kebutuhan.
-                    Kalau sudah <strong>"klik"</strong>, baru lanjut ke lisensi berbayar.
-                </div>
+            <div class="feature-grid">
+                <div class="feat-item"><i class="fa-solid fa-mobile-screen"></i> <?= $text['feat_1'] ?></div>
+                <div class="feat-item"><i class="fa-solid fa-infinity"></i> <?= $text['feat_2'] ?></div>
+                <div class="feat-item"><i class="fa-solid fa-users"></i> <?= $text['feat_3'] ?></div>
+                <div class="feat-item"><i class="fa-solid fa-file-import"></i> <?= $text['feat_4'] ?></div>
+                <div class="feat-item"><i class="fa-solid fa-user-tag"></i> <?= $text['feat_5'] ?></div>
+                <div class="feat-item"><i class="fa-solid fa-coins"></i> <?= $text['feat_6'] ?></div>
             </div>
         </div>
 
-        <aside>
-            <div class="card price-card">
-                <div class="price-card-inner">
-                    <span class="price-badge">Harga Promo Spesial</span>
-                    
-                    <div class="price-val">
-                        Rp <span><?= htmlspecialchars($harga1 ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
+        <div class="pricing-wrapper animate-up delay-1">
+            <div class="pricing-card">
+                <div class="price-title"><?= $text['price_title'] ?></div>
+                <!-- Menampilkan harga selalu dalam IDR sesuai permintaan user -->
+                <div class="price-amount">Rp <?= htmlspecialchars($harga1 ?? '150.000', ENT_QUOTES, 'UTF-8'); ?> <span><?= $text['price_unit'] ?></span></div>
+                
+                <div class="update-box" id="update-box" style="display: none;">
+                    <div class="update-box-header">
+                        <span class="version-tag" id="web-version">v--</span>
+                        <span class="date-tag" id="web-release-date">--</span>
                     </div>
-                    
-                    <p class="price-note"> 
-                        <strong>Masa Aktif 1 Tahun</strong> untuk 1 PC.
-                    </p>
-
-                    <!-- Panel Informasi Update Otomatis via Github -->
-                    <div id="update-info-panel" class="update-panel">
-                        <div class="update-header">
-                            <span>Update Terbaru: <span class="v-badge" id="web-version">v--</span></span>
-                            <span id="web-release-date">--</span>
-                        </div>
-                        <p style="font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem; color: #ffffff;">Fitur Baru & Pembaruan:</p>
-                        <ul class="update-list" id="web-changelog">
-                            <!-- JS akan mengisi otomatis -->
-                        </ul>
-                    </div>
-
-                    <div class="btn-row">
-                        <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip"
-                           id="btn-download"
-                           class="btn btn-primary">
-                            <i class="fa-solid fa-download"></i>
-                            Download BotMaster Versi --
-                        </a>
-
-                        <a href="./request"
-                           class="btn btn-outline" target="_blank" rel="noopener">
-                            <i class="fa-solid fa-key"></i>
-                            Generate Lisensi Lifetime
-                        </a>
-
-                        <a href="./order"
-                           class="btn btn-secondary" target="_blank" rel="noopener">
-                            <i class="fa-solid fa-receipt"></i>
-                            Lihat Lisensi / Order Anda
-                        </a>
-                    </div>
-
-                    <p class="trust-text">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        Lisensi tetap aktif meskipun ada update versi - tanpa biaya tambahan.
-                    </p>
+                    <ul class="changelog-list" id="web-changelog">
+                        <!-- Dimuat dari version.json Github -->
+                    </ul>
                 </div>
+
+                <div class="btn-group">
+                    <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" id="btn-download" class="btn btn-main">
+                        <i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>
+                    </a>
+                    <a href="./request" class="btn btn-secondary" target="_blank">
+                        <i class="fa-solid fa-key"></i> <?= $text['btn_gen_license'] ?>
+                    </a>
+                    <a href="./order" class="btn btn-outline" target="_blank">
+                        <i class="fa-solid fa-cart-shopping"></i> <?= $text['btn_order'] ?>
+                    </a>
+                </div>
+
+                <div class="guarantee">
+                    <i class="fa-solid fa-shield-halved"></i> <?= $text['guarantee'] ?>
+                </div>
+
+                <?php if (!empty($pembayaran)) : ?>
+                    <div style="margin-top: 1.5rem; text-align: center;">
+                        <?php if (!empty($url_reseller) && $url_reseller === "http://app.wasender.biz") : ?>
+                            <a href="https://t.me/wawn1782" target="_blank" style="color: #38bdf8; text-decoration: none; font-size: 0.95rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;">
+                                <i class="fa-brands fa-telegram" style="font-size: 1.2rem;"></i> <?= $text['chat_telegram'] ?>
+                            </a>
+                        <?php else : ?>
+                            <?php
+                            $wa_clean = isset($wa_reseller) ? preg_replace('/[^0-9]/', '', $wa_reseller) : '';
+                            $tpl_text = rawurlencode("Hallo kak, saya mau konsultasi soal Aplikasi Botmaster.");
+                            ?>
+                            <a href="https://api.whatsapp.com/send?phone=<?= $wa_clean; ?>&text=<?= $tpl_text; ?>" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.95rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;">
+                                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> <?= $text['chat_whatsapp'] ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+
             </div>
-
-            <?php if (!empty($pembayaran)) : ?>
-                <div class="contact-box">
-                    <?php if (!empty($url_reseller) && $url_reseller === "http://app.wasender.biz") : ?>
-                        <a href="https://t.me/wawn1782"
-                           class="btn btn-telegram"
-                           style="width: 100%;" target="_blank" rel="noopener">
-                            <i class="fa-brands fa-telegram" style="font-size: 1.15rem;"></i>
-                            Butuh konsultasi? Chat via Telegram
-                        </a>
-                    <?php else : ?>
-                        <?php
-                        $wa_clean = isset($wa_reseller) ? preg_replace('/[^0-9]/', '', $wa_reseller) : '';
-                        $tpl_text = rawurlencode(
-                            "Hallo kak, saya mau konsultasi soal Aplikasi Botmaster / Business WA Sender ya.."
-                        );
-                        ?>
-                        <a href="https://api.whatsapp.com/send?phone=<?= $wa_clean; ?>&text=<?= $tpl_text; ?>"
-                           class="btn btn-whatsapp"
-                           style="width: 100%;" target="_blank" rel="noopener">
-                            <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i>
-                            Butuh konsultasi? Hubungi via WhatsApp
-                        </a>
-                    <?php endif; ?>
-                </div>
-            <?php endif; ?>
-        </aside>
-    </header>
-
-    <section>
-        <div class="section-title">
-            <h3>Video Demo BotMaster / WA Sender</h3>
-            <p>Lihat langsung cara kerja BotMaster sebelum Anda memutuskan untuk menggunakan di bisnis.</p>
         </div>
+    </main>
 
-        <div class="video-grid">
-            <div class="video-card">
-                <h4>Overview & Pengiriman Broadcast</h4>
-                <iframe src="https://www.youtube.com/embed/UCxjHLwWO4k?list=PL-GUChjQHCJfX7w730Q4Pd6p6lUrcySTZ"
-                        title="Demo BotMaster - Overview"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen></iframe>
+    <section class="stats-section animate-up delay-2">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h4>99%</h4>
+                <p><?= $text['stat_1'] ?></p>
             </div>
-            <div class="video-card">
-                <h4>Filter & Cek Nomor Aktif</h4>
-                <iframe src="https://www.youtube.com/embed/fKThXedMshY?list=PL-GUChjQHCJfX7w730Q4Pd6p6lUrcySTZ"
-                        title="Demo BotMaster - Filter Number"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen></iframe>
+            <div class="stat-item">
+                <h4>10x</h4>
+                <p><?= $text['stat_2'] ?></p>
+            </div>
+            <div class="stat-item">
+                <h4>∞</h4>
+                <p><?= $text['stat_3'] ?></p>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div>
-            &copy; <?= date('Y'); ?> BotMaster - Business WhatsApp Sender.
-            Dibuat untuk membantu Anda mengelola promosi & reminder pelanggan dengan lebih efisien.
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2><?= $text['why_title'] ?></h2>
+                <p><?= $text['why_desc'] ?></p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h3><?= $text['ben_1_title'] ?></h3>
+                    <p><?= $text['ben_1_desc'] ?></p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3><?= $text['ben_2_title'] ?></h3>
+                    <p><?= $text['ben_2_desc'] ?></p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fa-solid fa-robot"></i></div>
+                    <h3><?= $text['ben_3_title'] ?></h3>
+                    <p><?= $text['ben_3_desc'] ?></p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3><?= $text['ben_4_title'] ?></h3>
+                    <p><?= $text['ben_4_desc'] ?></p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fa-solid fa-filter"></i></div>
+                    <h3><?= $text['ben_5_title'] ?></h3>
+                    <p><?= $text['ben_5_desc'] ?></p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fa-solid fa-wallet"></i></div>
+                    <h3><?= $text['ben_6_title'] ?></h3>
+                    <p><?= $text['ben_6_desc'] ?></p>
+                </div>
+            </div>
         </div>
-        <div style="margin-top:.5rem;">
-            <span style="opacity:.75;">Perlu bantuan?</span>
-            <a href="#top">Hubungi admin</a>.
+    </section>
+
+    <section class="video-section">
+        <div class="container">
+            <div class="section-title">
+                <h2><?= $text['vid_title'] ?></h2>
+                <p><?= $text['vid_desc'] ?></p>
+            </div>
+            <div class="video-grid">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/UCxjHLwWO4k?list=PL-GUChjQHCJfX7w730Q4Pd6p6lUrcySTZ" title="Demo Broadcast" allowfullscreen></iframe>
+                    <h3><?= $text['vid_1_title'] ?></h3>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/fKThXedMshY?list=PL-GUChjQHCJfX7w730Q4Pd6p6lUrcySTZ" title="Demo Filter Nomor" allowfullscreen></iframe>
+                    <h3><?= $text['vid_2_title'] ?></h3>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <footer class="container">
+        <p>&copy; <?= date('Y'); ?> <?= $text['footer'] ?></p>
     </footer>
-</div>
 
-<!-- Fetch Metadata dari Github secara Dinamis -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const metadataUrl = "https://raw.githubusercontent.com/hermawan-dony/botmaster-exe/main/version.json";
-        
-        fetch(metadataUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Gagal memuat metadata versi");
-                }
-                return response.json();
-            })
-            .then(data => {
-                // 1. Update text tombol & link download
-                const btnDownload = document.getElementById("btn-download");
-                if (btnDownload) {
-                    btnDownload.href = data.download_url;
-                    btnDownload.innerHTML = `<i class="fa-solid fa-download"></i> Download BotMaster Versi ${data.version} (Terbaru)`;
-                }
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-cta">
+        <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" class="btn btn-main">
+            <i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>
+        </a>
+    </div>
 
-                // 2. Update Versi & Tanggal Rilis di Panel
-                const webVersion = document.getElementById("web-version");
-                const webReleaseDate = document.getElementById("web-release-date");
-                if (webVersion) webVersion.textContent = `v${data.version}`;
-                if (webReleaseDate) webReleaseDate.textContent = data.release_date;
+    <!-- Script Dynamic Update Github -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const metadataUrl = "https://raw.githubusercontent.com/hermawan-dony/botmaster-exe/main/version.json?t=" + new Date().getTime(); // Prevent cache
+            
+            fetch(metadataUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Update main download button
+                    const btnDownload = document.getElementById("btn-download");
+                    if (btnDownload) {
+                        btnDownload.href = data.download_url;
+                        btnDownload.innerHTML = `<i class="fa-solid fa-cloud-arrow-down"></i> <?= $lang === 'en' ? 'Download v' : 'Download v' ?>${data.version}`;
+                    }
 
-                // 3. Update Changelog
-                const webChangelog = document.getElementById("web-changelog");
-                if (webChangelog && data.changelog) {
-                    webChangelog.innerHTML = ""; // Kosongkan placeholder
-                    data.changelog.forEach(item => {
-                        const li = document.createElement("li");
-                        li.textContent = item;
-                        webChangelog.appendChild(li);
+                    // Update mobile sticky CTA download link
+                    const mobileBtns = document.querySelectorAll(".mobile-cta .btn-main");
+                    mobileBtns.forEach(btn => {
+                        btn.href = data.download_url;
                     });
-                }
 
-                // 4. Tampilkan panel update
-                const updatePanel = document.getElementById("update-info-panel");
-                if (updatePanel) {
-                    updatePanel.style.display = "block";
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching updates info:", error);
-                // Fallback jika github bermasalah
-                const btnDownload = document.getElementById("btn-download");
-                if (btnDownload) {
-                    btnDownload.innerHTML = `<i class="fa-solid fa-download"></i> Download BotMaster (Terbaru)`;
-                }
-            });
-    });
-</script>
+                    document.getElementById("web-version").textContent = `v${data.version}`;
+                    document.getElementById("web-release-date").textContent = data.release_date;
+                    
+                    const changelogList = document.getElementById("web-changelog");
+                    if (data.changelog && data.changelog.length > 0) {
+                        changelogList.innerHTML = "";
+                        data.changelog.forEach(item => {
+                            const li = document.createElement("li");
+                            li.textContent = item;
+                            changelogList.appendChild(li);
+                        });
+                        document.getElementById("update-box").style.display = "block";
+                        document.getElementById("badge-update-status").innerHTML = `<i class="fa-solid fa-rocket"></i> <?= $lang === 'en' ? 'Version' : 'Versi' ?> ${data.version} <?= $lang === 'en' ? 'Available!' : 'Tersedia!' ?>`;
+                    }
+                })
+                .catch(err => console.error("Gagal load metadata github:", err));
+        });
+    </script>
 </body>
 </html>
