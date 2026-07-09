@@ -510,7 +510,6 @@
                 <a href="?lang=id" class="<?= $lang === 'id' ? 'active' : '' ?>">ID</a>
                 <a href="?lang=en" class="<?= $lang === 'en' ? 'active' : '' ?>">EN</a>
             </div>
-            <a href="#order" class="btn btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;"><i class="fa-solid fa-user-circle"></i> <?= $text['client_area'] ?></a>
         </div>
     </nav>
 
