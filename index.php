@@ -156,7 +156,15 @@
             background-image: 
                 radial-gradient(circle at 15% 50%, rgba(37, 211, 102, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            background-size: 200% 200%;
             background-attachment: fixed;
+            animation: gradientMove 15s ease infinite alternate;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Animations */
@@ -432,6 +440,56 @@
         footer { padding: 3rem 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.95rem; background: rgba(0,0,0,0.3); }
         footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
 
+        /* FOMO Toast */
+        .fomo-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+        .fomo-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .fomo-icon {
+            background: rgba(37, 211, 102, 0.15);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .fomo-text p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+        .fomo-text p span {
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .fomo-text small {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
         /* Mobile Sticky CTA */
         .mobile-cta { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(11, 17, 32, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid rgba(255,255,255,0.1); padding: 1rem; z-index: 100; text-align: center; box-shadow: 0 -10px 20px rgba(0,0,0,0.5); }
         .mobile-cta .btn { width: 100%; padding: 1.2rem; font-size: 1.1rem; }
@@ -616,6 +674,16 @@
         </a>
     </div>
 
+    <!-- FOMO Toast Element -->
+    <div class="fomo-toast" id="fomo-toast">
+        <div class="fomo-icon"><i class="fa-solid fa-check"></i></div>
+        <div class="fomo-text">
+            <p><span id="fomo-name">Seseorang</span> dari <span id="fomo-city">Jakarta</span></p>
+            <p style="font-size: 0.8rem; color: #cbd5e1;"><?= $lang === 'en' ? 'Just bought Lifetime License' : 'Baru saja membeli Lisensi Lifetime' ?></p>
+            <small id="fomo-time">2 menit lalu</small>
+        </div>
+    </div>
+
     <!-- Script Dynamic Update Github -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -653,6 +721,45 @@
                     }
                 })
                 .catch(err => console.error("Gagal load metadata github:", err));
+        });
+
+        // FOMO Notification Script
+        document.addEventListener("DOMContentLoaded", function() {
+            const fomoToast = document.getElementById("fomo-toast");
+            const fomoName = document.getElementById("fomo-name");
+            const fomoCity = document.getElementById("fomo-city");
+            const fomoTime = document.getElementById("fomo-time");
+
+            const names = ["Budi", "Andi", "Siti", "Ahmad", "Reza", "Dian", "Agus", "Hendra", "Rina", "Joko"];
+            const cities = ["Jakarta", "Surabaya", "Bandung", "Medan", "Semarang", "Makassar", "Bali", "Yogyakarta", "Palembang", "Balikpapan"];
+            
+            function showFomo() {
+                // Randomize data
+                const rName = names[Math.floor(Math.random() * names.length)];
+                const rCity = cities[Math.floor(Math.random() * cities.length)];
+                const rTime = Math.floor(Math.random() * 10) + 1; // 1 to 10 minutes ago
+                
+                fomoName.textContent = rName;
+                fomoCity.textContent = rCity;
+                fomoTime.textContent = rTime + (<?= $lang === 'en' ? "' min ago'" : "' menit lalu'" ?>);
+
+                // Show toast
+                fomoToast.classList.add("show");
+
+                // Hide after 5 seconds
+                setTimeout(() => {
+                    fomoToast.classList.remove("show");
+                }, 5000);
+            }
+
+            // Initial delay before first popup
+            setTimeout(() => {
+                showFomo();
+                // Then repeat randomly between 15 to 30 seconds
+                setInterval(() => {
+                    showFomo();
+                }, Math.floor(Math.random() * 15000) + 15000);
+            }, 8000);
         });
     </script>
 </body>
