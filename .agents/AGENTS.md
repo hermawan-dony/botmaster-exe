@@ -1,0 +1,16 @@
+# Botmaster Project Rules
+
+Whenever updating or modifying this project, please follow these rules:
+
+1. **License Domain**: Ensure the license validation URL uses `wasender.biz`. The exact URL is:
+   `https://panel.wasender.biz/api/ceklisensi.php`
+2. **Empty Contact Info**: Always clear out all developer contact information (WhatsApp, Email, Website support) by setting them to empty strings `""` in both launcher configuration files:
+   - `Launcher\FrmLauncher.vb`
+   - `Botmaster\Customization\FrmLauncher.vb`
+3. **License Form Errors**: In `FrmLicense.vb`, ensure `ValidateButton_Click` uses the dynamic error messages from the server response (`result.ErrorDescription`). The title for `MsgBox` must be set as:
+   - `"BOTMASTER WASENDER"` (for general checks/errors)
+   - `"BOTMASTER WASENDER - LICENSE DISABLED"` (when license is disabled)
+   - `"BOTMASTER WASENDER - LICENSE EXPIRED"` (when license is expired)
+4. **Compilation**: Always compile/build the project using Visual Studio 2022 (MSBuild 17.x).
+5. **Bundling**: After all updates are made, build the project and bundle the release outputs into a single ZIP file named `botmaster26.zip` in the root of the workspace. Inform the user of the complete absolute PATH location once completed.
+6. **Version Metadata**: Whenever compiling a new release, always update the `version.json` metadata file in the root of the workspace (specifying the version, current release date, and changelog/new features). Push both `botmaster26.zip` and `version.json` to the GitHub repository so the website updates automatically.
