@@ -1727,15 +1727,15 @@ skip:
                             "1. Tabel 'outbox' (untuk antrean pesan keluar)" & vbCrLf &
                             "   Kolom wajib:" & vbCrLf &
                             "   - id (INT, Auto Increment, Primary Key)" & vbCrLf &
-                            "   - wa_no (VARCHAR) -> cth: 62812345678" & vbCrLf &
-                            "   - wa_text (TEXT) -> Isi pesan" & vbCrLf &
-                            "   - wa_media (VARCHAR) -> (Opsional) Path lokal/URL gambar" & vbCrLf &
+                            "   - destination_number (VARCHAR) -> cth: 62812345678" & vbCrLf &
+                            "   - message_text (TEXT) -> Isi pesan" & vbCrLf &
+                            "   - media_path (VARCHAR) -> (Opsional) Path lokal/URL gambar" & vbCrLf &
                             "   - status (VARCHAR) -> Isi default 'PENDING'" & vbCrLf & vbCrLf &
                             "2. Tabel 'inbox' (untuk merekam pesan masuk)" & vbCrLf &
                             "   Kolom wajib:" & vbCrLf &
                             "   - id (INT, Auto Increment, Primary Key)" & vbCrLf &
                             "   - sender_number (VARCHAR)" & vbCrLf &
-                            "   - wa_text (TEXT)" & vbCrLf &
+                            "   - message_text (TEXT)" & vbCrLf &
                             "   - received_time (DATETIME)" & vbCrLf & vbCrLf &
                             "----------------------------------------------------------" & vbCrLf &
                             " LANGKAH 2: SETTING WINDOWS ODBC DSN" & vbCrLf &
@@ -1758,8 +1758,8 @@ skip:
                             " CARA KIRIM PESAN DENGAN QUERY SQL" & vbCrLf &
                             "----------------------------------------------------------" & vbCrLf &
                             "Kini sistem sudah berjalan di latar belakang! Untuk mengirim WA, Anda hanya perlu menjalankan query SQL berikut dari aplikasi/website Anda (PHP, Python, VB, dll):" & vbCrLf & vbCrLf &
-                            "INSERT INTO outbox (wa_no, wa_text, status) VALUES ('628123456789', 'Halo, ini pesan otomatis dari SQL!', 'PENDING');" & vbCrLf & vbCrLf &
-                            "Botmaster akan langsung membaca baris berstatus 'PENDING' tersebut, mengirimkan pesan via WhatsApp, dan mengubah statusnya menjadi 'SENT' secara otomatis!"
+                            "INSERT INTO outbox (destination_number, message_text) VALUES ('628123456789', 'Halo, ini pesan otomatis dari SQL!');" & vbCrLf & vbCrLf &
+                            "Botmaster akan langsung membaca baris baru tersebut, mengirimkan pesan via WhatsApp, dan mengubah statusnya menjadi 'SENT' secara otomatis! (Catatan: Kolom 'status' otomatis terisi 'pending' secara bawaan)"
 
         Try
             IO.File.WriteAllText(tutPath, msg)

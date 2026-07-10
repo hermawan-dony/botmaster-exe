@@ -28,12 +28,12 @@ Public Class FrmDatabaseSync
                 conn.Open()
                 
                 Try
-                    Dim cmd As New OdbcCommand("CREATE TABLE outbox (id INT, wa_no VARCHAR(50), wa_text VARCHAR(2000), wa_media VARCHAR(255), status VARCHAR(20))", conn)
+                    Dim cmd As New OdbcCommand("CREATE TABLE outbox (id INT, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), status VARCHAR(20) DEFAULT 'pending')", conn)
                     cmd.ExecuteNonQuery()
                 Catch ex As Exception
                 End Try
                 Try
-                    Dim cmd As New OdbcCommand("CREATE TABLE inbox (id INT, wa_no VARCHAR(50), wa_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
+                    Dim cmd As New OdbcCommand("CREATE TABLE inbox (id INT, destination_number VARCHAR(50), message_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
                     cmd.ExecuteNonQuery()
                 Catch ex As Exception
                 End Try
@@ -55,28 +55,28 @@ Public Class FrmDatabaseSync
         Try
             Dim conn As New OdbcConnection(DSN)
             conn.Open()
-            Dim cmd As New OdbcCommand("SELECT id, wa_no, wa_text, wa_media FROM outbox WHERE status='pending'", conn)
+            Dim cmd As New OdbcCommand("SELECT id, destination_number, message_text, media_path FROM outbox WHERE status='pending'", conn)
             Dim reader As OdbcDataReader = cmd.ExecuteReader()
             
             Dim updates As New List(Of String)
 
             While reader.Read()
                 Dim id As String = reader("id").ToString()
-                Dim wa_no As String = reader("wa_no").ToString()
-                Dim wa_text As String = reader("wa_text").ToString()
-                Dim wa_media As String = reader("wa_media").ToString()
+                Dim destination_number As String = reader("destination_number").ToString()
+                Dim message_text As String = reader("message_text").ToString()
+                Dim media_path As String = reader("media_path").ToString()
                 
-                LogMsg("Sending to " & wa_no)
+                LogMsg("Sending to " & destination_number)
                 If FrmBrowser.IsWAPILoggedIn Then
                     Try
-                        If wa_media <> "" AndAlso System.IO.File.Exists(wa_media) Then
+                        If media_path <> "" AndAlso System.IO.File.Exists(media_path) Then
                             ' Ada file/gambar
-                            Dim base64 As String = "data:image/jpeg;base64," & Convert.ToBase64String(System.IO.File.ReadAllBytes(wa_media))
-                            Dim filename As String = System.IO.Path.GetFileName(wa_media)
-                            FrmBrowser.SendRegularFile(wa_no, base64, filename, wa_text, False)
+                            Dim base64 As String = "data:image/jpeg;base64," & Convert.ToBase64String(System.IO.File.ReadAllBytes(media_path))
+                            Dim filename As String = System.IO.Path.GetFileName(media_path)
+                            FrmBrowser.SendRegularFile(destination_number, base64, filename, message_text, False)
                         Else
                             ' Hanya teks
-                            Dim script As String = $"botmaster.sendMessageto('{wa_no}','{wa_text}',false)"
+                            Dim script As String = $"botmaster.sendMessageto('{destination_number}','{message_text}',false)"
                             FrmBrowser.WebView2.ExecuteScriptAsync(script)
                         End If
                     Catch ex As Exception
@@ -103,20 +103,20 @@ Public Class FrmDatabaseSync
         End If
     End Sub
 
-    Public Sub RecordInbox(wa_no As String, wa_text As String)
+    Public Sub RecordInbox(destination_number As String, message_text As String)
         If IsSyncing Then
             Try
                 Dim conn As New OdbcConnection(DSN)
                 conn.Open()
-                Dim cmd As New OdbcCommand("INSERT INTO inbox (wa_no, wa_text, receive_time) VALUES (?, ?, ?)", conn)
-                cmd.Parameters.AddWithValue("?", wa_no)
-                cmd.Parameters.AddWithValue("?", wa_text)
+                Dim cmd As New OdbcCommand("INSERT INTO inbox (destination_number, message_text, receive_time) VALUES (?, ?, ?)", conn)
+                cmd.Parameters.AddWithValue("?", destination_number)
+                cmd.Parameters.AddWithValue("?", message_text)
                 cmd.Parameters.AddWithValue("?", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
                 cmd.ExecuteNonQuery()
                 conn.Close()
                 
                 Invoke(Sub()
-                    LogMsg("Received from " & wa_no)
+                    LogMsg("Received from " & destination_number)
                 End Sub)
             Catch ex As Exception
             End Try
