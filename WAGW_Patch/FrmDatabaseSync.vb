@@ -646,19 +646,22 @@ Public Class FrmDatabaseSync
     End Sub
 
     Public Shared Sub UpdateWAGWLabel(outboxCount As Integer)
-        If ActiveSyncInstance IsNot Nothing AndAlso FrmMain.LabelWAGW IsNot Nothing Then
-            Dim dsnName As String = ActiveSyncInstance.GetDSNName(ActiveSyncInstance.DSN)
+        If FrmMain.LabelWAGW IsNot Nothing Then
+            Dim dsnName As String = ""
+            If ActiveSyncInstance IsNot Nothing Then
+                dsnName = ActiveSyncInstance.GetDSNName(ActiveSyncInstance.DSN)
+            End If
             Dim textToShow As String = $"  ++WAGW Active [ {dsnName} ] ({outboxCount})  "
             Dim updateUI As Action = Sub()
                 FrmMain.LabelWAGW.Text = textToShow
                 FrmMain.LabelWAGW.Visible = True
-                If FrmMain.Panel3 IsNot Nothing Then
-                    FrmMain.LabelWAGW.Left = (FrmMain.Panel3.Width - FrmMain.LabelWAGW.Width) \ 2
+                If FrmMain.LabelWAGW.Parent IsNot Nothing Then
+                    FrmMain.LabelWAGW.Left = (FrmMain.LabelWAGW.Parent.Width - FrmMain.LabelWAGW.Width) \ 2
                 End If
             End Sub
             
-            If FrmMain.InvokeRequired Then
-                FrmMain.BeginInvoke(updateUI)
+            If FrmMain.LabelWAGW.InvokeRequired Then
+                FrmMain.LabelWAGW.BeginInvoke(updateUI)
             Else
                 updateUI()
             End If
