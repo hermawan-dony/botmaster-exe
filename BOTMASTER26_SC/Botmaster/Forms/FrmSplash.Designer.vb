@@ -66,9 +66,9 @@ Partial Class FrmSplash
         '
         Me.LabelStatus.BackColor = System.Drawing.Color.Transparent
         Me.LabelStatus.ForeColor = System.Drawing.Color.White
-        Me.LabelStatus.Location = New System.Drawing.Point(-6, 186)
+        Me.LabelStatus.Location = New System.Drawing.Point(-6, 305)
         Me.LabelStatus.Name = "LabelStatus"
-        Me.LabelStatus.Size = New System.Drawing.Size(242, 18)
+        Me.LabelStatus.Size = New System.Drawing.Size(262, 18)
         Me.LabelStatus.TabIndex = 2
         Me.LabelStatus.Text = "{{Loading API}}"
         Me.LabelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -87,10 +87,10 @@ Partial Class FrmSplash
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Location = New System.Drawing.Point(49, 210)
+        Me.Panel1.Location = New System.Drawing.Point(50, 325)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Padding = New System.Windows.Forms.Padding(1)
-        Me.Panel1.Size = New System.Drawing.Size(136, 5)
+        Me.Panel1.Size = New System.Drawing.Size(150, 5)
         Me.Panel1.TabIndex = 5
         '
         'Panel2
