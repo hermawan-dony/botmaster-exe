@@ -71,3 +71,11 @@ Di dalam fungsi tersebut, di bawah kode yang mem- *parsing* nomor pengirim (`Dim
 Jangan lupa ganti *modifier* fungsi `SendVoiceNote` dan `SendRegularFile` di file yang sama dari `Private Sub` menjadi `Public Sub`.
 
 Kompilasi ulang dengan Visual Studio 2022. Selesai!
+
+
+## July 2026 Updates
+- **SQL Schema**: Columns updated to `destination_number`, `message_text`, `media_path`. Added `status DEFAULT 'pending'`.
+
+- **Blind Mode**: Hardcoded parameter alse in otmaster.sendMessageto for seamless stealth sending.
+
+- **UI Features**: Maximize button explicitly enabled in FrmMain. AutoRun logic embedded into Settings. ThemeManager extended to handle ListView.
