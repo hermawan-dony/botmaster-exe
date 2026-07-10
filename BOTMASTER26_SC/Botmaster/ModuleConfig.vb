@@ -45,7 +45,13 @@ Module ModuleConfig
     Public SwitchColor As Color
 
     Public Sub InitializeTheme()
-        ThemeActive = GetSetting(Application.ProductName, "Theme", "Active", "Dark")
+        Dim licKey As String = GetSetting(Application.ProductName, "license", "key", "")
+        Dim defaultThemeVal As String = "Purple"
+        If licKey.ToLower().Contains("wasender") Then
+            defaultThemeVal = "Dark"
+        End If
+        ThemeActive = GetSetting(Application.ProductName, "Theme", "Active", defaultThemeVal)
+
         If ThemeActive = "Purple" Then
             ColorPrimary = Color.FromArgb(51, 15, 84)
             ColorSecondary = Color.FromArgb(73, 24, 118)
