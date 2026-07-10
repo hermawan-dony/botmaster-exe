@@ -97,15 +97,30 @@ Public Class FrmDatabaseSync
                 Next
             End If
 
-            If TextBoxDSN.Items.Count > 0 Then
+            Dim savedDSN As String = GetSetting(Application.ProductName, "ODBC", "SelectedDSN", "")
+            If savedDSN <> "" Then
+                If Not TextBoxDSN.Items.Contains(savedDSN) Then
+                    TextBoxDSN.Items.Add(savedDSN)
+                End If
+                TextBoxDSN.SelectedItem = savedDSN
+            Else
+                If TextBoxDSN.Items.Count > 0 Then
+                    TextBoxDSN.SelectedIndex = 0
+                Else
+                    TextBoxDSN.Items.Add("DSN=BotmasterDB;")
+                    TextBoxDSN.SelectedIndex = 0
+                End If
+            End If
+        Catch ex As Exception
+            Dim savedDSN As String = GetSetting(Application.ProductName, "ODBC", "SelectedDSN", "")
+            If savedDSN <> "" Then
+                TextBoxDSN.Items.Clear()
+                TextBoxDSN.Items.Add(savedDSN)
                 TextBoxDSN.SelectedIndex = 0
             Else
                 TextBoxDSN.Items.Add("DSN=BotmasterDB;")
                 TextBoxDSN.SelectedIndex = 0
             End If
-        Catch ex As Exception
-            TextBoxDSN.Items.Add("DSN=BotmasterDB;")
-            TextBoxDSN.SelectedIndex = 0
         End Try
     End Sub
 

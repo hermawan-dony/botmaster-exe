@@ -8,9 +8,12 @@ Public Class FrmDatabaseSync
 
     Private Structure OutboxItem
         Dim Id As String
+        Dim Mode As String
         Dim Destination As String
         Dim Message As String
         Dim Media As String
+        Dim File As String
+        Dim Time As String
     End Structure
 
     Public Shared Sub AutoStartSync(ByVal savedDSN As String)
@@ -94,15 +97,30 @@ Public Class FrmDatabaseSync
                 Next
             End If
 
-            If TextBoxDSN.Items.Count > 0 Then
+            Dim savedDSN As String = GetSetting(Application.ProductName, "ODBC", "SelectedDSN", "")
+            If savedDSN <> "" Then
+                If Not TextBoxDSN.Items.Contains(savedDSN) Then
+                    TextBoxDSN.Items.Add(savedDSN)
+                End If
+                TextBoxDSN.SelectedItem = savedDSN
+            Else
+                If TextBoxDSN.Items.Count > 0 Then
+                    TextBoxDSN.SelectedIndex = 0
+                Else
+                    TextBoxDSN.Items.Add("DSN=BotmasterDB;")
+                    TextBoxDSN.SelectedIndex = 0
+                End If
+            End If
+        Catch ex As Exception
+            Dim savedDSN As String = GetSetting(Application.ProductName, "ODBC", "SelectedDSN", "")
+            If savedDSN <> "" Then
+                TextBoxDSN.Items.Clear()
+                TextBoxDSN.Items.Add(savedDSN)
                 TextBoxDSN.SelectedIndex = 0
             Else
                 TextBoxDSN.Items.Add("DSN=BotmasterDB;")
                 TextBoxDSN.SelectedIndex = 0
             End If
-        Catch ex As Exception
-            TextBoxDSN.Items.Add("DSN=BotmasterDB;")
-            TextBoxDSN.SelectedIndex = 0
         End Try
     End Sub
 
@@ -363,10 +381,11 @@ Public Class FrmDatabaseSync
             Try
                 Dim conn As New OdbcConnection(DSN)
                 conn.Open()
-                Dim cmd As New OdbcCommand("INSERT INTO inbox (destination_number, message_text, receive_time) VALUES (?, ?, ?)", conn)
+                Dim cmd As New OdbcCommand("INSERT INTO inbox (wa_no, wa_text, wa_time, status) VALUES (?, ?, ?, ?)", conn)
                 cmd.Parameters.AddWithValue("?", destination_number)
                 cmd.Parameters.AddWithValue("?", message_text)
                 cmd.Parameters.AddWithValue("?", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+                cmd.Parameters.AddWithValue("?", "received")
                 cmd.ExecuteNonQuery()
                 conn.Close()
                 
