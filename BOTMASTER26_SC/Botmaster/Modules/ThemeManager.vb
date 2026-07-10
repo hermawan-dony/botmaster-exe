@@ -31,7 +31,13 @@ Public Module ThemeManager
     
     Private Sub ApplyToControls(controls As Control.ControlCollection, bMain As Color, bContainer As Color, accent As Color, foreCol As Color)
         For Each c As Control In controls
-            If TypeOf c Is Panel OrElse TypeOf c Is GroupBox OrElse TypeOf c Is TabPage Then
+            Try
+                Dim prop = c.GetType().GetProperty("UseVisualStyleBackColor")
+                If prop IsNot Nothing Then prop.SetValue(c, False, Nothing)
+            Catch
+            End Try
+
+            If TypeOf c Is Panel OrElse TypeOf c Is GroupBox OrElse TypeOf c Is TabPage OrElse TypeOf c Is TabControl Then
                 c.BackColor = bMain
                 c.ForeColor = foreCol
             End If
