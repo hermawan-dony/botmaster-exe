@@ -1759,7 +1759,10 @@ skip:
                             "----------------------------------------------------------" & vbCrLf &
                             "Kini sistem sudah berjalan di latar belakang! Untuk mengirim WA, Anda hanya perlu menjalankan query SQL berikut dari aplikasi/website Anda (PHP, Python, VB, dll):" & vbCrLf & vbCrLf &
                             "INSERT INTO outbox (destination_number, message_text) VALUES ('628123456789', 'Halo, ini pesan otomatis dari SQL!');" & vbCrLf & vbCrLf &
-                            "Botmaster akan langsung membaca baris baru tersebut, mengirimkan pesan via WhatsApp, dan mengubah statusnya menjadi 'SENT' secara otomatis! (Catatan: Kolom 'status' otomatis terisi 'pending' secara bawaan)"
+                            "--- KIRIM PESAN DENGAN GAMBAR/FILE ---" & vbCrLf &
+                            "Untuk melampirkan file/gambar, isi path absolut file tersebut di kolom 'media_path':" & vbCrLf &
+                            "INSERT INTO outbox (destination_number, message_text, media_path) VALUES ('628123456789', 'Lihat brosur ini', 'C:\Brosur\promo.jpg');" & vbCrLf & vbCrLf &
+                            "Botmaster akan otomatis mengecek baris baru, mengirimkan file + teks, dan mengubah statusnya menjadi 'SENT'!"
 
         Try
             IO.File.WriteAllText(tutPath, msg)
