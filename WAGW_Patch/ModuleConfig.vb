@@ -122,6 +122,13 @@ Module ModuleConfig
                 ' Force high contrast white text and custom backgrounds for all themes
                 If TypeOf ctrl Is Label OrElse TypeOf ctrl Is CheckBox OrElse TypeOf ctrl Is RadioButton OrElse TypeOf ctrl Is GroupBox OrElse TypeOf ctrl Is Button OrElse TypeOf ctrl Is MenuStrip OrElse TypeOf ctrl Is ToolStrip OrElse TypeOf ctrl Is StatusStrip OrElse TypeOf ctrl Is TabControl Then
                     ctrl.ForeColor = Color.White
+                    If TypeOf ctrl Is MenuStrip Then
+                        Try
+                            Dim menu As MenuStrip = CType(ctrl, MenuStrip)
+                            menu.Renderer = New ThemeToolStripRenderer()
+                        Catch
+                        End Try
+                    End If
                 ElseIf TypeOf ctrl Is TextBox Then
                     Dim txt As TextBox = CType(ctrl, TextBox)
                     If txt.ReadOnly Then
@@ -165,3 +172,20 @@ Module ModuleConfig
 
 
 End Module
+
+Public Class ThemeToolStripRenderer
+    Inherits ToolStripProfessionalRenderer
+
+    Protected Overrides Sub OnRenderMenuItemBackground(e As ToolStripItemRenderEventArgs)
+        Dim rect As New Rectangle(Point.Empty, e.Item.Size)
+        If e.Item.Selected Then
+            Using brush As New SolidBrush(Color.FromArgb(80, 80, 80))
+                e.Graphics.FillRectangle(brush, rect)
+            End Using
+        Else
+            Using brush As New SolidBrush(e.ToolStrip.BackColor)
+                e.Graphics.FillRectangle(brush, rect)
+            End Using
+        End If
+    End Sub
+End Class

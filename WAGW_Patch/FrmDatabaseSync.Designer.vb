@@ -132,7 +132,7 @@ Partial Class FrmDatabaseSync
         Me.Name = "FrmDatabaseSync"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Database Auto-Sync"
+        Me.Text = "WAGW Auto-Sync"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

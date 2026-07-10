@@ -94,6 +94,7 @@ Public Class FrmDatabaseSync
         
         LoadODBCSources()
         TimerSync.Interval = 5000
+        Me.Text = "WAGW Auto-Sync"
     End Sub
 
     Private Sub LoadODBCSources()
