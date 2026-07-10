@@ -55,7 +55,7 @@ Public Class FrmDatabaseSync
         Try
             Dim conn As New OdbcConnection(DSN)
             conn.Open()
-            Dim cmd As New OdbcCommand("SELECT id, destination_number, message_text, media_path FROM outbox WHERE status='pending'", conn)
+            Dim cmd As New OdbcCommand("SELECT id, destination_number, message_text, media_path FROM outbox WHERE status='pending' OR status IS NULL OR status=''", conn)
             Dim reader As OdbcDataReader = cmd.ExecuteReader()
             
             Dim updates As New List(Of String)
