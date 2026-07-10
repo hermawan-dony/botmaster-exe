@@ -82,7 +82,7 @@ Public Class FrmSplash
                 End If
             Catch ex As Exception
             End Try
-            LabelStatus.Text = "Loading WAGW API... (WAGW ENGINE ACTIVATED)"
+            LabelStatus.Text = "Loading API..."
         Else
             LabelStatus.Text = "Loading API..."
         End If
