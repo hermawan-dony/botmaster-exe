@@ -256,7 +256,7 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center gap-3">
                     <img src="https://app.wasender.biz/index_files/botmaster.ico" alt="BotMaster Logo" class="w-10 h-10 rounded-xl shadow-lg shadow-violet-500/30">
-                    <span class="font-display font-bold text-2xl tracking-tight text-white">Botmaster<?= $isWAGW ? '<span class="text-fuchsia-500"> ++WAGW</span>' : '' ?></span>
+                    <span class="font-display font-bold text-2xl tracking-tight text-white">Botmaster<?= $isWAGW ? '<span class="font-extrabold text-fuchsia-400 drop-shadow-[0_0_10px_rgba(232,121,249,0.8)]"> ++WAGW</span>' : '' ?></span>
                 </div>
                 <div class="flex items-center gap-4">
                     <div class="flex bg-slate-800/80 rounded-lg p-1 border border-white/10">
