@@ -638,7 +638,6 @@ Public Class FrmMain
         Me.Close()
     End Sub
     Private Sub BtnMax_Click(sender As Object, e As EventArgs) Handles BtnMax.Click, Panel3.DoubleClick, Label4.DoubleClick
-        Exit Sub
         If Me.WindowState = FormWindowState.Maximized Then
             BtnMax.Text = "1"
             Me.WindowState = FormWindowState.Normal

@@ -49,35 +49,38 @@ Public Class FrmAdvanced
 
         Dim licKey As String = GetSetting(Application.ProductName, "license", "key", "")
         If licKey.ToLower().Contains("wasender") Then
+            Dim tabPageWAGW As New TabPage("WAGW Settings")
+            tabPageWAGW.BackColor = Color.Transparent
+            
             Dim chkAutoRun As New CheckBox()
             chkAutoRun.Text = "Start automatically with Windows (AutoRun)"
             chkAutoRun.AutoSize = True
-            chkAutoRun.Location = New Point(33, 260)
+            chkAutoRun.Location = New Point(20, 20)
             chkAutoRun.Checked = (GetSetting(Application.ProductName, "AutoRun", "Enabled", "0") = "1")
             AddHandler chkAutoRun.CheckedChanged, Sub(s, ev)
                                                       SaveSetting(Application.ProductName, "AutoRun", "Enabled", If(chkAutoRun.Checked, "1", "0"))
                                                   End Sub
-            TabPage3.Controls.Add(chkAutoRun)
+            tabPageWAGW.Controls.Add(chkAutoRun)
 
             Dim chkAutoHide As New CheckBox()
             chkAutoHide.Text = "Auto Hide to Tray on AutoRun/Startup"
             chkAutoHide.AutoSize = True
-            chkAutoHide.Location = New Point(33, 290)
+            chkAutoHide.Location = New Point(20, 50)
             chkAutoHide.Checked = (GetSetting(Application.ProductName, "AutoRun", "AutoHide", "0") = "1")
             AddHandler chkAutoHide.CheckedChanged, Sub(s, ev)
                                                       SaveSetting(Application.ProductName, "AutoRun", "AutoHide", If(chkAutoHide.Checked, "1", "0"))
                                                   End Sub
-            TabPage3.Controls.Add(chkAutoHide)
+            tabPageWAGW.Controls.Add(chkAutoHide)
 
             Dim lblTheme As New Label()
             lblTheme.Text = "Application Theme (Restart Required):"
             lblTheme.AutoSize = True
-            lblTheme.Location = New Point(33, 325)
-            TabPage3.Controls.Add(lblTheme)
+            lblTheme.Location = New Point(20, 90)
+            tabPageWAGW.Controls.Add(lblTheme)
 
             Dim cmbTheme As New ComboBox()
             cmbTheme.DropDownStyle = ComboBoxStyle.DropDownList
-            cmbTheme.Location = New Point(33, 345)
+            cmbTheme.Location = New Point(20, 110)
             cmbTheme.Size = New Size(200, 21)
             cmbTheme.Items.AddRange(New Object() {"Classic Purple", "WAGW Dark (Blue & Pink)", "Light Mode"})
             
@@ -100,7 +103,12 @@ Public Class FrmAdvanced
                 SaveSetting(Application.ProductName, "Theme", "Active", selTheme)
                 MsgBox("Theme updated. Please restart the application to apply changes.", MsgBoxStyle.Information, Application.ProductName)
             End Sub
-            TabPage3.Controls.Add(cmbTheme)
+            tabPageWAGW.Controls.Add(cmbTheme)
+
+            TabControl1.Controls.Add(tabPageWAGW)
+            
+            ' Apply theme color to the new tab page controls recursively
+            ApplyColor(tabPageWAGW)
         End If
 
         GetFriendsContacts(LstFamiliarsNumbers)
