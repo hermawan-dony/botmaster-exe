@@ -338,7 +338,22 @@
                             </div>
                         <?php else: ?>
                             <div class="flex items-baseline gap-2 mb-8">
-                                <span class="text-5xl font-display font-bold text-white tracking-tight">Rp <?= htmlspecialchars($harga1 ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
+                                <?php
+                                    $display_price = '0';
+                                    $show_rp = true;
+                                    if (isset($harga1)) {
+                                        $clean_price = trim($harga1);
+                                        if (!is_numeric(str_replace(['.', ','], '', $clean_price))) {
+                                            $display_price = trim(str_ireplace(['Rp.', 'Rp'], '', $clean_price));
+                                            $show_rp = false;
+                                        } else {
+                                            $numeric_val = (float)str_replace(['.', ','], '', $clean_price);
+                                            $display_price = number_format($numeric_val, 0, ',', '.');
+                                            $show_rp = true;
+                                        }
+                                    }
+                                ?>
+                                <span class="text-5xl font-display font-bold text-white tracking-tight"><?= ($show_rp ? 'Rp ' : '') . htmlspecialchars($display_price, ENT_QUOTES, 'UTF-8') ?></span>
                                 <span class="text-slate-400 font-medium"><?= $text['price_unit'] ?></span>
                             </div>
                         <?php endif; ?>
