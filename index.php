@@ -353,7 +353,13 @@
                                         }
                                     }
                                 ?>
-                                <span class="text-5xl font-display font-bold text-white tracking-tight">Rp <?= htmlspecialchars($display_price, ENT_QUOTES, 'UTF-8') ?></span>
+                                <?php
+                                    $font_size_class = 'text-5xl';
+                                    if (strlen($display_price) > 8) {
+                                        $font_size_class = 'text-3xl sm:text-4xl';
+                                    }
+                                ?>
+                                <span class="<?= $font_size_class ?> font-display font-bold text-white tracking-tight">Rp <?= htmlspecialchars($display_price, ENT_QUOTES, 'UTF-8') ?></span>
                                 <span class="text-slate-400 font-medium"><?= $text['price_unit'] ?></span>
                             </div>
                         <?php endif; ?>
