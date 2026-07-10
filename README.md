@@ -1,15 +1,17 @@
-# Botmaster v2.6 Executable Release
+# Botmaster-WAGW v2.6.1 Executable Release
 
-Repositori ini berisi file executable (binary bundle) untuk **Botmaster v2.6** yang telah dikompilasi menggunakan Visual Studio 2022.
+Repositori ini berisi file executable (binary bundle) untuk **Botmaster-WAGW v2.6.1** yang telah dikompilasi menggunakan Visual Studio 2022. Pada versi ini, Botmaster telah bertransformasi dengan UI berdesain Dark Theme premium dan dilengkapi dengan kemampuan layaknya mesin Gateway WAGW.
 
 ## Isi Bundle (`botmaster26.zip`)
 File bundle ZIP berisi program utama beserta seluruh library dependensi yang dibutuhkan:
-* **Botmaster.exe** (Aplikasi Utama / Core Engine)
+* **Botmaster-WAGW.exe** (Aplikasi Utama / Core Engine)
 * **Languages/** (Dukungan multibahasa termasuk Bahasa Indonesia)
 * **runtimes/** (Library runtime pendukung)
 * Dependensi sistem lainnya seperti WebView2, Newtonsoft.Json, dan library API HTTP.
 
 ## Fitur Utama
+* **NEW: WAGW ODBC Auto-Sync**: Sistem gerbang (*gateway*) otomatis yang membaca tabel `outbox` dan menulis ke tabel `inbox` via koneksi ODBC DSN tanpa membuat UI *freeze*, mendukung pengiriman Gambar/Dokumen (via kolom `wa_media`).
+* **NEW: WAGW Dark Theme UI**: Antarmuka mode gelap premium (Warna Navy Blue & Aksen Pink).
 * **WhatsApp Bulk Sender**: Pengiriman pesan massal.
 * **Group Grabber**: Pengambil data kontak grup WhatsApp.
 * **Contact Filter**: Penyaring nomor WhatsApp aktif.
