@@ -1,9 +1,10 @@
 {
-  "version": "26.1",
+  "version": "26.1.1",
   "release_date": "2026-07-10",
   "download_url": "https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip",
   "changelog": [
     "Dukungan penuh untuk kontak WhatsApp format LID (@lid)",
-    "Penambahan fitur Database Auto-Sync ODBC (WAGW Mode) dan pembaruan UI Tema Gelap"
+    "Penambahan fitur Database Auto-Sync ODBC (WAGW Mode) dan pembaruan UI Tema Gelap",
+    "Fitur migrasi otomatis Request Key & Lisensi dari Botmaster versi lawas"
   ]
 }
