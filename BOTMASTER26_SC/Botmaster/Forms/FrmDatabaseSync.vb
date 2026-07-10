@@ -22,16 +22,7 @@ Public Class FrmDatabaseSync
             Dim conn As New OdbcConnection(DSN)
             conn.Open()
             
-            Try
-                Dim cmd As New OdbcCommand("CREATE TABLE outbox (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), status VARCHAR(20) DEFAULT 'pending')", conn)
-                cmd.ExecuteNonQuery()
-            Catch ex As Exception
-            End Try
-            Try
-                Dim cmd As New OdbcCommand("CREATE TABLE inbox (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
-                cmd.ExecuteNonQuery()
-            Catch ex As Exception
-            End Try
+            VerifyAndCreateTables(conn)
             
             conn.Close()
 
@@ -107,6 +98,99 @@ Public Class FrmDatabaseSync
         End Try
     End Sub
 
+    Private Sub VerifyAndCreateTables(conn As OdbcConnection)
+        Dim outboxExists As Boolean = False
+        Dim outboxValid As Boolean = False
+        
+        Try
+            Dim cmdTest As New OdbcCommand("SELECT 1 FROM outbox WHERE 1=0", conn)
+            cmdTest.ExecuteNonQuery()
+            outboxExists = True
+        Catch ex As Exception
+        End Try
+        
+        If outboxExists Then
+            Try
+                Dim cmdTestCol As New OdbcCommand("SELECT destination_number, message_text, media_path, status FROM outbox WHERE 1=0", conn)
+                cmdTestCol.ExecuteNonQuery()
+                outboxValid = True
+            Catch ex As Exception
+            End Try
+            
+            If Not outboxValid Then
+                Dim result As MsgBoxResult = MsgBox("Struktur kolom tabel 'outbox' tidak sesuai. Hapus dan buat ulang tabel?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "WAGW Database Sync")
+                If result = MsgBoxResult.Yes Then
+                    Try
+                        Dim cmdDrop As New OdbcCommand("DROP TABLE outbox", conn)
+                        cmdDrop.ExecuteNonQuery()
+                    Catch ex As Exception
+                    End Try
+                    CreateOutboxTable(conn)
+                End If
+            End If
+        Else
+            CreateOutboxTable(conn)
+        End If
+
+        Dim inboxExists As Boolean = False
+        Dim inboxValid As Boolean = False
+        Try
+            Dim cmdTest As New OdbcCommand("SELECT 1 FROM inbox WHERE 1=0", conn)
+            cmdTest.ExecuteNonQuery()
+            inboxExists = True
+        Catch ex As Exception
+        End Try
+        
+        If inboxExists Then
+            Try
+                Dim cmdTestCol As New OdbcCommand("SELECT destination_number, message_text, receive_time FROM inbox WHERE 1=0", conn)
+                cmdTestCol.ExecuteNonQuery()
+                inboxValid = True
+            Catch ex As Exception
+            End Try
+            
+            If Not inboxValid Then
+                Dim result As MsgBoxResult = MsgBox("Struktur kolom tabel 'inbox' tidak sesuai. Hapus dan buat ulang tabel?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "WAGW Database Sync")
+                If result = MsgBoxResult.Yes Then
+                    Try
+                        Dim cmdDrop As New OdbcCommand("DROP TABLE inbox", conn)
+                        cmdDrop.ExecuteNonQuery()
+                    Catch ex As Exception
+                    End Try
+                    CreateInboxTable(conn)
+                End If
+            End If
+        Else
+            CreateInboxTable(conn)
+        End If
+    End Sub
+
+    Private Sub CreateOutboxTable(conn As OdbcConnection)
+        Try
+            Dim cmd As New OdbcCommand("CREATE TABLE outbox (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), status VARCHAR(20) DEFAULT 'pending')", conn)
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Try
+                Dim cmdFallback As New OdbcCommand("CREATE TABLE outbox (id INT IDENTITY(1,1) PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), status VARCHAR(20) DEFAULT 'pending')", conn)
+                cmdFallback.ExecuteNonQuery()
+            Catch ex2 As Exception
+            End Try
+        End Try
+    End Sub
+
+    Private Sub CreateInboxTable(conn As OdbcConnection)
+        Try
+            Dim cmd As New OdbcCommand("CREATE TABLE inbox (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Try
+                Dim cmdFallback As New OdbcCommand("CREATE TABLE inbox (id INT IDENTITY(1,1) PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
+                cmdFallback.ExecuteNonQuery()
+            Catch ex2 As Exception
+            End Try
+        End Try
+    End Sub
+
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Me.Hide()
     End Sub
@@ -125,16 +209,7 @@ Public Class FrmDatabaseSync
                 Dim conn As New OdbcConnection(DSN)
                 conn.Open()
                 
-                Try
-                    Dim cmd As New OdbcCommand("CREATE TABLE outbox (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), status VARCHAR(20) DEFAULT 'pending')", conn)
-                    cmd.ExecuteNonQuery()
-                Catch ex As Exception
-                End Try
-                Try
-                    Dim cmd As New OdbcCommand("CREATE TABLE inbox (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
-                    cmd.ExecuteNonQuery()
-                Catch ex As Exception
-                End Try
+                VerifyAndCreateTables(conn)
                 
                 conn.Close()
 
