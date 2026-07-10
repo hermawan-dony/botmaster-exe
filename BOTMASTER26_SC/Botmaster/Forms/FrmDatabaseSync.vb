@@ -30,6 +30,7 @@ Public Class FrmDatabaseSync
             IsSyncing = True
             BtnOK.Text = "Stop Auto-Sync"
             LabelActivated.Visible = True
+            If FrmMain.LabelWAGW IsNot Nothing Then FrmMain.LabelWAGW.Visible = True
             LogMsg("Auto-Sync started automatically.")
         Catch ex As Exception
             LogMsg("AutoStart Connection failed: " & ex.Message)
@@ -201,6 +202,7 @@ Public Class FrmDatabaseSync
             IsSyncing = False
             BtnOK.Text = "Start Auto-Sync"
             LabelActivated.Visible = False
+            If FrmMain.LabelWAGW IsNot Nothing Then FrmMain.LabelWAGW.Visible = False
             LogMsg("Auto-Sync stopped.")
         Else
             Try
@@ -217,6 +219,7 @@ Public Class FrmDatabaseSync
                 IsSyncing = True
                 BtnOK.Text = "Stop Auto-Sync"
                 LabelActivated.Visible = True
+                If FrmMain.LabelWAGW IsNot Nothing Then FrmMain.LabelWAGW.Visible = True
                 LogMsg("Auto-Sync started. Connected to DSN.")
             Catch ex As Exception
                 MsgBox("Connection failed: " & ex.Message, vbCritical)

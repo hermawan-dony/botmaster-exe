@@ -11,11 +11,17 @@ Public Class FrmLicense
 
     <Obsolete>
     Private Sub FrmLicense_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ThemeManager.ApplyTheme(Me)
+        Me.KeyPreview = True
         ApplyColor(Me)
         TextBox1.Text = Encrypt(getMacAddress)
         On Error Resume Next
         LicneseTextBox.Text = GetSetting(Application.ProductName, "license", "key", "")
+    End Sub
+
+    Private Sub FrmLicense_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.Control AndAlso e.KeyCode = Keys.F2 Then
+            TextBox1.ReadOnly = False
+        End If
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -61,13 +67,14 @@ Public Class FrmLicense
         Dim srvdate As Long = Val(GetServerDate())
         Dim result As ActivationCodeResponse
         result = ClsLicence.ValidateLicense(LicneseTextBox.Text)
+
         If Not IsNothing(result) Then
             If result.IsExsist Then
                 If Not IsNothing(result.Response) Then
                     If result.Response.RequestKey = Encrypt(getMacAddress) Then
                         If srvdate <= Val(result.Response.ExpiryDate) Then
-                            If result.Response.Status = 1 Then
 
+                            If result.Response.Status = 1 Then
                                 ExpriyDate = result.Response.ExpiryDate
 
                                 TotalDays = ClsLicence.GetRemianingDays(result.Response.ExpiryDate, srvdate)
@@ -82,21 +89,21 @@ Public Class FrmLicense
                                 FrmMain.LabelRemaning.Text = TotalDays & " Remaning days"
                                 Me.Hide()
                             Else
-                                MsgBox("License disabled by vendor.", vbCritical, Application.ProductName)
+                                MsgBox(result.ErrorDescription, vbCritical, "Botmaster-WAGW - LICENSE DISABLED")
                             End If
 
                         Else
-                            MsgBox("License already expired", vbCritical, Application.ProductName)
+                            MsgBox(result.ErrorDescription, vbCritical, "Botmaster-WAGW - LICENSE EXPIRED")
                         End If
                     Else
-                        MsgBox("License not related to this machine", vbCritical, Application.ProductName)
+                        MsgBox(result.ErrorDescription, vbCritical, "Botmaster-WAGW")
                     End If
                 End If
             Else
-                MsgBox("Unable to validate license check vendor", vbCritical, Application.ProductName)
+                MsgBox(result.ErrorDescription, vbCritical, "Botmaster-WAGW")
             End If
         Else
-            MsgBox("Unable to validate license check vendor", vbCritical, Application.ProductName)
+            MsgBox("Unable to validate license check vendor.", vbCritical, "Botmaster-WAGW")
         End If
     End Sub
 
@@ -166,11 +173,11 @@ Public Class FrmLicense
                             MsgBox(result.ErrorDescription, vbCritical, "Botmaster-WAGW - LICENSE EXPIRED")
                         End If
                     Else
-                        MsgBox("License not related to this machine.", vbCritical, "Botmaster-WAGW")
+                        MsgBox(result.ErrorDescription, vbCritical, "Botmaster-WAGW")
                     End If
                 End If
             Else
-                MsgBox("Unable to validate license check vendor.", vbCritical, "Botmaster-WAGW")
+                MsgBox(result.ErrorDescription, vbCritical, "Botmaster-WAGW")
             End If
         Else
             MsgBox("Unable to validate license check vendor.", vbCritical, "Botmaster-WAGW")

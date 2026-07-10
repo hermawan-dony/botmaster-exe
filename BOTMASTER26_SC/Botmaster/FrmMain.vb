@@ -14,6 +14,8 @@ Public Class FrmMain
     Public CmdAgrs As String = ""
     Public DefaultLang As String = "English"
     Private WithEvents AppNotifyIcon As NotifyIcon
+    Public Shared LabelWAGW As Label
+
 
     Sub New()
 
@@ -501,6 +503,26 @@ Public Class FrmMain
             ' Hide specific menu items for WAGW
             CheckForUpdateToolStripMenuItem.Visible = False
             AboutToolStripMenuItem.Visible = False
+            ToolStripMenuItem10.Visible = False
+            ToolStripMenuItem9.Visible = False
+            ToolStripMenuItem8.Visible = False
+
+            ' Initialize WAGW status label on main form header
+            LabelWAGW = New Label()
+            LabelWAGW.Text = "  WAGW Activated!!  "
+            LabelWAGW.ForeColor = Color.LimeGreen
+            LabelWAGW.BackColor = Color.Transparent
+            LabelWAGW.Font = New Font("Calibri", 9.5F, FontStyle.Bold)
+            LabelWAGW.AutoSize = True
+            LabelWAGW.TextAlign = ContentAlignment.MiddleCenter
+            LabelWAGW.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+            LabelWAGW.Location = New Point(800, 5)
+            AddHandler LabelWAGW.Paint, Sub(s, pe)
+                                            Dim l As Label = CType(s, Label)
+                                            pe.Graphics.DrawRectangle(New Pen(Color.LimeGreen, 1.5F), 0, 0, l.Width - 1, l.Height - 1)
+                                        End Sub
+            LabelWAGW.Visible = False
+            Me.Panel3.Controls.Add(LabelWAGW)
 
             Dim wagwMenuItem As New ToolStripMenuItem("Database Auto-Sync (ODBC)")
             AddHandler wagwMenuItem.Click, Sub(senderObj, eArgs)
@@ -632,7 +654,7 @@ Public Class FrmMain
 
         Statistics()
         LoadAutoReplyRules()
-
+        ApplyColor(Me)
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
