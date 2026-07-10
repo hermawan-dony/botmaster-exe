@@ -60,32 +60,34 @@ Public Class FrmSplash
     End Sub
 
 
-    Private Sub FrmSplash_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private SplashStopwatch As New Stopwatch()
 
+    Private Sub FrmSplash_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        SplashStopwatch.Start()
         FrmLauncher.SetTheme()
 
-        ApplyColor(Me)
         DropShadow.ApplyShadows(Me)
 
         Panel3.Width = 0
         Panel3.Left = 1
         Panel3.Top = 1
         Panel3.Height = Panel2.Height - 2
-        LabelStatus.Text = "Loading WAGW API..."
+        
+        Dim licKey As String = GetSetting(Application.ProductName, "license", "key", "")
+        If licKey.ToLower().Contains("wasender") Then
+            Try
+                If IO.File.Exists(Application.StartupPath & "\bot++.png") Then
+                    Me.BackgroundImage = Image.FromFile(Application.StartupPath & "\bot++.png")
+                End If
+            Catch ex As Exception
+            End Try
+            LabelStatus.Text = "Loading WAGW API... (WAGW ENGINE ACTIVATED)"
+        Else
+            LabelStatus.Text = "Loading API..."
+        End If
 
         LabelVersion.Text = "v:" & Application.ProductVersion
-        LabelBuildDate.Text = "Build:" & IO.File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString("yyyy.MM.dd")
-        
-        Dim lblWagw As New Label()
-        lblWagw.Text = "WAGW Engine Activated!"
-        lblWagw.Font = New System.Drawing.Font("Arial", 22, System.Drawing.FontStyle.Bold)
-        lblWagw.ForeColor = System.Drawing.Color.Fuchsia
-        lblWagw.BackColor = System.Drawing.Color.Transparent
-        lblWagw.AutoSize = True
-        lblWagw.Location = New System.Drawing.Point(50, 80)
-        Me.Controls.Add(lblWagw)
-        lblWagw.BringToFront()
-        
+        LabelBuildDate.Text = "Build:" & IO.File.GetCreationTime(Assembly.GetExecutingAssembly().Location).ToString("yyyy.MM.dd")
         Application.DoEvents()
         WAPILoader.DownloadStringAsync(New Uri("https://auth.botmaster.us/api/v7/wapi?key=bmsk_live_X1QOkDiIb9FwgbfWC2DGf5T4O58HRrdU"))
 
@@ -123,57 +125,29 @@ Public Class FrmSplash
                            End Sub)
     End Sub
 
-    Private Sub WAPILoader_DownloadStringCompleted(sender As Object, e As DownloadStringCompletedEventArgs) Handles WAPILoader.DownloadStringCompleted
+    Private Async Sub WAPILoader_DownloadStringCompleted(sender As Object, e As DownloadStringCompletedEventArgs) Handles WAPILoader.DownloadStringCompleted
 
         Try
             WAPIScript = e.Result
         Catch ex As Exception
-            ' Silently ignore WAPI failure instead of crashing the app
+            MsgBox("Unable to connect to server...", vbCritical, Application.ProductName)
+            End
         End Try
 
-        Dim tmrDelay As New Timer()
-        tmrDelay.Interval = 3500 ' 3.5 seconds delay to show the Splash
-        AddHandler tmrDelay.Tick, Sub(sTmr, eTmr)
-                                      tmrDelay.Stop()
-                                      Me.Hide()
-                                      FrmMain.CmdAgrs = CmdArgs
-                                      
-                                      Dim isMinimized As Boolean = CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False"))
-                                      If isMinimized Then
-                                          Dim trayIcon As New NotifyIcon()
-                                          trayIcon.Icon = Me.Icon
-                                          trayIcon.Text = Application.ProductName
-                                          trayIcon.Visible = True
-                                          
-                                          AddHandler trayIcon.DoubleClick, Sub(s, ev)
-                                                                               FrmMain.Show()
-                                                                               FrmMain.WindowState = FormWindowState.Normal
-                                                                               FrmMain.ShowInTaskbar = True
-                                                                               FrmMain.Activate()
-                                                                               trayIcon.Visible = False
-                                                                           End Sub
-                                                                           
-                                          AddHandler FrmMain.SizeChanged, Sub(s, ev)
-                                                                              If FrmMain.WindowState = FormWindowState.Minimized AndAlso CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False")) Then
-                                                                                  FrmMain.ShowInTaskbar = False
-                                                                                  trayIcon.Visible = True
-                                                                              End If
-                                                                          End Sub
-                                          FrmMain.WindowState = FormWindowState.Minimized
-                                          FrmMain.ShowInTaskbar = False
-                                          FrmMain.Show()
-                                          FrmMain.Hide()
-                                      Else
-                                          FrmMain.Show()
-                                          FrmMain.Focus()
-                                          FrmMain.Activate()
-                                      End If
-                                  End Sub
-        tmrDelay.Start()
+        SplashStopwatch.Stop()
+        Dim elapsed As Long = SplashStopwatch.ElapsedMilliseconds
+        If elapsed < 3500 Then
+            Await Task.Delay(CInt(3500 - elapsed))
+        End If
+
+        Me.Hide()
+        FrmMain.CmdAgrs = CmdArgs
+        FrmMain.Show()
+        FrmMain.Focus()
+        FrmMain.Activate()
     End Sub
 
     Private Sub LabelStatus_Click(sender As Object, e As EventArgs) Handles LabelStatus.Click
 
     End Sub
 End Class
-
