@@ -6,6 +6,13 @@ Public Class FrmDatabaseSync
 
     Public Shared ActiveSyncInstance As FrmDatabaseSync
 
+    Private Structure OutboxItem
+        Dim Id As String
+        Dim Destination As String
+        Dim Message As String
+        Dim Media As String
+    End Structure
+
     Public Shared Sub AutoStartSync(ByVal savedDSN As String)
         If ActiveSyncInstance Is Nothing Then
             ActiveSyncInstance = New FrmDatabaseSync()
@@ -164,6 +171,19 @@ Public Class FrmDatabaseSync
         Else
             CreateInboxTable(conn)
         End If
+
+        ' Sent table verification
+        Dim sentExists As Boolean = False
+        Try
+            Dim cmdTest As New OdbcCommand("SELECT 1 FROM sent WHERE 1=0", conn)
+            cmdTest.ExecuteNonQuery()
+            sentExists = True
+        Catch ex As Exception
+        End Try
+        
+        If Not sentExists Then
+            CreateSentTable(conn)
+        End If
     End Sub
 
     Private Sub CreateOutboxTable(conn As OdbcConnection)
@@ -186,6 +206,19 @@ Public Class FrmDatabaseSync
         Catch ex As Exception
             Try
                 Dim cmdFallback As New OdbcCommand("CREATE TABLE inbox (id INT IDENTITY(1,1) PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
+                cmdFallback.ExecuteNonQuery()
+            Catch ex2 As Exception
+            End Try
+        End Try
+    End Sub
+
+    Private Sub CreateSentTable(conn As OdbcConnection)
+        Try
+            Dim cmd As New OdbcCommand("CREATE TABLE sent (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), sent_time VARCHAR(50))", conn)
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Try
+                Dim cmdFallback As New OdbcCommand("CREATE TABLE sent (id INT IDENTITY(1,1) PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), sent_time VARCHAR(50))", conn)
                 cmdFallback.ExecuteNonQuery()
             Catch ex2 As Exception
             End Try
@@ -249,40 +282,71 @@ Public Class FrmDatabaseSync
             Dim cmd As New OdbcCommand("SELECT id, destination_number, message_text, media_path FROM outbox WHERE status='pending' OR status IS NULL OR status=''", conn)
             Dim reader As OdbcDataReader = cmd.ExecuteReader()
             
-            Dim updates As New List(Of String)
+            Dim updates As New List(Of OutboxItem)
 
             While reader.Read()
-                Dim id As String = reader("id").ToString()
-                Dim destination_number As String = reader("destination_number").ToString()
-                Dim message_text As String = reader("message_text").ToString()
-                Dim media_path As String = reader("media_path").ToString()
+                Dim item As New OutboxItem()
+                item.Id = reader("id").ToString()
+                item.Destination = reader("destination_number").ToString()
+                item.Message = reader("message_text").ToString()
+                item.Media = reader("media_path").ToString()
                 
-                LogMsg("Sending to " & destination_number)
+                LogMsg("Sending to " & item.Destination)
                 If FrmBrowser.IsWAPILoggedIn Then
                     Try
-                        If media_path <> "" AndAlso System.IO.File.Exists(media_path) Then
-                            ' Ada file/gambar
-                            Dim base64 As String = "data:image/jpeg;base64," & Convert.ToBase64String(System.IO.File.ReadAllBytes(media_path))
-                            Dim filename As String = System.IO.Path.GetFileName(media_path)
-                            FrmBrowser.SendRegularFile(destination_number, base64, filename, message_text, False)
+                        If item.Media <> "" AndAlso System.IO.File.Exists(item.Media) Then
+                            ' File / media message
+                            Dim base64 As String = "data:image/jpeg;base64," & Convert.ToBase64String(System.IO.File.ReadAllBytes(item.Media))
+                            Dim filename As String = System.IO.Path.GetFileName(item.Media)
+                            FrmBrowser.SendRegularFile(item.Destination, base64, filename, item.Message, False)
                         Else
-                            ' Hanya teks
-                            Dim script As String = $"botmaster.sendMessageto('{destination_number}','{message_text}',false)"
+                            ' Text message
+                            Dim script As String = $"botmaster.sendMessageto('{item.Destination}','{item.Message}',false)"
                             FrmBrowser.WebView2.ExecuteScriptAsync(script)
                         End If
                     Catch ex As Exception
                         LogMsg("Failed to send: " & ex.Message)
                     End Try
                 End If
-                updates.Add(id)
+                updates.Add(item)
             End While
             conn.Close()
 
             If updates.Count > 0 Then
                 conn.Open()
-                For Each id In updates
-                    Dim cmdUpd As New OdbcCommand("UPDATE outbox SET status='sent' WHERE id=" & id, conn)
-                    cmdUpd.ExecuteNonQuery()
+                For Each item In updates
+                    ' Log into sent table
+                    Try
+                        Dim cmdSent As New OdbcCommand("INSERT INTO sent (destination_number, message_text, media_path, sent_time) VALUES (?, ?, ?, ?)", conn)
+                        cmdSent.Parameters.AddWithValue("?", item.Destination)
+                        cmdSent.Parameters.AddWithValue("?", item.Message)
+                        cmdSent.Parameters.AddWithValue("?", item.Media)
+                        cmdSent.Parameters.AddWithValue("?", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+                        cmdSent.ExecuteNonQuery()
+                    Catch ex As Exception
+                    End Try
+
+                    ' Update outbox status
+                    Dim updated As Boolean = False
+                    If Not String.IsNullOrEmpty(item.Id) AndAlso item.Id <> "0" Then
+                        Try
+                            Dim cmdUpd As New OdbcCommand("UPDATE outbox SET status='sent' WHERE id=" & item.Id, conn)
+                            cmdUpd.ExecuteNonQuery()
+                            updated = True
+                        Catch ex As Exception
+                        End Try
+                    End If
+                    
+                    ' Fallback to update using text/destination if ID fails or is not populated
+                    If Not updated Then
+                        Try
+                            Dim cmdUpdFallback As New OdbcCommand("UPDATE outbox SET status='sent' WHERE destination_number=? AND message_text=? AND (status='pending' OR status IS NULL OR status='')", conn)
+                            cmdUpdFallback.Parameters.AddWithValue("?", item.Destination)
+                            cmdUpdFallback.Parameters.AddWithValue("?", item.Message)
+                            cmdUpdFallback.ExecuteNonQuery()
+                        Catch ex As Exception
+                        End Try
+                    End If
                 Next
                 conn.Close()
             End If
