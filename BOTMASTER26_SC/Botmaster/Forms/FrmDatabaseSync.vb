@@ -54,11 +54,13 @@ Public Class FrmDatabaseSync
             IsSyncing = True
             BtnOK.Text = "Stop Auto-Sync"
             LabelActivated.Visible = True
-            If FrmMain.LabelWAGW IsNot Nothing Then
-                Dim dsnName As String = GetDSNName(DSN)
-                FrmMain.LabelWAGW.Text = "  WAGW Activated (" & dsnName & ")!!  "
-                FrmMain.LabelWAGW.Visible = True
-            End If
+            Try
+                Dim countCmd As New OdbcCommand("SELECT COUNT(*) FROM outbox", conn)
+                Dim initialCount As Integer = Convert.ToInt32(countCmd.ExecuteScalar())
+                UpdateWAGWLabel(initialCount)
+            Catch
+                UpdateWAGWLabel(0)
+            End Try
             RefreshGrids()
             LogMsg("Auto-Sync started automatically.")
         Catch ex As Exception
@@ -338,11 +340,13 @@ Public Class FrmDatabaseSync
                 IsSyncing = True
                 BtnOK.Text = "Stop Auto-Sync"
                 LabelActivated.Visible = True
-                If FrmMain.LabelWAGW IsNot Nothing Then
-                    Dim dsnName As String = GetDSNName(DSN)
-                    FrmMain.LabelWAGW.Text = "  WAGW Activated (" & dsnName & ")!!  "
-                    FrmMain.LabelWAGW.Visible = True
-                End If
+                Try
+                    Dim countCmd As New OdbcCommand("SELECT COUNT(*) FROM outbox", conn)
+                    Dim initialCount As Integer = Convert.ToInt32(countCmd.ExecuteScalar())
+                    UpdateWAGWLabel(initialCount)
+                Catch
+                    UpdateWAGWLabel(0)
+                End Try
                 RefreshGrids()
                 LogMsg("Auto-Sync started. Connected to DSN.")
             Catch ex As Exception
@@ -357,6 +361,14 @@ Public Class FrmDatabaseSync
             testConn.Open()
             Dim cmd As New OdbcCommand(TextBoxSQL.Text, testConn)
             Dim rows As Integer = cmd.ExecuteNonQuery()
+            Dim currentCount As Integer = 0
+            Try
+                Dim countCmd As New OdbcCommand("SELECT COUNT(*) FROM outbox", testConn)
+                currentCount = Convert.ToInt32(countCmd.ExecuteScalar())
+            Catch
+            End Try
+            UpdateWAGWLabel(currentCount)
+
             testConn.Close()
             MsgBox("SQL Query executed successfully. Rows affected: " & rows, MsgBoxStyle.Information, "SQL Test Success")
             RefreshGrids()
@@ -378,6 +390,15 @@ Public Class FrmDatabaseSync
             Try
                 Dim conn As New OdbcConnection(DSN)
                 conn.Open()
+                
+                Dim currentCount As Integer = 0
+                Try
+                    Dim countCmd As New OdbcCommand("SELECT COUNT(*) FROM outbox", conn)
+                    currentCount = Convert.ToInt32(countCmd.ExecuteScalar())
+                Catch
+                End Try
+                UpdateWAGWLabel(currentCount)
+
                 Dim cmd As New OdbcCommand("SELECT id, wa_mode, wa_no, wa_text, wa_media, wa_file, wa_time FROM outbox", conn)
                 Dim reader As OdbcDataReader = cmd.ExecuteReader()
                 
@@ -622,6 +643,26 @@ Public Class FrmDatabaseSync
         Catch
             dgv.DataSource = dt
         End Try
+    End Sub
+
+    Public Shared Sub UpdateWAGWLabel(outboxCount As Integer)
+        If ActiveSyncInstance IsNot Nothing AndAlso FrmMain.LabelWAGW IsNot Nothing Then
+            Dim dsnName As String = ActiveSyncInstance.GetDSNName(ActiveSyncInstance.DSN)
+            Dim textToShow As String = $"  ++WAGW Active [ {dsnName} ] ({outboxCount})  "
+            Dim updateUI As Action = Sub()
+                FrmMain.LabelWAGW.Text = textToShow
+                FrmMain.LabelWAGW.Visible = True
+                If FrmMain.Panel3 IsNot Nothing Then
+                    FrmMain.LabelWAGW.Left = (FrmMain.Panel3.Width - FrmMain.LabelWAGW.Width) \ 2
+                End If
+            End Sub
+            
+            If FrmMain.InvokeRequired Then
+                FrmMain.BeginInvoke(updateUI)
+            Else
+                updateUI()
+            End If
+        End If
     End Sub
 
     Private Sub LogMsg(msg As String)
