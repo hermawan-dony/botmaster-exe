@@ -48,80 +48,78 @@ Public Class FrmAdvanced
         Me.Text = GetLangbyKey("FrmAdvanced")
 
         Dim licKey As String = GetSetting(Application.ProductName, "license", "key", "")
-        If licKey.ToLower().Contains("wasender") Then
-            Dim tabPageWAGW As New TabPage("WAGW Settings")
-            tabPageWAGW.BackColor = ColorPrimary
-            
-            Dim chkAutoRun As New CheckBox()
-            chkAutoRun.Text = "Start automatically with Windows (AutoRun)"
-            chkAutoRun.AutoSize = True
-            chkAutoRun.Location = New Point(20, 20)
-            chkAutoRun.Checked = (GetSetting(Application.ProductName, "AutoRun", "Enabled", "0") = "1")
-            AddHandler chkAutoRun.CheckedChanged, Sub(s, ev)
-                                                      SaveSetting(Application.ProductName, "AutoRun", "Enabled", If(chkAutoRun.Checked, "1", "0"))
-                                                  End Sub
-            tabPageWAGW.Controls.Add(chkAutoRun)
+        Dim isWAGW As Boolean = licKey.ToLower().Contains("wasender")
+        
+        Dim tabPageWAGW As New TabPage("WAGW Settings")
+        
+        Dim chkAutoRun As New CheckBox()
+        chkAutoRun.Text = "Start automatically with Windows (AutoRun)"
+        chkAutoRun.AutoSize = True
+        chkAutoRun.Location = New Point(20, 20)
+        chkAutoRun.Checked = (GetSetting(Application.ProductName, "AutoRun", "Enabled", "0") = "1")
+        chkAutoRun.Enabled = isWAGW
+        AddHandler chkAutoRun.CheckedChanged, Sub(s, ev)
+                                                  SaveSetting(Application.ProductName, "AutoRun", "Enabled", If(chkAutoRun.Checked, "1", "0"))
+                                              End Sub
+        tabPageWAGW.Controls.Add(chkAutoRun)
 
-            Dim chkAutoHide As New CheckBox()
-            chkAutoHide.Text = "Auto Hide to Tray on AutoRun/Startup"
-            chkAutoHide.AutoSize = True
-            chkAutoHide.Location = New Point(20, 50)
-            chkAutoHide.Checked = (GetSetting(Application.ProductName, "AutoRun", "AutoHide", "0") = "1")
-            AddHandler chkAutoHide.CheckedChanged, Sub(s, ev)
-                                                      SaveSetting(Application.ProductName, "AutoRun", "AutoHide", If(chkAutoHide.Checked, "1", "0"))
-                                                  End Sub
-            tabPageWAGW.Controls.Add(chkAutoHide)
+        Dim chkAutoHide As New CheckBox()
+        chkAutoHide.Text = "Auto Hide to Tray on AutoRun/Startup"
+        chkAutoHide.AutoSize = True
+        chkAutoHide.Location = New Point(20, 50)
+        chkAutoHide.Checked = (GetSetting(Application.ProductName, "AutoRun", "AutoHide", "0") = "1")
+        chkAutoHide.Enabled = isWAGW
+        AddHandler chkAutoHide.CheckedChanged, Sub(s, ev)
+                                                  SaveSetting(Application.ProductName, "AutoRun", "AutoHide", If(chkAutoHide.Checked, "1", "0"))
+                                              End Sub
+        tabPageWAGW.Controls.Add(chkAutoHide)
 
-            Dim lblTheme As New Label()
-            lblTheme.Text = "Application Theme (Restart Required):"
-            lblTheme.AutoSize = True
-            lblTheme.Location = New Point(20, 90)
-            tabPageWAGW.Controls.Add(lblTheme)
+        Dim lblTheme As New Label()
+        lblTheme.Text = "Application Theme (Restart Required):"
+        lblTheme.AutoSize = True
+        lblTheme.Location = New Point(20, 90)
+        tabPageWAGW.Controls.Add(lblTheme)
 
-            Dim cmbTheme As New ComboBox()
-            cmbTheme.DropDownStyle = ComboBoxStyle.DropDownList
-            cmbTheme.Location = New Point(20, 110)
-            cmbTheme.Size = New Size(200, 21)
-            cmbTheme.Items.AddRange(New Object() {"Classic Purple", "WAGW Dark (Blue & Pink)", "Sleek Gray", "Ocean Blue", "Soft Pink", "Vibrant Red"})
-            
-            Dim currentTheme As String = GetSetting(Application.ProductName, "Theme", "Active", "Dark")
-            If currentTheme = "Purple" Then
-                cmbTheme.SelectedIndex = 0
-            ElseIf currentTheme = "Light" Then
-                cmbTheme.SelectedIndex = 2
-            ElseIf currentTheme = "Blue" Then
-                cmbTheme.SelectedIndex = 3
-            ElseIf currentTheme = "Pink" Then
-                cmbTheme.SelectedIndex = 4
-            ElseIf currentTheme = "Red" Then
-                cmbTheme.SelectedIndex = 5
-            Else
-                cmbTheme.SelectedIndex = 1
-            End If
-
-            AddHandler cmbTheme.SelectedIndexChanged, Sub(s, ev)
-                Dim selTheme As String = "Dark"
-                If cmbTheme.SelectedIndex = 0 Then
-                    selTheme = "Purple"
-                ElseIf cmbTheme.SelectedIndex = 2 Then
-                    selTheme = "Light"
-                ElseIf cmbTheme.SelectedIndex = 3 Then
-                    selTheme = "Blue"
-                ElseIf cmbTheme.SelectedIndex = 4 Then
-                    selTheme = "Pink"
-                ElseIf cmbTheme.SelectedIndex = 5 Then
-                    selTheme = "Red"
-                End If
-                SaveSetting(Application.ProductName, "Theme", "Active", selTheme)
-                MsgBox("Theme updated. Please restart the application to apply changes.", MsgBoxStyle.Information, Application.ProductName)
-            End Sub
-            tabPageWAGW.Controls.Add(cmbTheme)
-
-            TabControl1.Controls.Add(tabPageWAGW)
-            
-            ' Apply theme color to the new tab page controls recursively
-            ApplyColor(tabPageWAGW)
+        Dim cmbTheme As New ComboBox()
+        cmbTheme.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbTheme.Location = New Point(20, 110)
+        cmbTheme.Size = New Size(200, 21)
+        cmbTheme.Items.AddRange(New Object() {"Classic Purple", "WAGW Dark (Blue & Pink)", "Sleek Gray", "Ocean Blue", "Soft Pink", "Vibrant Red"})
+        
+        Dim currentTheme As String = GetSetting(Application.ProductName, "Theme", "Active", "Dark")
+        If currentTheme = "Purple" Then
+            cmbTheme.SelectedIndex = 0
+        ElseIf currentTheme = "Light" Then
+            cmbTheme.SelectedIndex = 2
+        ElseIf currentTheme = "Blue" Then
+            cmbTheme.SelectedIndex = 3
+        ElseIf currentTheme = "Pink" Then
+            cmbTheme.SelectedIndex = 4
+        ElseIf currentTheme = "Red" Then
+            cmbTheme.SelectedIndex = 5
+        Else
+            cmbTheme.SelectedIndex = 1
         End If
+
+        AddHandler cmbTheme.SelectedIndexChanged, Sub(s, ev)
+            Dim selTheme As String = "Dark"
+            If cmbTheme.SelectedIndex = 0 Then
+                selTheme = "Purple"
+            ElseIf cmbTheme.SelectedIndex = 2 Then
+                selTheme = "Light"
+            ElseIf cmbTheme.SelectedIndex = 3 Then
+                selTheme = "Blue"
+            ElseIf cmbTheme.SelectedIndex = 4 Then
+                selTheme = "Pink"
+            ElseIf cmbTheme.SelectedIndex = 5 Then
+                selTheme = "Red"
+            End If
+            SaveSetting(Application.ProductName, "Theme", "Active", selTheme)
+            MsgBox("Theme updated. Please restart the application to apply changes.", MsgBoxStyle.Information, Application.ProductName)
+        End Sub
+        tabPageWAGW.Controls.Add(cmbTheme)
+
+        TabControl1.Controls.Add(tabPageWAGW)
 
         GetFriendsContacts(LstFamiliarsNumbers)
         GetMessages(LstMessages)
