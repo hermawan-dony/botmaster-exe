@@ -641,9 +641,11 @@ Public Class FrmMain
         BtnMax.Font = New Font("Marlett", 9.5F)
 
 
-        Panel10.Width = 55
-        ButtonSwitch.Width = 28
-        ButtonSwitch.Font = New Font("Calibri", 7.5F, FontStyle.Bold)
+        Panel10.Width = 60
+        ButtonSwitch.Width = 32
+        ButtonSwitch.Margin = New Padding(0)
+        ButtonSwitch.Padding = New Padding(0)
+        ButtonSwitch.Font = New Font("Calibri", 7.0F, FontStyle.Bold)
         If GetSetting(Application.ProductName, "AutoReply", "Start", "1") = "1" Then
             ButtonSwitch.Dock = DockStyle.Right
             ButtonSwitch.BackColor = SwitchColor

@@ -93,9 +93,15 @@ Module ModuleConfig
         Dim RefColor3 As Color = Color.FromArgb(25, 27, 48)
         Dim RefColor4 As Color = Color.FromArgb(35, 37, 65)
 
+        ' Apply theme background color directly to forms and tab pages
+        If TypeOf mainclrl Is Form Then
+            mainclrl.BackColor = ColorPrimary
+        End If
+
         For Each ctrl As Control In mainclrl.Controls
             If Not IsNothing(ctrl.BackColor) Then
-                If ctrl.BackColor = RefColor1 Then
+                ' Map default dark backgrounds to active theme colors
+                If ctrl.BackColor = RefColor1 OrElse ctrl.BackColor = SystemColors.Control Then
                     ctrl.BackColor = Color1
                 End If
                 If ctrl.BackColor = RefColor2 Then
@@ -108,11 +114,25 @@ Module ModuleConfig
                     ctrl.ForeColor = Color4
                 End If
 
+                ' Specific theme handling for tab pages
+                If TypeOf ctrl Is TabPage Then
+                    ctrl.BackColor = ColorPrimary
+                End If
+
                 ' Force high contrast white text and custom backgrounds for all themes
-                If TypeOf ctrl Is Label OrElse TypeOf ctrl Is CheckBox OrElse TypeOf ctrl Is RadioButton OrElse TypeOf ctrl Is GroupBox OrElse TypeOf ctrl Is Button OrElse TypeOf ctrl Is MenuStrip OrElse TypeOf ctrl Is ToolStrip OrElse TypeOf ctrl Is StatusStrip OrElse TypeOf ctrl Is TabControl OrElse TypeOf ctrl Is TabPage Then
+                If TypeOf ctrl Is Label OrElse TypeOf ctrl Is CheckBox OrElse TypeOf ctrl Is RadioButton OrElse TypeOf ctrl Is GroupBox OrElse TypeOf ctrl Is Button OrElse TypeOf ctrl Is MenuStrip OrElse TypeOf ctrl Is ToolStrip OrElse TypeOf ctrl Is StatusStrip OrElse TypeOf ctrl Is TabControl Then
                     ctrl.ForeColor = Color.White
-                ElseIf TypeOf ctrl Is TextBox OrElse TypeOf ctrl Is ComboBox OrElse TypeOf ctrl Is ListBox OrElse TypeOf ctrl Is DataGridView Then
-                    ctrl.BackColor = Color3
+                ElseIf TypeOf ctrl Is TextBox Then
+                    Dim txt As TextBox = CType(ctrl, TextBox)
+                    If txt.ReadOnly Then
+                        txt.BackColor = ColorThird
+                        txt.ForeColor = Color.White
+                    Else
+                        txt.BackColor = Color.White
+                        txt.ForeColor = Color.Black
+                    End If
+                ElseIf TypeOf ctrl Is ComboBox OrElse TypeOf ctrl Is ListBox OrElse TypeOf ctrl Is DataGridView Then
+                    ctrl.BackColor = ColorThird
                     ctrl.ForeColor = Color.White
                 End If
 
