@@ -61,7 +61,6 @@ Public Class FrmSplash
 
 
     Private Sub FrmSplash_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
         FrmLauncher.SetTheme()
 
@@ -72,10 +71,21 @@ Public Class FrmSplash
         Panel3.Left = 1
         Panel3.Top = 1
         Panel3.Height = Panel2.Height - 2
-        LabelStatus.Text = "Loading API..."
+        LabelStatus.Text = "Loading WAGW API..."
 
         LabelVersion.Text = "v:" & Application.ProductVersion
-        LabelBuildDate.Text = "Build:" & IO.File.GetCreationTime(Assembly.GetExecutingAssembly().Location).ToString("yyyy.MM.dd")
+        LabelBuildDate.Text = "Build:" & IO.File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString("yyyy.MM.dd")
+        
+        Dim lblWagw As New Label()
+        lblWagw.Text = "WAGW Engine Activated!"
+        lblWagw.Font = New System.Drawing.Font("Arial", 22, System.Drawing.FontStyle.Bold)
+        lblWagw.ForeColor = System.Drawing.Color.Fuchsia
+        lblWagw.BackColor = System.Drawing.Color.Transparent
+        lblWagw.AutoSize = True
+        lblWagw.Location = New System.Drawing.Point(50, 80)
+        Me.Controls.Add(lblWagw)
+        lblWagw.BringToFront()
+        
         Application.DoEvents()
         WAPILoader.DownloadStringAsync(New Uri("https://auth.botmaster.us/api/v7/wapi?key=bmsk_live_X1QOkDiIb9FwgbfWC2DGf5T4O58HRrdU"))
 
@@ -118,46 +128,52 @@ Public Class FrmSplash
         Try
             WAPIScript = e.Result
         Catch ex As Exception
-            MsgBox("Unable to connect to server...", vbCritical, Application.ProductName)
-            End
+            ' Silently ignore WAPI failure instead of crashing the app
         End Try
 
-        Me.Hide()
-        FrmMain.CmdAgrs = CmdArgs
-        
-        Dim isMinimized As Boolean = CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False"))
-        If isMinimized Then
-            Dim trayIcon As New NotifyIcon()
-            trayIcon.Icon = Me.Icon
-            trayIcon.Text = Application.ProductName
-            trayIcon.Visible = True
-            
-            AddHandler trayIcon.DoubleClick, Sub(s, ev)
-                                                 FrmMain.Show()
-                                                 FrmMain.WindowState = FormWindowState.Normal
-                                                 FrmMain.ShowInTaskbar = True
-                                                 FrmMain.Activate()
-                                                 trayIcon.Visible = False
-                                             End Sub
-                                             
-            AddHandler FrmMain.SizeChanged, Sub(s, ev)
-                                                If FrmMain.WindowState = FormWindowState.Minimized AndAlso CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False")) Then
-                                                    FrmMain.ShowInTaskbar = False
-                                                    trayIcon.Visible = True
-                                                End If
-                                            End Sub
-            FrmMain.WindowState = FormWindowState.Minimized
-            FrmMain.ShowInTaskbar = False
-            FrmMain.Show()
-            FrmMain.Hide()
-        Else
-            FrmMain.Show()
-            FrmMain.Focus()
-            FrmMain.Activate()
-        End If
+        Dim tmrDelay As New Timer()
+        tmrDelay.Interval = 3500 ' 3.5 seconds delay to show the Splash
+        AddHandler tmrDelay.Tick, Sub(sTmr, eTmr)
+                                      tmrDelay.Stop()
+                                      Me.Hide()
+                                      FrmMain.CmdAgrs = CmdArgs
+                                      
+                                      Dim isMinimized As Boolean = CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False"))
+                                      If isMinimized Then
+                                          Dim trayIcon As New NotifyIcon()
+                                          trayIcon.Icon = Me.Icon
+                                          trayIcon.Text = Application.ProductName
+                                          trayIcon.Visible = True
+                                          
+                                          AddHandler trayIcon.DoubleClick, Sub(s, ev)
+                                                                               FrmMain.Show()
+                                                                               FrmMain.WindowState = FormWindowState.Normal
+                                                                               FrmMain.ShowInTaskbar = True
+                                                                               FrmMain.Activate()
+                                                                               trayIcon.Visible = False
+                                                                           End Sub
+                                                                           
+                                          AddHandler FrmMain.SizeChanged, Sub(s, ev)
+                                                                              If FrmMain.WindowState = FormWindowState.Minimized AndAlso CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False")) Then
+                                                                                  FrmMain.ShowInTaskbar = False
+                                                                                  trayIcon.Visible = True
+                                                                              End If
+                                                                          End Sub
+                                          FrmMain.WindowState = FormWindowState.Minimized
+                                          FrmMain.ShowInTaskbar = False
+                                          FrmMain.Show()
+                                          FrmMain.Hide()
+                                      Else
+                                          FrmMain.Show()
+                                          FrmMain.Focus()
+                                          FrmMain.Activate()
+                                      End If
+                                  End Sub
+        tmrDelay.Start()
     End Sub
 
     Private Sub LabelStatus_Click(sender As Object, e As EventArgs) Handles LabelStatus.Click
 
     End Sub
 End Class
+
