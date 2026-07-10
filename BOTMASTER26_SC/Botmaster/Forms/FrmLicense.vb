@@ -158,21 +158,21 @@ Public Class FrmLicense
                                 LicAutoReply.Text = result.Response.AllowBot
                                 LicFilter.Text = result.Response.AllowFilter
                             Else
-                                MsgBox(result.ErrorDescription, vbCritical, "BOTMASTER WASENDER - LICENSE DISABLED")
+                                MsgBox(result.ErrorDescription, vbCritical, "Botmaster-WAGW - LICENSE DISABLED")
                             End If
 
                         Else
-                            MsgBox(result.ErrorDescription, vbCritical, "BOTMASTER WASENDER - LICENSE EXPIRED")
+                            MsgBox(result.ErrorDescription, vbCritical, "Botmaster-WAGW - LICENSE EXPIRED")
                         End If
                     Else
-                        MsgBox("License not related to this machine.", vbCritical, "BOTMASTER WASENDER")
+                        MsgBox("License not related to this machine.", vbCritical, "Botmaster-WAGW")
                     End If
                 End If
             Else
-                MsgBox("Unable to validate license check vendor.", vbCritical, "BOTMASTER WASENDER")
+                MsgBox("Unable to validate license check vendor.", vbCritical, "Botmaster-WAGW")
             End If
         Else
-            MsgBox("Unable to validate license check vendor.", vbCritical, "BOTMASTER WASENDER")
+            MsgBox("Unable to validate license check vendor.", vbCritical, "Botmaster-WAGW")
         End If
 
     End Sub

@@ -8,9 +8,9 @@ Whenever updating or modifying this project, please follow these rules:
    - `Launcher\FrmLauncher.vb`
    - `Botmaster\Customization\FrmLauncher.vb`
 3. **License Form Errors**: In `FrmLicense.vb`, ensure `ValidateButton_Click` uses the dynamic error messages from the server response (`result.ErrorDescription`). The title for `MsgBox` must be set as:
-   - `"BOTMASTER WASENDER"` (for general checks/errors)
-   - `"BOTMASTER WASENDER - LICENSE DISABLED"` (when license is disabled)
-   - `"BOTMASTER WASENDER - LICENSE EXPIRED"` (when license is expired)
+   - `"Botmaster-WAGW"` (for general checks/errors)
+   - `"Botmaster-WAGW - LICENSE DISABLED"` (when license is disabled)
+   - `"Botmaster-WAGW - LICENSE EXPIRED"` (when license is expired)
 4. **Compilation**: Always compile/build the project using Visual Studio 2022 (MSBuild 17.x).
 5. **Bundling**: After all updates are made, build the project and bundle the release outputs into a single ZIP file named `botmaster26.zip` in the root of the workspace. Inform the user of the complete absolute PATH location once completed.
 6. **Version Metadata**: Whenever compiling a new release, always update the `version.json` metadata file in the root of the workspace (specifying the version, current release date, and changelog/new features). **Important**: The changelog should ONLY contain user-facing feature updates. Do NOT include internal technical changes (e.g., license domain redirects, cleaning developer info, or error message adjustments) in the changelog. Push both `botmaster26.zip` and `version.json` to the GitHub repository so the website updates automatically.
