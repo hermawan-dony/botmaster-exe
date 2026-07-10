@@ -395,12 +395,14 @@ Public Class FrmDatabaseSync
                 Dim currentCount As Integer = 0
                 Try
                     Dim countCmd As New OdbcCommand("SELECT COUNT(*) FROM outbox", conn)
+                    countCmd.CommandTimeout = 10
                     currentCount = Convert.ToInt32(countCmd.ExecuteScalar())
                 Catch
                 End Try
                 UpdateWAGWLabel(currentCount)
 
                 Dim cmd As New OdbcCommand("SELECT id, wa_mode, wa_no, wa_text, wa_media, wa_file, wa_time FROM outbox", conn)
+                cmd.CommandTimeout = 10
                 Dim reader As OdbcDataReader = cmd.ExecuteReader()
                 
                 Dim processed As New List(Of OutboxItem)
@@ -505,6 +507,7 @@ Public Class FrmDatabaseSync
                         ' Log into sent table
                         Try
                             Dim cmdSent As New OdbcCommand("INSERT INTO sent (id, wa_mode, wa_no, wa_text, wa_media, wa_file, wa_time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", conn)
+                            cmdSent.CommandTimeout = 10
                             Dim parsedId As Integer = 0
                             Integer.TryParse(item.Id, parsedId)
                             Dim parsedMode As Integer = 0
@@ -532,6 +535,7 @@ Public Class FrmDatabaseSync
                         If Not String.IsNullOrEmpty(item.Id) AndAlso item.Id <> "0" Then
                             Try
                                 Dim cmdDel As New OdbcCommand("DELETE FROM outbox WHERE id=" & item.Id, conn)
+                                cmdDel.CommandTimeout = 10
                                 cmdDel.ExecuteNonQuery()
                                 deleted = True
                             Catch ex As Exception
@@ -542,6 +546,7 @@ Public Class FrmDatabaseSync
                         If Not deleted Then
                             Try
                                 Dim cmdDelFallback As New OdbcCommand("DELETE FROM outbox WHERE wa_no=? AND wa_text=?", conn)
+                                cmdDelFallback.CommandTimeout = 10
                                 cmdDelFallback.Parameters.AddWithValue("?", item.Destination)
                                 cmdDelFallback.Parameters.AddWithValue("?", item.Message)
                                 cmdDelFallback.ExecuteNonQuery()
