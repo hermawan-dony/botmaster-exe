@@ -1,8 +1,8 @@
 Imports System.Data.Odbc
 
 Public Class FrmDatabaseSync
-    Private IsSyncing As Boolean = False
-    Private DSN As String = ""
+    Public IsSyncing As Boolean = False
+    Public DSN As String = ""
 
     Public Shared ActiveSyncInstance As FrmDatabaseSync
 
@@ -25,6 +25,20 @@ Public Class FrmDatabaseSync
         ActiveSyncInstance.StartSyncProcess()
     End Sub
 
+    Private Function GetDSNName(dsnConnStr As String) As String
+        Try
+            If String.IsNullOrEmpty(dsnConnStr) Then Return ""
+            Dim parts = dsnConnStr.Split(";"c)
+            For Each part In parts
+                If part.Trim().ToUpper().StartsWith("DSN=") Then
+                    Return part.Trim().Substring(4)
+                End If
+            Next
+        Catch
+        End Try
+        Return "ODBC"
+    End Function
+
     Public Sub StartSyncProcess()
         Try
             DSN = TextBoxDSN.Text
@@ -40,7 +54,11 @@ Public Class FrmDatabaseSync
             IsSyncing = True
             BtnOK.Text = "Stop Auto-Sync"
             LabelActivated.Visible = True
-            If FrmMain.LabelWAGW IsNot Nothing Then FrmMain.LabelWAGW.Visible = True
+            If FrmMain.LabelWAGW IsNot Nothing Then
+                Dim dsnName As String = GetDSNName(DSN)
+                FrmMain.LabelWAGW.Text = "  WAGW Activated (" & dsnName & ")!!  "
+                FrmMain.LabelWAGW.Visible = True
+            End If
             LogMsg("Auto-Sync started automatically.")
         Catch ex As Exception
             LogMsg("AutoStart Connection failed: " & ex.Message)
@@ -307,7 +325,11 @@ Public Class FrmDatabaseSync
                 IsSyncing = True
                 BtnOK.Text = "Stop Auto-Sync"
                 LabelActivated.Visible = True
-                If FrmMain.LabelWAGW IsNot Nothing Then FrmMain.LabelWAGW.Visible = True
+                If FrmMain.LabelWAGW IsNot Nothing Then
+                    Dim dsnName As String = GetDSNName(DSN)
+                    FrmMain.LabelWAGW.Text = "  WAGW Activated (" & dsnName & ")!!  "
+                    FrmMain.LabelWAGW.Visible = True
+                End If
                 LogMsg("Auto-Sync started. Connected to DSN.")
             Catch ex As Exception
                 MsgBox("Connection failed: " & ex.Message, vbCritical)
@@ -350,9 +372,18 @@ Public Class FrmDatabaseSync
                     item.File = reader("wa_file").ToString()
                     item.Time = reader("wa_time").ToString()
                     
-                    Invoke(Sub() LogMsg("Sending to " & item.Destination))
-                    If FrmBrowser.IsWAPILoggedIn Then
+                    Dim sentSuccessfully As Boolean = False
+                    
+                    If FrmBrowser.IsWAPILoggedIn() Then
+                        If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated Then
+                            ActiveSyncInstance.BeginInvoke(Sub() ActiveSyncInstance.LogMsg("Sending to " & item.Destination))
+                        End If
                         Try
+                            Dim formattedNumber As String = item.Destination
+                            If Not formattedNumber.Contains("@") Then
+                                formattedNumber = formattedNumber & "@c.us"
+                            End If
+
                             Dim activeMedia As String = ""
                             If Not String.IsNullOrEmpty(item.Media) AndAlso System.IO.File.Exists(item.Media) Then
                                 activeMedia = item.Media
@@ -364,19 +395,30 @@ Public Class FrmDatabaseSync
                                 ' File / media message
                                 Dim base64 As String = "data:image/jpeg;base64," & Convert.ToBase64String(System.IO.File.ReadAllBytes(activeMedia))
                                 Dim filename As String = System.IO.Path.GetFileName(activeMedia)
-                                Invoke(Sub() FrmBrowser.SendRegularFile(item.Destination, base64, filename, item.Message, False))
+                                If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated Then
+                                    ActiveSyncInstance.BeginInvoke(Sub() FrmBrowser.SendRegularFile(formattedNumber, base64, filename, item.Message, False))
+                                End If
+                                sentSuccessfully = True
                             Else
                                 ' Text message
-                                Invoke(Sub()
-                                    Dim script As String = $"botmaster.sendMessageto('{item.Destination}','{item.Message}',false)"
-                                    FrmBrowser.WebView2.ExecuteScriptAsync(script)
-                                End Sub)
+                                If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated Then
+                                    ActiveSyncInstance.BeginInvoke(Sub()
+                                        Dim script As String = $"botmaster.sendMessageto('{formattedNumber}','{SafeJavaScript(item.Message)}',false)"
+                                        FrmBrowser.WebView2.ExecuteScriptAsync(script)
+                                    End Sub)
+                                End If
+                                sentSuccessfully = True
                             End If
                         Catch ex As Exception
-                            Invoke(Sub() LogMsg("Failed to send: " & ex.Message))
+                            If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated Then
+                                ActiveSyncInstance.BeginInvoke(Sub() ActiveSyncInstance.LogMsg("Failed to send: " & ex.Message))
+                            End If
                         End Try
                     End If
-                    processed.Add(item)
+                    
+                    If sentSuccessfully Then
+                        processed.Add(item)
+                    End If
                 End While
                 conn.Close()
 
@@ -435,18 +477,20 @@ Public Class FrmDatabaseSync
             Catch ex As Exception
             End Try
             
-            Invoke(Sub()
-                If IsSyncing Then
-                    TimerSync.Start()
-                End If
-            End Sub)
+            If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated AndAlso Not ActiveSyncInstance.IsDisposed Then
+                ActiveSyncInstance.BeginInvoke(Sub()
+                    If ActiveSyncInstance.IsSyncing Then
+                        ActiveSyncInstance.TimerSync.Start()
+                    End If
+                End Sub)
+            End If
         End Sub)
     End Sub
 
-    Public Sub RecordInbox(destination_number As String, message_text As String)
-        If IsSyncing Then
+    Public Shared Sub RecordInbox(destination_number As String, message_text As String)
+        If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsSyncing Then
             Try
-                Dim conn As New OdbcConnection(DSN)
+                Dim conn As New OdbcConnection(ActiveSyncInstance.DSN)
                 conn.Open()
                 Dim cmd As New OdbcCommand("INSERT INTO inbox (wa_no, wa_text, wa_time, status) VALUES (?, ?, ?, ?)", conn)
                 cmd.Parameters.AddWithValue("?", destination_number)
@@ -456,9 +500,11 @@ Public Class FrmDatabaseSync
                 cmd.ExecuteNonQuery()
                 conn.Close()
                 
-                Invoke(Sub()
-                    LogMsg("Received from " & destination_number)
-                End Sub)
+                If ActiveSyncInstance.IsHandleCreated Then
+                    ActiveSyncInstance.BeginInvoke(Sub()
+                        ActiveSyncInstance.LogMsg("Received from " & destination_number)
+                    End Sub)
+                End If
             Catch ex As Exception
             End Try
         End If
