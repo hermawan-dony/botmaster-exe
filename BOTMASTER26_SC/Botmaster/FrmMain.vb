@@ -535,34 +535,32 @@ Public Class FrmMain
 
             Dim wagwHelpItem As New ToolStripMenuItem("WAGW Tutorial")
             AddHandler wagwHelpItem.Click, Sub(senderObj, eArgs)
-                                               Dim msg As String = "--- WAGW DATABASE AUTO-SYNC TUTORIAL ---" & vbCrLf & vbCrLf &
+                                                Dim msg As String = "--- WAGW DATABASE AUTO-SYNC TUTORIAL ---" & vbCrLf & vbCrLf &
                                                                    "INDONESIA:" & vbCrLf &
                                                                    "1. Konfigurasi ODBC DSN terlebih dahulu di Windows (ODBC Data Source Administrator)." & vbCrLf &
                                                                    "2. Buka Tools > Database Auto-Sync (ODBC), pilih DSN dari dropdown, lalu klik 'Start Auto-Sync'." & vbCrLf &
-                                                                   "3. Aplikasi akan otomatis membuat tabel 'outbox' dan 'inbox' jika belum ada." & vbCrLf &
-                                                                   "4. Kirim Pesan dengan insert SQL ke tabel 'outbox' (Blind mode = false)." & vbCrLf &
-                                                                   "   Kolom 'id' adalah Auto-Increment dan 'status' otomatis terisi 'pending' jika dikosongkan." & vbCrLf &
+                                                                   "3. Aplikasi akan otomatis membuat tabel 'outbox', 'inbox', dan 'sent' jika belum ada." & vbCrLf &
+                                                                   "4. Kirim Pesan dengan insert SQL ke tabel 'outbox'. Setelah sukses terkirim, data akan dipindahkan ke tabel 'sent'." & vbCrLf &
                                                                    "   Contoh Query SQL yang bisa Anda jalankan:" & vbCrLf & vbCrLf &
                                                                    "   - Mengirim Pesan Teks Biasa:" & vbCrLf &
-                                                                   "     INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Halo ini pesan tes')" & vbCrLf & vbCrLf &
+                                                                   "     INSERT INTO outbox (wa_no, wa_text) VALUES ('628512345678', 'Halo ini pesan tes')" & vbCrLf & vbCrLf &
                                                                    "   - Mengirim Pesan Media / Gambar (dengan Path File):" & vbCrLf &
-                                                                   "     INSERT INTO outbox (destination_number, message_text, media_path) VALUES ('628512345678', 'Keterangan Gambar', 'C:\path\gambar.jpg')" & vbCrLf & vbCrLf &
+                                                                   "     INSERT INTO outbox (wa_no, wa_text, wa_media) VALUES ('628512345678', 'Keterangan Gambar', 'C:\path\gambar.jpg')" & vbCrLf & vbCrLf &
                                                                    "   - Mengirim Pesan Tombol / Interactive (Format Spintax):" & vbCrLf &
-                                                                   "     INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Pesan Utama|Tombol1|Tombol2')" & vbCrLf & vbCrLf &
+                                                                   "     INSERT INTO outbox (wa_no, wa_text) VALUES ('628512345678', 'Pesan Utama|Tombol1|Tombol2')" & vbCrLf & vbCrLf &
                                                                    "--------------------------------------------------------" & vbCrLf & vbCrLf &
                                                                    "ENGLISH:" & vbCrLf &
                                                                    "1. Configure ODBC DSN in Windows (ODBC Data Source Administrator) first." & vbCrLf &
                                                                    "2. Open Tools > Database Auto-Sync (ODBC), select the DSN from the dropdown, then click 'Start Auto-Sync'." & vbCrLf &
-                                                                   "3. The application will automatically create the 'outbox' and 'inbox' tables if they don't exist." & vbCrLf &
-                                                                   "4. Send messages by executing an INSERT SQL to the 'outbox' table (Blind mode = false)." & vbCrLf &
-                                                                   "   The 'id' column is Auto-Increment and 'status' defaults to 'pending' if omitted." & vbCrLf &
+                                                                   "3. The application will automatically create 'outbox', 'inbox', and 'sent' tables if they don't exist." & vbCrLf &
+                                                                   "4. Send messages by executing an INSERT SQL to 'outbox'. Successfully sent messages are moved to 'sent'." & vbCrLf &
                                                                    "   Example SQL queries you can run:" & vbCrLf & vbCrLf &
                                                                    "   - Sending Plain Text Message:" & vbCrLf &
-                                                                   "     INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Hello this is a test message')" & vbCrLf & vbCrLf &
+                                                                   "     INSERT INTO outbox (wa_no, wa_text) VALUES ('628512345678', 'Hello this is a test message')" & vbCrLf & vbCrLf &
                                                                    "   - Sending Media / Image Message (with File Path):" & vbCrLf &
-                                                                   "     INSERT INTO outbox (destination_number, message_text, media_path) VALUES ('628512345678', 'Image Caption', 'C:\path\image.jpg')" & vbCrLf & vbCrLf &
+                                                                   "     INSERT INTO outbox (wa_no, wa_text, wa_media) VALUES ('628512345678', 'Image Caption', 'C:\path\image.jpg')" & vbCrLf & vbCrLf &
                                                                    "   - Sending Button / Interactive Message (Spintax format):" & vbCrLf &
-                                                                   "     INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Main Text|Button1|Button2')"
+                                                                   "     INSERT INTO outbox (wa_no, wa_text) VALUES ('628512345678', 'Main Text|Button1|Button2')"
 
                                                ' Open dynamic RichTextBox Form window
                                                Dim frm As New Form()
