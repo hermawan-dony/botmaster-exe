@@ -100,7 +100,7 @@ Partial Class FrmDatabaseSync
         Me.TextBoxSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TextBoxSQL.Size = New System.Drawing.Size(406, 80)
         Me.TextBoxSQL.TabIndex = 9
-        Me.TextBoxSQL.Text = "INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (1, '628512345678', 'Test WAGW message', '', 'pending')"
+        Me.TextBoxSQL.Text = "INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Test WAGW message')"
         '
         'BtnTestSQL
         '

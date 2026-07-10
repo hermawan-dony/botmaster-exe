@@ -498,6 +498,10 @@ Public Class FrmMain
             Catch ex As Exception
             End Try
             
+            ' Hide specific menu items for WAGW
+            CheckForUpdateToolStripMenuItem.Visible = False
+            AboutToolStripMenuItem.Visible = False
+
             Dim wagwMenuItem As New ToolStripMenuItem("Database Auto-Sync (ODBC)")
             AddHandler wagwMenuItem.Click, Sub(senderObj, eArgs)
                                                If FrmDatabaseSync.ActiveSyncInstance Is Nothing Then
@@ -513,31 +517,55 @@ Public Class FrmMain
                                                                    "INDONESIA:" & vbCrLf &
                                                                    "1. Konfigurasi ODBC DSN terlebih dahulu di Windows (ODBC Data Source Administrator)." & vbCrLf &
                                                                    "2. Buka Tools > Database Auto-Sync (ODBC), pilih DSN dari dropdown, lalu klik 'Start Auto-Sync'." & vbCrLf &
-                                                                   "3. Aplikasi akan otomatis membuat tabel 'outbox' dan 'inbox'." & vbCrLf &
-                                                                   "4. Kirim Pesan dengan insert SQL ke tabel 'outbox' (Blind mode = false):" & vbCrLf &
-                                                                   "   - Teks biasa:" & vbCrLf &
-                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (1, '628512345678', 'Pesan Halo', '', 'pending')" & vbCrLf &
-                                                                   "   - Pesan Media (Gambar/Dokumen):" & vbCrLf &
-                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (2, '628512345678', 'Keterangan Gambar', 'C:\path\gambar.jpg', 'pending')" & vbCrLf &
-                                                                   "   - Pesan Button/Interactive (Gunakan format spintax jika diaktifkan):" & vbCrLf &
-                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (3, '628512345678', 'Pesan Utama|Tombol1|Tombol2', '', 'pending')" & vbCrLf & vbCrLf &
+                                                                   "3. Aplikasi akan otomatis membuat tabel 'outbox' dan 'inbox' jika belum ada." & vbCrLf &
+                                                                   "4. Kirim Pesan dengan insert SQL ke tabel 'outbox' (Blind mode = false)." & vbCrLf &
+                                                                   "   Kolom 'id' adalah Auto-Increment dan 'status' otomatis terisi 'pending' jika dikosongkan." & vbCrLf &
+                                                                   "   Contoh Query SQL yang bisa Anda jalankan:" & vbCrLf & vbCrLf &
+                                                                   "   - Mengirim Pesan Teks Biasa:" & vbCrLf &
+                                                                   "     INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Halo ini pesan tes')" & vbCrLf & vbCrLf &
+                                                                   "   - Mengirim Pesan Media / Gambar (dengan Path File):" & vbCrLf &
+                                                                   "     INSERT INTO outbox (destination_number, message_text, media_path) VALUES ('628512345678', 'Keterangan Gambar', 'C:\path\gambar.jpg')" & vbCrLf & vbCrLf &
+                                                                   "   - Mengirim Pesan Tombol / Interactive (Format Spintax):" & vbCrLf &
+                                                                   "     INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Pesan Utama|Tombol1|Tombol2')" & vbCrLf & vbCrLf &
+                                                                   "--------------------------------------------------------" & vbCrLf & vbCrLf &
                                                                    "ENGLISH:" & vbCrLf &
                                                                    "1. Configure ODBC DSN in Windows (ODBC Data Source Administrator) first." & vbCrLf &
                                                                    "2. Open Tools > Database Auto-Sync (ODBC), select the DSN from the dropdown, then click 'Start Auto-Sync'." & vbCrLf &
-                                                                   "3. The application will automatically create the 'outbox' and 'inbox' tables." & vbCrLf &
-                                                                   "4. Send messages by executing an INSERT SQL to the 'outbox' table (Blind mode = false):" & vbCrLf &
-                                                                   "   - Text message:" & vbCrLf &
-                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (1, '628512345678', 'Hello Msg', '', 'pending')" & vbCrLf &
-                                                                   "   - Media/Attachment message:" & vbCrLf &
-                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (2, '628512345678', 'Image Caption', 'C:\path\image.jpg', 'pending')" & vbCrLf &
-                                                                   "   - Button/Interactive message (Use spintax format if enabled):" & vbCrLf &
-                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (3, '628512345678', 'Main Text|Button1|Button2', '', 'pending')"
-                                               MsgBox(msg, MsgBoxStyle.Information, "Botmaster-WAGW Help Guide")
+                                                                   "3. The application will automatically create the 'outbox' and 'inbox' tables if they don't exist." & vbCrLf &
+                                                                   "4. Send messages by executing an INSERT SQL to the 'outbox' table (Blind mode = false)." & vbCrLf &
+                                                                   "   The 'id' column is Auto-Increment and 'status' defaults to 'pending' if omitted." & vbCrLf &
+                                                                   "   Example SQL queries you can run:" & vbCrLf & vbCrLf &
+                                                                   "   - Sending Plain Text Message:" & vbCrLf &
+                                                                   "     INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Hello this is a test message')" & vbCrLf & vbCrLf &
+                                                                   "   - Sending Media / Image Message (with File Path):" & vbCrLf &
+                                                                   "     INSERT INTO outbox (destination_number, message_text, media_path) VALUES ('628512345678', 'Image Caption', 'C:\path\image.jpg')" & vbCrLf & vbCrLf &
+                                                                   "   - Sending Button / Interactive Message (Spintax format):" & vbCrLf &
+                                                                   "     INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Main Text|Button1|Button2')"
+
+                                               ' Open dynamic RichTextBox Form window
+                                               Dim frm As New Form()
+                                               frm.Text = "WAGW Database Auto-Sync Tutorial"
+                                               frm.Size = New Size(650, 550)
+                                               frm.StartPosition = FormStartPosition.CenterParent
+                                               frm.MinimizeBox = False
+                                               frm.MaximizeBox = True
+                                               frm.Icon = Me.Icon
+                                               
+                                               Dim rtb As New RichTextBox()
+                                               rtb.Dock = DockStyle.Fill
+                                               rtb.ReadOnly = True
+                                               rtb.Font = New Font("Consolas", 10)
+                                               rtb.Text = msg
+                                               rtb.BackColor = Color.FromArgb(15, 17, 33)
+                                               rtb.ForeColor = Color.White
+                                               
+                                               frm.Controls.Add(rtb)
+                                               frm.ShowDialog()
                                            End Sub
             Me.HelpToolStripMenuItem.DropDownItems.Add(wagwHelpItem)
         Else
-            Me.Text = "Botmaster"
-            Label4.Text = Me.Text
+            AboutToolStripMenuItem.Visible = ShowAbout
+            ViewHelpToolStripMenuItem.Visible = ShowHelp
         End If
 
         ProfileName = CmdAgrs
@@ -580,7 +608,7 @@ Public Class FrmMain
             Label4.Text = Label4.Text & " Profile: " & ProfileName
         End If
 
-        AboutToolStripMenuItem.Visible = ShowAbout
+        AboutToolStripMenuItem.Visible = ShowAbout AndAlso Not licKey.ToLower().Contains("wasender")
 
         ViewHelpToolStripMenuItem.Visible = ShowHelp
 

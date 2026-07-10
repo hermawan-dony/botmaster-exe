@@ -72,7 +72,7 @@ Partial Class FrmDatabaseSync
         '
         'LabelActivated
         '
-        Me.LabelActivated = New System.Drawing.Forms.Label()
+        Me.LabelActivated = New System.Windows.Forms.Label()
         Me.LabelActivated.AutoSize = True
         Me.LabelActivated.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelActivated.ForeColor = System.Drawing.Color.LimeGreen
@@ -84,7 +84,7 @@ Partial Class FrmDatabaseSync
         '
         'LabelSQL
         '
-        Me.LabelSQL = New System.Drawing.Forms.Label()
+        Me.LabelSQL = New System.Windows.Forms.Label()
         Me.LabelSQL.AutoSize = True
         Me.LabelSQL.Location = New System.Drawing.Point(20, 230)
         Me.LabelSQL.Name = "LabelSQL"
@@ -100,7 +100,7 @@ Partial Class FrmDatabaseSync
         Me.TextBoxSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TextBoxSQL.Size = New System.Drawing.Size(406, 80)
         Me.TextBoxSQL.TabIndex = 9
-        Me.TextBoxSQL.Text = "INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (1, '628512345678', 'Test WAGW message', '', 'pending')"
+        Me.TextBoxSQL.Text = "INSERT INTO outbox (destination_number, message_text) VALUES ('628512345678', 'Test WAGW message')"
         '
         'BtnTestSQL
         '
