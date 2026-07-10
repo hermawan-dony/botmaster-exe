@@ -353,7 +353,7 @@
                                         }
                                     }
                                 ?>
-                                <span class="text-5xl font-display font-bold text-white tracking-tight"><?= ($show_rp ? 'Rp ' : '') . htmlspecialchars($display_price, ENT_QUOTES, 'UTF-8') ?></span>
+                                <span class="text-5xl font-display font-bold text-white tracking-tight">Rp <?= htmlspecialchars($display_price, ENT_QUOTES, 'UTF-8') ?></span>
                                 <span class="text-slate-400 font-medium"><?= $text['price_unit'] ?></span>
                             </div>
                         <?php endif; ?>
