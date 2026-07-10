@@ -431,6 +431,35 @@ Public Class FrmMain
     End Sub
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
+        
+        ' Add Maximize Button to Title Bar
+        Try
+            Dim BtnTopMax As New Button()
+            BtnTopMax.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            BtnTopMax.BackColor = System.Drawing.Color.Transparent
+            BtnTopMax.FlatAppearance.BorderSize = 0
+            BtnTopMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            BtnTopMax.ForeColor = System.Drawing.Color.White
+            BtnTopMax.Size = New Size(24, 20)
+            BtnTopMax.Location = New Point(BtnTopClose.Left - 26, BtnTopClose.Top)
+            BtnTopMax.Text = "☐"
+            BtnTopMax.Font = New Font("Segoe UI", 9.0!, FontStyle.Bold)
+            AddHandler BtnTopMax.Click, Sub()
+                                            If Me.WindowState = FormWindowState.Maximized Then
+                                                Me.WindowState = FormWindowState.Normal
+                                                BtnTopMax.Text = "☐"
+                                            Else
+                                                Me.MaximumSize = Screen.FromControl(Me).WorkingArea.Size
+                                                Me.WindowState = FormWindowState.Maximized
+                                                BtnTopMax.Text = "❐"
+                                            End If
+                                        End Sub
+            Me.Panel3.Controls.Add(BtnTopMax)
+            BtnTopMax.BringToFront()
+        Catch
+        End Try
+
         Me.Icon = GetAppIcon()
         PictureBox3.Image = GetAppIconImage()
 
@@ -538,37 +567,8 @@ Public Class FrmMain
     Private Sub BtnTopClose_Click(sender As Object, e As EventArgs) Handles BtnTopClose.Click
         Me.Close()
     End Sub
-
-    Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
-        
-        ' Add Maximize Button to Title Bar
-        Try
-            Dim BtnTopMax As New Button()
-            BtnTopMax.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-            BtnTopMax.BackColor = System.Drawing.Color.Transparent
-            BtnTopMax.FlatAppearance.BorderSize = 0
-            BtnTopMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            BtnTopMax.ForeColor = System.Drawing.Color.White
-            BtnTopMax.Size = New Size(24, 20)
-            BtnTopMax.Location = New Point(BtnTopClose.Left - 26, BtnTopClose.Top)
-            BtnTopMax.Text = "☐"
-            BtnTopMax.Font = New Font("Segoe UI", 9.0!, FontStyle.Bold)
-            AddHandler BtnTopMax.Click, Sub()
-                                            If Me.WindowState = FormWindowState.Maximized Then
-                                                Me.WindowState = FormWindowState.Normal
-                                                BtnTopMax.Text = "☐"
-                                            Else
-                                                Me.MaximumSize = Screen.FromControl(Me).WorkingArea.Size
-                                                Me.WindowState = FormWindowState.Maximized
-                                                BtnTopMax.Text = "❐"
-                                            End If
-                                        End Sub
-            Me.Panel3.Controls.Add(BtnTopMax)
-            BtnTopMax.BringToFront()
-        Catch
-        End Try
-        Exit Sub
+    
+    Private Sub BtnMax_Click(sender As Object, e As EventArgs) Handles BtnMax.Click, Panel3.DoubleClick, Label4.DoubleClick
         If Me.WindowState = FormWindowState.Maximized Then
             BtnMax.Text = "1"
             Me.WindowState = FormWindowState.Normal
