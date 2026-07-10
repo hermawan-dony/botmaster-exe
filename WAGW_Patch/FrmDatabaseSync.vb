@@ -137,8 +137,9 @@ Public Class FrmDatabaseSync
         
         If outboxExists Then
             Try
-                Dim cmdTestCol As New OdbcCommand("SELECT destination_number, message_text, media_path, status FROM outbox WHERE 1=0", conn)
-                cmdTestCol.ExecuteNonQuery()
+                Dim cmdTestCol As New OdbcCommand("SELECT wa_no, wa_text, wa_media FROM outbox WHERE 1=0", conn)
+                Using reader = cmdTestCol.ExecuteReader()
+                End Using
                 outboxValid = True
             Catch ex As Exception
             End Try
@@ -169,8 +170,9 @@ Public Class FrmDatabaseSync
         
         If inboxExists Then
             Try
-                Dim cmdTestCol As New OdbcCommand("SELECT destination_number, message_text, receive_time FROM inbox WHERE 1=0", conn)
-                cmdTestCol.ExecuteNonQuery()
+                Dim cmdTestCol As New OdbcCommand("SELECT wa_no, wa_text, wa_time FROM inbox WHERE 1=0", conn)
+                Using reader = cmdTestCol.ExecuteReader()
+                End Using
                 inboxValid = True
             Catch ex As Exception
             End Try
@@ -190,8 +192,8 @@ Public Class FrmDatabaseSync
             CreateInboxTable(conn)
         End If
 
-        ' Sent table verification
         Dim sentExists As Boolean = False
+        Dim sentValid As Boolean = False
         Try
             Dim cmdTest As New OdbcCommand("SELECT 1 FROM sent WHERE 1=0", conn)
             cmdTest.ExecuteNonQuery()
@@ -199,46 +201,81 @@ Public Class FrmDatabaseSync
         Catch ex As Exception
         End Try
         
-        If Not sentExists Then
+        If sentExists Then
+            Try
+                Dim cmdTestCol As New OdbcCommand("SELECT wa_no, wa_text, wa_media FROM sent WHERE 1=0", conn)
+                Using reader = cmdTestCol.ExecuteReader()
+                End Using
+                sentValid = True
+            Catch ex As Exception
+            End Try
+            
+            If Not sentValid Then
+                Dim result As MsgBoxResult = MsgBox("Struktur kolom tabel 'sent' tidak sesuai. Hapus dan buat ulang tabel?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "WAGW Database Sync")
+                If result = MsgBoxResult.Yes Then
+                    Try
+                        Dim cmdDrop As New OdbcCommand("DROP TABLE sent", conn)
+                        cmdDrop.ExecuteNonQuery()
+                    Catch ex As Exception
+                    End Try
+                    CreateSentTable(conn)
+                End If
+            End If
+        Else
             CreateSentTable(conn)
         End If
     End Sub
 
     Private Sub CreateOutboxTable(conn As OdbcConnection)
         Try
-            Dim cmd As New OdbcCommand("CREATE TABLE outbox (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), status VARCHAR(20) DEFAULT 'pending')", conn)
+            Dim cmd As New OdbcCommand("CREATE TABLE outbox (id INTEGER PRIMARY KEY AUTOINCREMENT, wa_mode INTEGER, wa_no TEXT NOT NULL, wa_text TEXT NOT NULL, wa_media TEXT, wa_file TEXT, wa_time DATETIME DEFAULT CURRENT_TIMESTAMP)", conn)
             cmd.ExecuteNonQuery()
         Catch ex As Exception
             Try
-                Dim cmdFallback As New OdbcCommand("CREATE TABLE outbox (id INT IDENTITY(1,1) PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), status VARCHAR(20) DEFAULT 'pending')", conn)
+                Dim cmdFallback As New OdbcCommand("CREATE TABLE outbox (id INT AUTO_INCREMENT PRIMARY KEY, wa_mode INT, wa_no VARCHAR(50) NOT NULL, wa_text VARCHAR(2000) NOT NULL, wa_media VARCHAR(255), wa_file VARCHAR(255), wa_time VARCHAR(50))", conn)
                 cmdFallback.ExecuteNonQuery()
             Catch ex2 As Exception
+                Try
+                    Dim cmdFallback2 As New OdbcCommand("CREATE TABLE outbox (id INT IDENTITY(1,1) PRIMARY KEY, wa_mode INT, wa_no VARCHAR(50) NOT NULL, wa_text VARCHAR(2000) NOT NULL, wa_media VARCHAR(255), wa_file VARCHAR(255), wa_time VARCHAR(50))", conn)
+                    cmdFallback2.ExecuteNonQuery()
+                Catch ex3 As Exception
+                End Try
             End Try
         End Try
     End Sub
 
     Private Sub CreateInboxTable(conn As OdbcConnection)
         Try
-            Dim cmd As New OdbcCommand("CREATE TABLE inbox (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
+            Dim cmd As New OdbcCommand("CREATE TABLE inbox (id INTEGER PRIMARY KEY AUTOINCREMENT, wa_no TEXT NOT NULL, sub_no TEXT, wa_text TEXT NOT NULL, wa_time DATETIME NOT NULL, status TEXT)", conn)
             cmd.ExecuteNonQuery()
         Catch ex As Exception
             Try
-                Dim cmdFallback As New OdbcCommand("CREATE TABLE inbox (id INT IDENTITY(1,1) PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
+                Dim cmdFallback As New OdbcCommand("CREATE TABLE inbox (id INT AUTO_INCREMENT PRIMARY KEY, wa_no VARCHAR(50) NOT NULL, sub_no VARCHAR(50), wa_text VARCHAR(2000) NOT NULL, wa_time VARCHAR(50), status VARCHAR(20))", conn)
                 cmdFallback.ExecuteNonQuery()
             Catch ex2 As Exception
+                Try
+                    Dim cmdFallback2 As New OdbcCommand("CREATE TABLE inbox (id INT IDENTITY(1,1) PRIMARY KEY, wa_no VARCHAR(50) NOT NULL, sub_no VARCHAR(50), wa_text VARCHAR(2000) NOT NULL, wa_time VARCHAR(50), status VARCHAR(20))", conn)
+                    cmdFallback2.ExecuteNonQuery()
+                Catch ex3 As Exception
+                End Try
             End Try
         End Try
     End Sub
 
     Private Sub CreateSentTable(conn As OdbcConnection)
         Try
-            Dim cmd As New OdbcCommand("CREATE TABLE sent (id INT AUTO_INCREMENT PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), sent_time VARCHAR(50))", conn)
+            Dim cmd As New OdbcCommand("CREATE TABLE sent (id INTEGER, wa_mode INTEGER, wa_no TEXT NOT NULL, wa_text TEXT NOT NULL, wa_media TEXT, wa_file TEXT, wa_time DATETIME DEFAULT CURRENT_TIMESTAMP, status TEXT, PRIMARY KEY (id, wa_time))", conn)
             cmd.ExecuteNonQuery()
         Catch ex As Exception
             Try
-                Dim cmdFallback As New OdbcCommand("CREATE TABLE sent (id INT IDENTITY(1,1) PRIMARY KEY, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), sent_time VARCHAR(50))", conn)
+                Dim cmdFallback As New OdbcCommand("CREATE TABLE sent (id INT, wa_mode INT, wa_no VARCHAR(50) NOT NULL, wa_text VARCHAR(2000) NOT NULL, wa_media VARCHAR(255), wa_file VARCHAR(255), wa_time VARCHAR(50), status VARCHAR(20), PRIMARY KEY (id, wa_time))", conn)
                 cmdFallback.ExecuteNonQuery()
             Catch ex2 As Exception
+                Try
+                    Dim cmdFallback3 As New OdbcCommand("CREATE TABLE sent (id INT, wa_mode INT, wa_no VARCHAR(50) NOT NULL, wa_text VARCHAR(2000) NOT NULL, wa_media VARCHAR(255), wa_file VARCHAR(255), wa_time VARCHAR(50), status VARCHAR(20))", conn)
+                    cmdFallback3.ExecuteNonQuery()
+                Catch ex3 As Exception
+                End Try
             End Try
         End Try
     End Sub

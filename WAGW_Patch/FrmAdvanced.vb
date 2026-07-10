@@ -50,7 +50,7 @@ Public Class FrmAdvanced
         Dim licKey As String = GetSetting(Application.ProductName, "license", "key", "")
         If licKey.ToLower().Contains("wasender") Then
             Dim tabPageWAGW As New TabPage("WAGW Settings")
-            tabPageWAGW.BackColor = Color.Transparent
+            tabPageWAGW.BackColor = ColorPrimary
             
             Dim chkAutoRun As New CheckBox()
             chkAutoRun.Text = "Start automatically with Windows (AutoRun)"

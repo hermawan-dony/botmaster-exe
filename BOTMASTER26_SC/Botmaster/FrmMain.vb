@@ -512,14 +512,14 @@ Public Class FrmMain
             LabelWAGW.Text = "  WAGW Activated!!  "
             LabelWAGW.ForeColor = Color.LimeGreen
             LabelWAGW.BackColor = Color.Transparent
-            LabelWAGW.Font = New Font("Calibri", 9.5F, FontStyle.Bold)
+            LabelWAGW.Font = New Font("Calibri", 12.0F, FontStyle.Bold)
             LabelWAGW.AutoSize = True
             LabelWAGW.TextAlign = ContentAlignment.MiddleCenter
             LabelWAGW.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-            LabelWAGW.Location = New Point(800, 5)
+            LabelWAGW.Location = New Point(760, 4)
             AddHandler LabelWAGW.Paint, Sub(s, pe)
                                             Dim l As Label = CType(s, Label)
-                                            pe.Graphics.DrawRectangle(New Pen(Color.LimeGreen, 1.5F), 0, 0, l.Width - 1, l.Height - 1)
+                                            pe.Graphics.DrawRectangle(New Pen(Color.LimeGreen, 2.0F), 0, 0, l.Width - 1, l.Height - 1)
                                         End Sub
             LabelWAGW.Visible = False
             Me.Panel3.Controls.Add(LabelWAGW)
