@@ -359,14 +359,8 @@
                         <?php endif; ?>
 
                         <!-- Update Box -->
-                        <div id="update-box" class="hidden bg-slate-900/60 rounded-xl p-5 mb-8 border border-white/5">
-                            <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-3">
-                                <span id="web-version" class="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-xs font-bold px-3 py-1 rounded-md shadow-lg shadow-violet-500/20">v--</span>
-                                <span id="web-release-date" class="text-xs text-slate-400 font-medium">--</span>
-                            </div>
-                            <ul id="web-changelog" class="text-sm text-slate-300 space-y-2">
-                                <!-- Changelog items injected via JS -->
-                            </ul>
+                        <div id="update-box" class="hidden bg-slate-900/40 rounded-xl p-4 mb-8 border border-white/5 text-center">
+                            <span class="text-xs text-slate-400 font-medium">Last Update: <span id="web-release-date" class="text-slate-200 font-semibold">--</span> (v<span id="web-version">--</span>)</span>
                         </div>
 
                         <div class="space-y-4">
@@ -595,19 +589,11 @@
                         btn.innerHTML = `<i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>${data.version}`;
                     });
 
-                    document.getElementById("web-version").textContent = `v${data.version}`;
+                    document.getElementById("web-version").textContent = `${data.version}`;
                     document.getElementById("web-release-date").textContent = data.release_date;
                     
-                    const changelogList = document.getElementById("web-changelog");
-                    if (data.changelog && data.changelog.length > 0) {
-                        changelogList.innerHTML = "";
-                        data.changelog.forEach(item => {
-                            const li = document.createElement("li");
-                            li.className = "relative pl-4 before:content-['→'] before:absolute before:left-0 before:text-fuchsia-500 before:font-bold";
-                            li.textContent = item;
-                            changelogList.appendChild(li);
-                        });
-                        const ub = document.getElementById("update-box");
+                    const ub = document.getElementById("update-box");
+                    if (ub) {
                         ub.classList.remove("hidden");
                         ub.style.display = "block";
                     }
