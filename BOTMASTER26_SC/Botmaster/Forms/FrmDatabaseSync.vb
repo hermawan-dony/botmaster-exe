@@ -509,13 +509,24 @@ Public Class FrmDatabaseSync
                 End If
             End Try
             
-            If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated AndAlso Not ActiveSyncInstance.IsDisposed Then
-                ActiveSyncInstance.BeginInvoke(Sub()
-                    If ActiveSyncInstance.IsSyncing Then
-                        ActiveSyncInstance.RefreshGrids()
-                        ActiveSyncInstance.TimerSync.Start()
-                    End If
-                End Sub)
+            If ActiveSyncInstance IsNot Nothing AndAlso Not ActiveSyncInstance.IsDisposed Then
+                If ActiveSyncInstance.IsHandleCreated Then
+                    ActiveSyncInstance.BeginInvoke(Sub()
+                        If ActiveSyncInstance.IsSyncing Then
+                            If ActiveSyncInstance.Visible Then
+                                ActiveSyncInstance.RefreshGrids()
+                            End If
+                            ActiveSyncInstance.TimerSync.Start()
+                        End If
+                    End Sub)
+                Else
+                    Try
+                        If ActiveSyncInstance.IsSyncing Then
+                            ActiveSyncInstance.TimerSync.Start()
+                        End If
+                    Catch
+                    End Try
+                End If
             End If
         End Sub)
     End Sub
