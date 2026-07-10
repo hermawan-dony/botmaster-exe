@@ -24,6 +24,13 @@ Partial Class FrmDatabaseSync
         Me.TextBoxDSN = New System.Windows.Forms.ComboBox()
         Me.ListBoxLog = New System.Windows.Forms.ListBox()
         Me.TimerSync = New System.Windows.Forms.Timer(Me.components)
+        Me.TabControlGrids = New System.Windows.Forms.TabControl()
+        Me.TabPageOutbox = New System.Windows.Forms.TabPage()
+        Me.TabPageSent = New System.Windows.Forms.TabPage()
+        Me.TabPageInbox = New System.Windows.Forms.TabPage()
+        Me.dgvOutbox = New System.Windows.Forms.DataGridView()
+        Me.dgvSent = New System.Windows.Forms.DataGridView()
+        Me.dgvInbox = New System.Windows.Forms.DataGridView()
         Me.SuspendLayout()
         '
         'LabelDSN
