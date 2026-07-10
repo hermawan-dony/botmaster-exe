@@ -4,7 +4,58 @@ Public Class FrmDatabaseSync
     Private IsSyncing As Boolean = False
     Private DSN As String = ""
 
+    Public Shared ActiveSyncInstance As FrmDatabaseSync
+
+    Public Shared Sub AutoStartSync(ByVal savedDSN As String)
+        If ActiveSyncInstance Is Nothing Then
+            ActiveSyncInstance = New FrmDatabaseSync()
+            Dim forceInit As IntPtr = ActiveSyncInstance.Handle
+        End If
+        ActiveSyncInstance.TextBoxDSN.Text = savedDSN
+        ActiveSyncInstance.StartSyncProcess()
+    End Sub
+
+    Public Sub StartSyncProcess()
+        Try
+            DSN = TextBoxDSN.Text
+            SaveSetting(Application.ProductName, "ODBC", "SelectedDSN", DSN)
+            Dim conn As New OdbcConnection(DSN)
+            conn.Open()
+            
+            Try
+                Dim cmd As New OdbcCommand("CREATE TABLE outbox (id INT, destination_number VARCHAR(50), message_text VARCHAR(2000), media_path VARCHAR(255), status VARCHAR(20) DEFAULT 'pending')", conn)
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+            End Try
+            Try
+                Dim cmd As New OdbcCommand("CREATE TABLE inbox (id INT, destination_number VARCHAR(50), message_text VARCHAR(2000), receive_time VARCHAR(50))", conn)
+                cmd.ExecuteNonQuery()
+            Catch ex As Exception
+            End Try
+            
+            conn.Close()
+
+            TimerSync.Start()
+            IsSyncing = True
+            BtnOK.Text = "Stop Auto-Sync"
+            LabelActivated.Visible = True
+            LogMsg("Auto-Sync started automatically.")
+        Catch ex As Exception
+            LogMsg("AutoStart Connection failed: " & ex.Message)
+        End Try
+    End Sub
+
+    Protected Overrides Sub OnFormClosing(e As FormClosingEventArgs)
+        If e.CloseReason = CloseReason.UserClosing Then
+            e.Cancel = True
+            Me.Hide()
+        Else
+            MyBase.OnFormClosing(e)
+        End If
+    End Sub
+
     Private Sub FrmDatabaseSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ActiveSyncInstance = Me
         Try
             Me.Icon = GetAppIcon()
         Catch ex As Exception
@@ -57,7 +108,7 @@ Public Class FrmDatabaseSync
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
-        Close()
+        Me.Hide()
     End Sub
 
     Private Sub BtnOK_Click(sender As Object, e As EventArgs) Handles BtnOK.Click
@@ -65,10 +116,12 @@ Public Class FrmDatabaseSync
             TimerSync.Stop()
             IsSyncing = False
             BtnOK.Text = "Start Auto-Sync"
+            LabelActivated.Visible = False
             LogMsg("Auto-Sync stopped.")
         Else
             Try
                 DSN = TextBoxDSN.Text
+                SaveSetting(Application.ProductName, "ODBC", "SelectedDSN", DSN)
                 Dim conn As New OdbcConnection(DSN)
                 conn.Open()
                 
@@ -88,11 +141,26 @@ Public Class FrmDatabaseSync
                 TimerSync.Start()
                 IsSyncing = True
                 BtnOK.Text = "Stop Auto-Sync"
+                LabelActivated.Visible = True
                 LogMsg("Auto-Sync started. Connected to DSN.")
             Catch ex As Exception
                 MsgBox("Connection failed: " & ex.Message, vbCritical)
             End Try
         End If
+    End Sub
+
+    Private Sub BtnTestSQL_Click(sender As Object, e As EventArgs) Handles BtnTestSQL.Click
+        Try
+            Dim testConn As New OdbcConnection(TextBoxDSN.Text)
+            testConn.Open()
+            Dim cmd As New OdbcCommand(TextBoxSQL.Text, testConn)
+            Dim rows As Integer = cmd.ExecuteNonQuery()
+            testConn.Close()
+            MsgBox("SQL Query executed successfully. Rows affected: " & rows, MsgBoxStyle.Information, "SQL Test Success")
+            LogMsg("SQL Test executed successfully.")
+        Catch ex As Exception
+            MsgBox("SQL Error: " & ex.Message, MsgBoxStyle.Critical, "SQL Test Failed")
+        End Try
     End Sub
 
     Private Sub TimerSync_Tick(sender As Object, e As EventArgs) Handles TimerSync.Tick

@@ -43,9 +43,24 @@ Module ModuleConfig
     End Sub
     Public SwitchColor As Color
 
-    Public Sub ApplyColor(ByRef mainclrl As Control)
+    Public Sub InitializeTheme()
+        Dim theme As String = GetSetting(Application.ProductName, "Theme", "Active", "Dark")
+        If theme = "Purple" Then
+            ColorPrimary = Color.FromArgb(79, 31, 133)
+            ColorSecondary = Color.FromArgb(99, 46, 161)
+            ColorThird = Color.FromArgb(133, 76, 199)
+        ElseIf theme = "Light" Then
+            ColorPrimary = Color.FromArgb(240, 240, 240)
+            ColorSecondary = Color.FromArgb(255, 255, 255)
+            ColorThird = Color.FromArgb(220, 224, 230)
+        Else ' Dark
+            ColorPrimary = Color.FromArgb(15, 17, 33)
+            ColorSecondary = Color.FromArgb(10, 11, 23)
+            ColorThird = Color.FromArgb(25, 27, 48)
+        End If
+    End Sub
 
-        'Exit Sub
+    Public Sub ApplyColor(ByRef mainclrl As Control)
 
         Dim Color1 As Color = ColorPrimary
         Dim Color2 As Color = ColorSecondary
@@ -54,11 +69,12 @@ Module ModuleConfig
 
         SwitchColor = ColorPrimary
 
-
         Dim RefColor1 As Color = Color.FromArgb(15, 17, 33)
         Dim RefColor2 As Color = Color.FromArgb(10, 11, 23)
         Dim RefColor3 As Color = Color.FromArgb(25, 27, 48)
         Dim RefColor4 As Color = Color.FromArgb(35, 37, 65)
+
+        Dim isLight As Boolean = (GetSetting(Application.ProductName, "Theme", "Active", "Dark") = "Light")
 
         For Each ctrl As Control In mainclrl.Controls
             If Not IsNothing(ctrl.BackColor) Then
@@ -74,10 +90,22 @@ Module ModuleConfig
                 If ctrl.ForeColor = RefColor4 Then
                     ctrl.ForeColor = Color4
                 End If
+
+                If isLight Then
+                    ' Ensure labels, checkboxes, radiobuttons, groupboxes have dark text in light mode
+                    If TypeOf ctrl Is Label OrElse TypeOf ctrl Is CheckBox OrElse TypeOf ctrl Is RadioButton OrElse TypeOf ctrl Is GroupBox Then
+                        ctrl.ForeColor = Color.FromArgb(40, 40, 40)
+                    ElseIf TypeOf ctrl Is TextBox Then
+                        ctrl.BackColor = Color.White
+                        ctrl.ForeColor = Color.Black
+                    End If
+                End If
+
                 ApplyColor(ctrl)
             End If
         Next
     End Sub
+
 
     Public Function GetAppIconImage() As Image
         ' Get the icon associated with the running EXE

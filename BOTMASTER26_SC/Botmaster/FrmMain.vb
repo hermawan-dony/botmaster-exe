@@ -13,6 +13,8 @@ Public Class FrmMain
     Dim _resp As AccountSwticherDetails
     Public CmdAgrs As String = ""
     Public DefaultLang As String = "English"
+    Private WithEvents AppNotifyIcon As NotifyIcon
+
     Sub New()
 
         ' This call is required by the designer.
@@ -431,44 +433,112 @@ Public Class FrmMain
     End Sub
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
-        
-        ' Add Maximize Button to Title Bar
-        Try
-            Dim BtnTopMax As New Button()
-            BtnTopMax.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-            BtnTopMax.BackColor = System.Drawing.Color.Transparent
-            BtnTopMax.FlatAppearance.BorderSize = 0
-            BtnTopMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            BtnTopMax.ForeColor = System.Drawing.Color.White
-            BtnTopMax.Size = New Size(24, 20)
-            BtnTopMax.Location = New Point(BtnTopClose.Left - 26, BtnTopClose.Top)
-            BtnTopMax.Text = "☐"
-            BtnTopMax.Font = New Font("Segoe UI", 9.0!, FontStyle.Bold)
-            AddHandler BtnTopMax.Click, Sub()
-                                            If Me.WindowState = FormWindowState.Maximized Then
-                                                Me.WindowState = FormWindowState.Normal
-                                                BtnTopMax.Text = "☐"
-                                            Else
-                                                Me.MaximumSize = Screen.FromControl(Me).WorkingArea.Size
-                                                Me.WindowState = FormWindowState.Maximized
-                                                BtnTopMax.Text = "❐"
-                                            End If
-                                        End Sub
-            Me.Panel3.Controls.Add(BtnTopMax)
-            BtnTopMax.BringToFront()
-        Catch
-        End Try
-
         Me.Icon = GetAppIcon()
         PictureBox3.Image = GetAppIconImage()
 
         LoadChannels()
         LoadGPTProfile()
 
-        ApplyColor(Me)
         sfts()
-        Me.Text = ProductName
+        
+        Dim licKey As String = GetSetting(Application.ProductName, "license", "key", "")
+        If licKey.ToLower().Contains("wasender") Then
+            ApplicationTitle = "Botmaster ++WAGW"
+
+            ' Initialize NotifyIcon for System Tray
+            AppNotifyIcon = New NotifyIcon()
+            AppNotifyIcon.Icon = Me.Icon
+            AppNotifyIcon.Text = "Botmaster ++WAGW"
+            AppNotifyIcon.Visible = True
+
+            AddHandler AppNotifyIcon.DoubleClick, Sub(s, ev)
+                                                      Me.Show()
+                                                      Me.WindowState = FormWindowState.Normal
+                                                      Me.ShowInTaskbar = True
+                                                  End Sub
+
+            Dim contextMenu As New ContextMenuStrip()
+            contextMenu.Items.Add("Open Botmaster", Nothing, Sub(s, ev)
+                                                                 Me.Show()
+                                                                 Me.WindowState = FormWindowState.Normal
+                                                                 Me.ShowInTaskbar = True
+                                                             End Sub)
+            contextMenu.Items.Add("Exit", Nothing, Sub(s, ev)
+                                                       AppNotifyIcon.Visible = False
+                                                       Application.Exit()
+                                                   End Sub)
+            AppNotifyIcon.ContextMenuStrip = contextMenu
+
+            Try
+                Dim runKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Run", True)
+                If GetSetting(Application.ProductName, "AutoRun", "Enabled", "0") = "1" Then
+                    runKey.SetValue(Application.ProductName, Application.ExecutablePath)
+                    
+                    ' Auto Start Sync if DSN exists
+                    Dim savedDSN As String = GetSetting(Application.ProductName, "ODBC", "SelectedDSN", "")
+                    If savedDSN <> "" Then
+                        FrmDatabaseSync.AutoStartSync(savedDSN)
+                    End If
+
+                    ' Auto Hide to Tray on boot/start if configured
+                    If GetSetting(Application.ProductName, "AutoRun", "AutoHide", "0") = "1" Then
+                        Me.WindowState = FormWindowState.Minimized
+                        Me.ShowInTaskbar = False
+                        Dim hideTimer As New Timer()
+                        hideTimer.Interval = 100
+                        AddHandler hideTimer.Tick, Sub()
+                                                       hideTimer.Stop()
+                                                       Me.Hide()
+                                                   End Sub
+                        hideTimer.Start()
+                    End If
+                Else
+                    runKey.DeleteValue(Application.ProductName, False)
+                End If
+            Catch ex As Exception
+            End Try
+            
+            Dim wagwMenuItem As New ToolStripMenuItem("Database Auto-Sync (ODBC)")
+            AddHandler wagwMenuItem.Click, Sub(senderObj, eArgs)
+                                               If FrmDatabaseSync.ActiveSyncInstance Is Nothing Then
+                                                   FrmDatabaseSync.ActiveSyncInstance = New FrmDatabaseSync()
+                                               End If
+                                               FrmDatabaseSync.ActiveSyncInstance.ShowDialog()
+                                           End Sub
+            Me.ToolsToolStripMenuItem.DropDownItems.Add(wagwMenuItem)
+
+            Dim wagwHelpItem As New ToolStripMenuItem("WAGW Tutorial")
+            AddHandler wagwHelpItem.Click, Sub(senderObj, eArgs)
+                                               Dim msg As String = "--- WAGW DATABASE AUTO-SYNC TUTORIAL ---" & vbCrLf & vbCrLf &
+                                                                   "INDONESIA:" & vbCrLf &
+                                                                   "1. Konfigurasi ODBC DSN terlebih dahulu di Windows (ODBC Data Source Administrator)." & vbCrLf &
+                                                                   "2. Buka Tools > Database Auto-Sync (ODBC), pilih DSN dari dropdown, lalu klik 'Start Auto-Sync'." & vbCrLf &
+                                                                   "3. Aplikasi akan otomatis membuat tabel 'outbox' dan 'inbox'." & vbCrLf &
+                                                                   "4. Kirim Pesan dengan insert SQL ke tabel 'outbox' (Blind mode = false):" & vbCrLf &
+                                                                   "   - Teks biasa:" & vbCrLf &
+                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (1, '628512345678', 'Pesan Halo', '', 'pending')" & vbCrLf &
+                                                                   "   - Pesan Media (Gambar/Dokumen):" & vbCrLf &
+                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (2, '628512345678', 'Keterangan Gambar', 'C:\path\gambar.jpg', 'pending')" & vbCrLf &
+                                                                   "   - Pesan Button/Interactive (Gunakan format spintax jika diaktifkan):" & vbCrLf &
+                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (3, '628512345678', 'Pesan Utama|Tombol1|Tombol2', '', 'pending')" & vbCrLf & vbCrLf &
+                                                                   "ENGLISH:" & vbCrLf &
+                                                                   "1. Configure ODBC DSN in Windows (ODBC Data Source Administrator) first." & vbCrLf &
+                                                                   "2. Open Tools > Database Auto-Sync (ODBC), select the DSN from the dropdown, then click 'Start Auto-Sync'." & vbCrLf &
+                                                                   "3. The application will automatically create the 'outbox' and 'inbox' tables." & vbCrLf &
+                                                                   "4. Send messages by executing an INSERT SQL to the 'outbox' table (Blind mode = false):" & vbCrLf &
+                                                                   "   - Text message:" & vbCrLf &
+                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (1, '628512345678', 'Hello Msg', '', 'pending')" & vbCrLf &
+                                                                   "   - Media/Attachment message:" & vbCrLf &
+                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (2, '628512345678', 'Image Caption', 'C:\path\image.jpg', 'pending')" & vbCrLf &
+                                                                   "   - Button/Interactive message (Use spintax format if enabled):" & vbCrLf &
+                                                                   "     INSERT INTO outbox (id, destination_number, message_text, media_path, status) VALUES (3, '628512345678', 'Main Text|Button1|Button2', '', 'pending')"
+                                               MsgBox(msg, MsgBoxStyle.Information, "Botmaster-WAGW Help Guide")
+                                           End Sub
+            Me.HelpToolStripMenuItem.DropDownItems.Add(wagwHelpItem)
+        Else
+            Me.Text = "Botmaster"
+            Label4.Text = Me.Text
+        End If
 
         ProfileName = CmdAgrs
 
@@ -567,8 +637,8 @@ Public Class FrmMain
     Private Sub BtnTopClose_Click(sender As Object, e As EventArgs) Handles BtnTopClose.Click
         Me.Close()
     End Sub
-    
     Private Sub BtnMax_Click(sender As Object, e As EventArgs) Handles BtnMax.Click, Panel3.DoubleClick, Label4.DoubleClick
+        Exit Sub
         If Me.WindowState = FormWindowState.Maximized Then
             BtnMax.Text = "1"
             Me.WindowState = FormWindowState.Normal
@@ -1320,7 +1390,6 @@ skip:
     End Sub
 
     Private Sub ViewLicenseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewLicenseToolStripMenuItem.Click
-        Exit Sub
         If LicenseMode Then
             FrmLicense.ViewMode = 3
             FrmLicense.ShowDialog()
@@ -1708,67 +1777,5 @@ skip:
 
     Private Sub Panel14_Paint(sender As Object, e As PaintEventArgs) Handles Panel14.Paint
 
-    End Sub
-    Private Sub DatabaseAutoSyncToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DatabaseAutoSyncToolStripMenuItem.Click
-        Dim frm As New FrmDatabaseSync()
-        frm.ShowDialog()
-    End Sub
-    Private Sub WAGWHelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WAGWHelpToolStripMenuItem.Click
-        Dim tutPath As String = IO.Path.Combine(Application.StartupPath, "WAGW_Tutorial.txt")
-        Dim msg As String = "==========================================================" & vbCrLf &
-                            "  PANDUAN LENGKAP INTEGRASI WAGW ODBC (AUTO-SYNC)" & vbCrLf &
-                            "==========================================================" & vbCrLf & vbCrLf &
-                            "Fitur Auto-Sync ODBC memungkinkan Botmaster-WAGW untuk terhubung langsung ke database Anda (MySQL, SQL Server, Oracle, Access, dll)." & vbCrLf &
-                            "Dengan fitur ini, Anda bisa mengirim pesan massal hanya dengan melakukan operasi INSERT ke dalam tabel database Anda, tanpa perlu menyentuh UI Botmaster!" & vbCrLf & vbCrLf &
-                            "----------------------------------------------------------" & vbCrLf &
-                            " LANGKAH 1: PERSIAPAN DATABASE & TABEL" & vbCrLf &
-                            "----------------------------------------------------------" & vbCrLf &
-                            "Buat dua tabel di dalam database Anda:" & vbCrLf &
-                            "1. Tabel 'outbox' (untuk antrean pesan keluar)" & vbCrLf &
-                            "   Kolom wajib:" & vbCrLf &
-                            "   - id (INT, Auto Increment, Primary Key)" & vbCrLf &
-                            "   - destination_number (VARCHAR) -> cth: 62812345678" & vbCrLf &
-                            "   - message_text (TEXT) -> Isi pesan" & vbCrLf &
-                            "   - media_path (VARCHAR) -> (Opsional) Path lokal/URL gambar" & vbCrLf &
-                            "   - status (VARCHAR) -> Isi default 'PENDING'" & vbCrLf & vbCrLf &
-                            "2. Tabel 'inbox' (untuk merekam pesan masuk)" & vbCrLf &
-                            "   Kolom wajib:" & vbCrLf &
-                            "   - id (INT, Auto Increment, Primary Key)" & vbCrLf &
-                            "   - sender_number (VARCHAR)" & vbCrLf &
-                            "   - message_text (TEXT)" & vbCrLf &
-                            "   - received_time (DATETIME)" & vbCrLf & vbCrLf &
-                            "----------------------------------------------------------" & vbCrLf &
-                            " LANGKAH 2: SETTING WINDOWS ODBC DSN" & vbCrLf &
-                            "----------------------------------------------------------" & vbCrLf &
-                            "1. Buka 'ODBC Data Sources (32-bit atau 64-bit)' di pencarian Windows." & vbCrLf &
-                            "2. Masuk ke tab 'System DSN' atau 'User DSN'." & vbCrLf &
-                            "3. Klik 'Add' lalu pilih driver database Anda (misal: MySQL ODBC Driver)." & vbCrLf &
-                            "4. Masukkan 'Data Source Name' (DSN) sesuka Anda (contoh: MyWAGW)." & vbCrLf &
-                            "5. Isi detail koneksi (IP/Host, Username, Password, Database) lalu klik 'Test'." & vbCrLf & vbCrLf &
-                            "----------------------------------------------------------" & vbCrLf &
-                            " LANGKAH 3: MENGAKTIFKAN AUTO-SYNC DI BOTMASTER" & vbCrLf &
-                            "----------------------------------------------------------" & vbCrLf &
-                            "1. Di Botmaster, klik menu 'Tools' -> 'Database Auto-Sync (ODBC)'." & vbCrLf &
-                            "2. Masukkan nama DSN yang sudah Anda buat tadi (contoh: MyWAGW)." & vbCrLf &
-                            "3. Masukkan Username & Password database (jika DSN membutuhkannya)." & vbCrLf &
-                            "4. Sesuaikan nama tabel Outbox & Inbox jika Anda memakai nama berbeda." & vbCrLf &
-                            "5. Atur 'Polling Interval' (misal 5 detik), artinya Botmaster akan mengecek tabel outbox setiap 5 detik." & vbCrLf &
-                            "6. Klik tombol 'Start Auto-Sync'." & vbCrLf & vbCrLf &
-                            "----------------------------------------------------------" & vbCrLf &
-                            " CARA KIRIM PESAN DENGAN QUERY SQL" & vbCrLf &
-                            "----------------------------------------------------------" & vbCrLf &
-                            "Kini sistem sudah berjalan di latar belakang! Untuk mengirim WA, Anda hanya perlu menjalankan query SQL berikut dari aplikasi/website Anda (PHP, Python, VB, dll):" & vbCrLf & vbCrLf &
-                            "INSERT INTO outbox (destination_number, message_text) VALUES ('628123456789', 'Halo, ini pesan otomatis dari SQL!');" & vbCrLf & vbCrLf &
-                            "--- KIRIM PESAN DENGAN GAMBAR/FILE ---" & vbCrLf &
-                            "Untuk melampirkan file/gambar, isi path absolut file tersebut di kolom 'media_path':" & vbCrLf &
-                            "INSERT INTO outbox (destination_number, message_text, media_path) VALUES ('628123456789', 'Lihat brosur ini', 'C:\Brosur\promo.jpg');" & vbCrLf & vbCrLf &
-                            "Botmaster akan otomatis mengecek baris baru, mengirimkan file + teks, dan mengubah statusnya menjadi 'SENT'!"
-
-        Try
-            IO.File.WriteAllText(tutPath, msg)
-            Process.Start(tutPath)
-        Catch ex As Exception
-            MsgBox(msg, MsgBoxStyle.Information, "Botmaster-WAGW Help Guide")
-        End Try
     End Sub
 End Class

@@ -18,7 +18,6 @@ Public Class FrmAdvanced
     End Sub
 
     Private Sub FrmAdvanced_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
         Me.BtnAddFamiliarAccount.Text = GetLangbyKey("FrmAdvanced.BtnAddFamiliarAccount")
         Me.BtnDeleteFamiliarAccount.Text = GetLangbyKey("FrmAdvanced.BtnDeleteFamiliarAccount")
@@ -48,60 +47,66 @@ Public Class FrmAdvanced
         Me.Label15.Text = GetLangbyKey("FrmAdvanced.Label15")
         Me.Text = GetLangbyKey("FrmAdvanced")
 
+        Dim licKey As String = GetSetting(Application.ProductName, "license", "key", "")
+        If licKey.ToLower().Contains("wasender") Then
+            Dim chkAutoRun As New CheckBox()
+            chkAutoRun.Text = "Start automatically with Windows (AutoRun)"
+            chkAutoRun.AutoSize = True
+            chkAutoRun.Location = New Point(33, 260)
+            chkAutoRun.Checked = (GetSetting(Application.ProductName, "AutoRun", "Enabled", "0") = "1")
+            AddHandler chkAutoRun.CheckedChanged, Sub(s, ev)
+                                                      SaveSetting(Application.ProductName, "AutoRun", "Enabled", If(chkAutoRun.Checked, "1", "0"))
+                                                  End Sub
+            TabPage3.Controls.Add(chkAutoRun)
+
+            Dim chkAutoHide As New CheckBox()
+            chkAutoHide.Text = "Auto Hide to Tray on AutoRun/Startup"
+            chkAutoHide.AutoSize = True
+            chkAutoHide.Location = New Point(33, 290)
+            chkAutoHide.Checked = (GetSetting(Application.ProductName, "AutoRun", "AutoHide", "0") = "1")
+            AddHandler chkAutoHide.CheckedChanged, Sub(s, ev)
+                                                      SaveSetting(Application.ProductName, "AutoRun", "AutoHide", If(chkAutoHide.Checked, "1", "0"))
+                                                  End Sub
+            TabPage3.Controls.Add(chkAutoHide)
+
+            Dim lblTheme As New Label()
+            lblTheme.Text = "Application Theme (Restart Required):"
+            lblTheme.AutoSize = True
+            lblTheme.Location = New Point(33, 325)
+            TabPage3.Controls.Add(lblTheme)
+
+            Dim cmbTheme As New ComboBox()
+            cmbTheme.DropDownStyle = ComboBoxStyle.DropDownList
+            cmbTheme.Location = New Point(33, 345)
+            cmbTheme.Size = New Size(200, 21)
+            cmbTheme.Items.AddRange(New Object() {"Classic Purple", "WAGW Dark (Blue & Pink)", "Light Mode"})
+            
+            Dim currentTheme As String = GetSetting(Application.ProductName, "Theme", "Active", "Dark")
+            If currentTheme = "Purple" Then
+                cmbTheme.SelectedIndex = 0
+            ElseIf currentTheme = "Light" Then
+                cmbTheme.SelectedIndex = 2
+            Else
+                cmbTheme.SelectedIndex = 1
+            End If
+
+            AddHandler cmbTheme.SelectedIndexChanged, Sub(s, ev)
+                Dim selTheme As String = "Dark"
+                If cmbTheme.SelectedIndex = 0 Then
+                    selTheme = "Purple"
+                ElseIf cmbTheme.SelectedIndex = 2 Then
+                    selTheme = "Light"
+                End If
+                SaveSetting(Application.ProductName, "Theme", "Active", selTheme)
+                MsgBox("Theme updated. Please restart the application to apply changes.", MsgBoxStyle.Information, Application.ProductName)
+            End Sub
+            TabPage3.Controls.Add(cmbTheme)
+        End If
+
         GetFriendsContacts(LstFamiliarsNumbers)
         GetMessages(LstMessages)
 
         GetSendingSettings()
-        
-        Try
-            Dim newTab As New TabPage("Appearance & Startup")
-            newTab.BackColor = System.Drawing.Color.White
-            
-            Dim grp As New GroupBox()
-            grp.Text = "Application Appearance & Startup"
-            grp.Location = New Point(26, 26)
-            grp.Size = New Size(400, 130)
-
-            Dim lblTheme As New Label()
-            lblTheme.Text = "Theme:"
-            lblTheme.Location = New Point(15, 30)
-            lblTheme.AutoSize = True
-            grp.Controls.Add(lblTheme)
-
-            Dim cmbTheme As New ComboBox()
-            cmbTheme.Name = "CmbTheme"
-            cmbTheme.Items.Add("Cyberpunk")
-            cmbTheme.Items.Add("Enterprise Dark")
-            cmbTheme.Location = New Point(80, 27)
-            cmbTheme.DropDownStyle = ComboBoxStyle.DropDownList
-            cmbTheme.Text = GetSetting(Application.ProductName, "Settings", "AppTheme", "Cyberpunk")
-            AddHandler cmbTheme.SelectedIndexChanged, Sub(senderObj, eventArgs)
-                                                          SaveSetting(Application.ProductName, "Settings", "AppTheme", cmbTheme.Text)
-                                                          ThemeManager.ApplyTheme(Me)
-                                                          If Application.OpenForms("FrmMain") IsNot Nothing Then ThemeManager.ApplyTheme(Application.OpenForms("FrmMain"))
-                                                      End Sub
-            grp.Controls.Add(cmbTheme)
-
-            Dim chkAutoRun As New CheckBox()
-            chkAutoRun.Name = "ChkAutoRun"
-            chkAutoRun.Text = "Run at Windows Startup"
-            chkAutoRun.Location = New Point(15, 65)
-            chkAutoRun.AutoSize = True
-            chkAutoRun.Checked = CBool(GetSetting(Application.ProductName, "Settings", "AutoRun", "False"))
-            grp.Controls.Add(chkAutoRun)
-
-            Dim chkAutoHide As New CheckBox()
-            chkAutoHide.Name = "ChkAutoHide"
-            chkAutoHide.Text = "Start Minimized (System Tray)"
-            chkAutoHide.Location = New Point(15, 95)
-            chkAutoHide.AutoSize = True
-            chkAutoHide.Checked = CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False"))
-            grp.Controls.Add(chkAutoHide)
-
-            newTab.Controls.Add(grp)
-            Me.TabControl1.TabPages.Add(newTab)
-        Catch ex As Exception
-        End Try
         GroupBox1.Enabled = CheckBox1.Checked
         GroupBox2.Enabled = CheckBox2.Checked
 
@@ -171,32 +176,6 @@ Public Class FrmAdvanced
         GroupBox2.Enabled = CheckBox2.Checked
     End Sub
     Public Sub SaveSendingSettings()
-        Try
-            Dim cmbTheme As ComboBox = DirectCast(Me.TabControl1.Controls.Find("CmbTheme", True).FirstOrDefault(), ComboBox)
-            Dim chkAutoRun As CheckBox = DirectCast(Me.TabControl1.Controls.Find("ChkAutoRun", True).FirstOrDefault(), CheckBox)
-            Dim chkAutoHide As CheckBox = DirectCast(Me.TabControl1.Controls.Find("ChkAutoHide", True).FirstOrDefault(), CheckBox)
-
-            If cmbTheme IsNot Nothing Then
-                SaveSetting(Application.ProductName, "Settings", "AppTheme", cmbTheme.Text)
-            End If
-            If chkAutoRun IsNot Nothing Then
-                SaveSetting(Application.ProductName, "Settings", "AutoRun", chkAutoRun.Checked.ToString())
-                Try
-                    Dim regKey As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Run", True)
-                    If chkAutoRun.Checked Then
-                        regKey.SetValue(Application.ProductName, Application.ExecutablePath)
-                    Else
-                        regKey.DeleteValue(Application.ProductName, False)
-                    End If
-                Catch
-                End Try
-            End If
-            If chkAutoHide IsNot Nothing Then
-                SaveSetting(Application.ProductName, "Settings", "AutoStartMinimized", chkAutoHide.Checked.ToString())
-            End If
-        Catch ex As Exception
-        End Try
-
         SaveSetting(ApplicationTitle, "SendingConfig", "Speed", CmbSpeed.SelectedIndex)
         SaveSetting(ApplicationTitle, "SendingConfig", "DelayStart", WaitFrom.Value)
         SaveSetting(ApplicationTitle, "SendingConfig", "DelayEnd", WaitTo.Value)
