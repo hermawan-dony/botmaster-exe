@@ -678,7 +678,7 @@ Module WhatsappBulkSenderModule
             cmb.Size = New Size(430, 30)
             cmb.Font = New Font("Segoe UI", 11.25!, FontStyle.Bold)
             cmb.BackColor = Color.FromArgb(15, 17, 33)
-            cmb.ForeColor = Color.FromArgb(217, 114, 211)
+            cmb.ForeColor = Color.FromArgb(0, 230, 230)
             cmb.FlatStyle = FlatStyle.Flat
             For Each k In legacyKeys
                 cmb.Items.Add(k)
@@ -691,8 +691,8 @@ Module WhatsappBulkSenderModule
             btn.Location = New Point(25, 135)
             btn.Size = New Size(430, 45)
             btn.Font = New Font("Segoe UI", 11.25!, FontStyle.Bold)
-            btn.BackColor = Color.FromArgb(217, 114, 211)
-            btn.ForeColor = Color.White
+            btn.BackColor = Color.FromArgb(0, 230, 230)
+            btn.ForeColor = Color.Black
             btn.FlatStyle = FlatStyle.Flat
             btn.FlatAppearance.BorderSize = 0
             btn.Cursor = Cursors.Hand

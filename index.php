@@ -13,18 +13,18 @@
     
     $t = [
         'id' => [
-            'meta_title' => 'BotMaster | Aplikasi Broadcast WhatsApp Super Cepat & Anti Banned',
-            'meta_desc' => 'Rahasia ribuan pebisnis tingkatkan omzet! BotMaster adalah software pengirim pesan WhatsApp massal otomatis, cepat, aman, dan 100% tanpa biaya bulanan.',
+            'meta_title' => 'BotMaster-WAGW | Aplikasi Broadcast & Gateway WhatsApp Super Cepat',
+            'meta_desc' => 'Rahasia ribuan pebisnis! BotMaster-WAGW adalah software pengirim pesan WhatsApp & mesin Gateway (ODBC Auto-Sync) otomatis, cepat, aman, tanpa biaya bulanan.',
             'client_area' => 'Client Area',
-            'badge_status' => 'Sistem Stabil & Siap Digunakan',
+            'badge_status' => 'WAGW Engine Stable & Ready',
             'hero_title_1' => 'Dominasi Penjualan & Kirim Promosi ke ',
             'hero_title_span' => 'Ribuan Kontak',
             'hero_title_2' => ' Hanya dengan 1 Klik!',
-            'hero_desc' => 'Berhenti membuang waktu balas chat satu per satu! Tingkatkan omzet & konversi Anda hari ini juga dengan sistem auto-broadcast WhatsApp terkuat. 100% Tanpa langganan bulanan!',
-            'feat_1' => 'Koneksi Multi-Device Stabil',
-            'feat_2' => 'Kirim Unlimited Pesan',
+            'hero_desc' => 'Tingkatkan omzet & konversi Anda dengan sistem auto-broadcast dan inovasi terbaru WAGW ODBC Database Auto-Sync (Tarik otomatis dari MySQL/SQL Server). 100% Tanpa langganan bulanan!',
+            'feat_1' => 'WAGW ODBC Auto-Sync (NEW!)',
+            'feat_2' => 'Premium UI Dark Theme',
             'feat_3' => 'Grab Kontak Grup Instan',
-            'feat_4' => 'Import/Export Excel Mudah',
+            'feat_4' => 'Kirim Unlimited Pesan',
             'feat_5' => 'Personalisasi Sapaan (Nama)',
             'feat_6' => '100% Bebas Biaya Bulanan',
             'price_title' => 'Lisensi Tahunan',
@@ -40,10 +40,10 @@
             'stat_3' => 'Tanpa Potongan Biaya Bulanan',
             'why_title' => 'Ubah WhatsApp Anda Menjadi Mesin Pencetak Uang',
             'why_desc' => 'Fakta: 80% pembeli online di Indonesia lebih suka bertransaksi via WhatsApp. Ini adalah tool marketing WAJIB bagi Pemilik Bisnis, Dropshipper, dan Affiliate untuk meraup profit maksimal.',
-            'ben_1_title' => '🚀 Otomatisasi 100%, Bebas Pusing!',
-            'ben_1_desc' => 'Ucapkan selamat tinggal pada jari keriting! Sistem kami yang akan mengirimkan ribuan promosi & follow-up secara otomatis saat Anda tidur.',
-            'ben_2_title' => '💰 Ledakkan Konversi & Omzet',
-            'ben_2_desc' => 'Jangan biarkan database pelanggan lama Anda menganggur. Bangunkan mereka dengan penawaran bombastis secara instan dan rasakan lonjakan penjualan.',
+            'ben_1_title' => '🚀 Otomatisasi WAGW Database (NEW!)',
+            'ben_1_desc' => 'Ubah Botmaster menjadi mesin Gateway 24/7! Dengan fitur terbaru WAGW ODBC Auto-Sync, sistem membaca tabel outbox & inbox langsung dari database Anda (MySQL, Oracle, dll) secara otomatis tanpa delay!',
+            'ben_2_title' => '💎 Premium Dark Theme UI',
+            'ben_2_desc' => 'Mata tidak cepat lelah! Botmaster kini hadir dengan wajah baru Mode Gelap (Navy Blue & Pink) yang sangat elegan dan profesional untuk operasional jangka panjang.',
             'ben_3_title' => '🤖 CS Robot Pintar (Auto Reply)',
             'ben_3_desc' => 'Toko Anda kini buka 24/7. Balas pesan pelanggan seketika berdasarkan kata kunci. Tidak ada lagi calon pembeli yang kabur karena respons lambat.',
             'ben_4_title' => '🎯 Pesan Personal (Anti-Kaku)',
@@ -61,18 +61,18 @@
             'lang_switch_en' => 'English'
         ],
         'en' => [
-            'meta_title' => 'BotMaster | The Ultimate Fast & Safe WhatsApp Broadcaster',
-            'meta_desc' => 'The secret weapon of thousands of businesses! BotMaster is a fast, safe, and automated mass WhatsApp sender with absolutely ZERO monthly fees.',
+            'meta_title' => 'BotMaster-WAGW | The Ultimate Fast & Safe WhatsApp Broadcaster',
+            'meta_desc' => 'The secret weapon of thousands of businesses! BotMaster-WAGW is an automated WhatsApp sender & Gateway (ODBC Auto-Sync) with ZERO monthly fees.',
             'client_area' => 'Client Area',
-            'badge_status' => 'System Stable & Ready',
+            'badge_status' => 'WAGW Engine Stable & Ready',
             'hero_title_1' => 'Dominate Sales & Broadcast to ',
             'hero_title_span' => 'Thousands of Contacts',
             'hero_title_2' => ' in Just 1 Click!',
-            'hero_desc' => 'Stop wasting time replying manually! Skyrocket your conversion rates today with the most powerful WhatsApp auto-broadcast system. 100% No monthly subscriptions!',
-            'feat_1' => 'Stable Multi-Device Connection',
-            'feat_2' => 'Send Unlimited Messages',
+            'hero_desc' => 'Skyrocket your conversion rates today with the most powerful WhatsApp auto-broadcast system featuring the all-new WAGW ODBC Database Auto-Sync (Connect via MySQL/SQL Server). 100% No monthly subscriptions!',
+            'feat_1' => 'WAGW ODBC Auto-Sync (NEW!)',
+            'feat_2' => 'Premium UI Dark Theme',
             'feat_3' => 'Instant Group Contact Grabber',
-            'feat_4' => 'Easy Excel Import/Export',
+            'feat_4' => 'Send Unlimited Messages',
             'feat_5' => 'Personalized Greetings (Name)',
             'feat_6' => '100% Zero Monthly Fees',
             'price_title' => 'Yearly License',
@@ -88,10 +88,10 @@
             'stat_3' => 'Zero Hidden Monthly Fees',
             'why_title' => 'Turn Your WhatsApp Into an ATM',
             'why_desc' => 'Fact: 80% of online buyers prefer transacting via WhatsApp. This is a MUST-HAVE marketing tool for Business Owners, Dropshippers, and Affiliates to maximize profit.',
-            'ben_1_title' => '🚀 100% Automated, Zero Hassle!',
-            'ben_1_desc' => 'Say goodbye to tired fingers! Our system will automatically send thousands of promotions & follow-ups while you sleep.',
-            'ben_2_title' => '💰 Explode Your Conversions',
-            'ben_2_desc' => 'Don\'t let your old customer database sit idle. Wake them up with instant blockbuster offers and experience massive sales spikes.',
+            'ben_1_title' => '🚀 WAGW Database Automation (NEW!)',
+            'ben_1_desc' => 'Turn Botmaster into a 24/7 Gateway machine! With our latest WAGW ODBC Auto-Sync, the system automatically reads outbox & inbox tables from your database (MySQL, Oracle) without any delays!',
+            'ben_2_title' => '💎 Premium Dark Theme UI',
+            'ben_2_desc' => 'Say goodbye to eye strain! Botmaster now comes with a brand-new, highly elegant Dark Mode (Navy Blue & Pink) designed for professional, long-term operations.',
             'ben_3_title' => '🤖 Smart CS Robot (Auto Reply)',
             'ben_3_desc' => 'Your store is now open 24/7. Reply to customer messages instantly based on keywords. No more losing buyers due to slow responses.',
             'ben_4_title' => '🎯 Hyper-Personalized Messaging',
@@ -211,12 +211,12 @@
         }
     </style>
 </head>
-<body class="bg-brand-dark text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-fuchsia-500 selection:text-white relative">
+<body class="bg-brand-dark text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-cyan-500 selection:text-white relative">
 
     <!-- Background Animated Blobs -->
     <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
         <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-violet-600/20 blur-[100px] animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-fuchsia-600/10 blur-[100px] animate-blob" style="animation-delay: 2s;"></div>
+        <div class="absolute top-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-cyan-600/10 blur-[100px] animate-blob" style="animation-delay: 2s;"></div>
         <div class="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[120px] animate-blob" style="animation-delay: 4s;"></div>
     </div>
 
@@ -233,8 +233,8 @@
                 </div>
                 <div class="flex items-center gap-4">
                     <div class="flex bg-slate-800/80 rounded-lg p-1 border border-white/10">
-                        <a href="?lang=id" class="px-3 py-1 rounded-md text-sm font-medium transition-colors <?= $lang === 'id' ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md' : 'text-slate-400 hover:text-white' ?>">ID</a>
-                        <a href="?lang=en" class="px-3 py-1 rounded-md text-sm font-medium transition-colors <?= $lang === 'en' ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md' : 'text-slate-400 hover:text-white' ?>">EN</a>
+                        <a href="?lang=id" class="px-3 py-1 rounded-md text-sm font-medium transition-colors <?= $lang === 'id' ? 'bg-cyan-400 text-slate-900 shadow-md font-bold' : 'text-slate-400 hover:text-white' ?>">ID</a>
+                        <a href="?lang=en" class="px-3 py-1 rounded-md text-sm font-medium transition-colors <?= $lang === 'en' ? 'bg-cyan-400 text-slate-900 shadow-md font-bold' : 'text-slate-400 hover:text-white' ?>">EN</a>
                     </div>
                 </div>
             </div>
@@ -255,7 +255,7 @@
                     
                     <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.1]">
                         <?= $text['hero_title_1'] ?>
-                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 pb-2">
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-cyan-400 to-cyan-200 pb-2">
                             <?= $text['hero_title_span'] ?>
                         </span>
                         <?= $text['hero_title_2'] ?>
@@ -271,7 +271,7 @@
                             <span class="text-sm font-medium text-slate-200"><?= $text['feat_1'] ?></span>
                         </div>
                         <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
-                            <i class="fa-solid fa-infinity text-fuchsia-400 text-xl"></i>
+                            <i class="fa-solid fa-infinity text-cyan-400 text-xl"></i>
                             <span class="text-sm font-medium text-slate-200"><?= $text['feat_2'] ?></span>
                         </div>
                         <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
@@ -295,11 +295,11 @@
 
                 <!-- Right Content: Pricing Card -->
                 <div class="lg:col-span-6 lg:ml-auto w-full max-w-lg mx-auto relative z-10">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl blur opacity-30 animate-pulse-glow"></div>
+                    <div class="absolute -inset-1 bg-gradient-to-r from-violet-500 to-cyan-400 rounded-2xl blur opacity-30 animate-pulse-glow"></div>
                     <!-- Shimmer Wrapper -->
                     <div class="relative p-[1px] rounded-2xl bg-gradient-to-r from-transparent via-violet-500/50 to-transparent background-animate">
                     <div class="relative glass-card rounded-2xl p-8 sm:p-10 border-t border-l border-white/20 h-full w-full">
-                        <div class="text-sm font-bold tracking-widest text-fuchsia-400 uppercase mb-4"><?= $text['price_title'] ?></div>
+                        <div class="text-sm font-bold tracking-widest text-cyan-400 uppercase mb-4"><?= $text['price_title'] ?></div>
                         
                         <div class="flex items-baseline gap-2 mb-8">
                             <span class="text-5xl font-display font-bold text-white tracking-tight">Rp <?= htmlspecialchars($harga1 ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
@@ -309,7 +309,7 @@
                         <!-- Update Box -->
                         <div id="update-box" class="hidden bg-slate-900/60 rounded-xl p-5 mb-8 border border-white/5">
                             <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-3">
-                                <span id="web-version" class="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-xs font-bold px-3 py-1 rounded-md shadow-lg shadow-violet-500/20">v--</span>
+                                <span id="web-version" class="bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-md shadow-lg shadow-violet-500/20">v--</span>
                                 <span id="web-release-date" class="text-xs text-slate-400 font-medium">--</span>
                             </div>
                             <ul id="web-changelog" class="text-sm text-slate-300 space-y-2">
@@ -318,7 +318,7 @@
                         </div>
 
                         <div class="space-y-4">
-                            <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" id="btn-download" class="group relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-violet-500/30 transition-all hover:-translate-y-1 overflow-hidden">
+                            <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" id="btn-download" class="group relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-violet-600 to-cyan-500 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-violet-500/30 transition-all hover:-translate-y-1 overflow-hidden">
                                 <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[-20deg]"></div>
                                 <i class="fa-solid fa-cloud-arrow-down"></i> 
                                 <span><?= $text['btn_download'] ?>26</span>
@@ -394,15 +394,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/5">
                 <div class="p-4">
-                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-2 drop-shadow-sm">99%</h4>
+                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200 mb-2 drop-shadow-sm">99%</h4>
                     <p class="text-slate-400 font-medium"><?= $text['stat_1'] ?></p>
                 </div>
                 <div class="p-4 pt-8 md:pt-4">
-                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-2 drop-shadow-sm">10x</h4>
+                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200 mb-2 drop-shadow-sm">10x</h4>
                     <p class="text-slate-400 font-medium"><?= $text['stat_2'] ?></p>
                 </div>
                 <div class="p-4 pt-8 md:pt-4">
-                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-2 drop-shadow-sm">∞</h4>
+                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200 mb-2 drop-shadow-sm">∞</h4>
                     <p class="text-slate-400 font-medium"><?= $text['stat_3'] ?></p>
                 </div>
             </div>
@@ -428,8 +428,8 @@
                 </div>
                 <!-- Benefit 2 -->
                 <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:border-violet-500/50">
-                    <div class="w-12 h-12 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-chart-line text-2xl text-fuchsia-400"></i>
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chart-line text-2xl text-cyan-400"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3"><?= $text['ben_2_title'] ?></h3>
                     <p class="text-slate-400 text-sm leading-relaxed"><?= $text['ben_2_desc'] ?></p>
@@ -474,7 +474,7 @@
     <section class="py-24 relative z-10 border-t border-white/5 bg-slate-900/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="font-display text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-4"><?= $text['vid_title'] ?></h2>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200 mb-4"><?= $text['vid_title'] ?></h2>
                 <p class="text-lg text-slate-400"><?= $text['vid_desc'] ?></p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
@@ -503,7 +503,7 @@
 
     <!-- Mobile Sticky CTA -->
     <div class="lg:hidden fixed bottom-0 left-0 w-full glass-card border-t border-white/10 p-4 z-40 shadow-[0_-10px_20px_rgba(0,0,0,0.5)]">
-        <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" class="mobile-btn-download flex items-center justify-center gap-2 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-violet-500/30">
+        <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" class="mobile-btn-download flex items-center justify-center gap-2 w-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-violet-500/30">
             <i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>26
         </a>
     </div>
@@ -515,7 +515,7 @@
         </div>
         <div>
             <p class="text-sm text-slate-200 m-0 leading-tight">
-                <span id="fomo-name" class="font-bold text-fuchsia-400">Seseorang</span> dari <span id="fomo-city" class="font-bold text-white">Jakarta</span>
+                <span id="fomo-name" class="font-bold text-cyan-400">Seseorang</span> dari <span id="fomo-city" class="font-bold text-white">Jakarta</span>
             </p>
             <p class="text-[0.75rem] text-slate-400 mt-1 mb-0"><?= $lang === 'en' ? 'Just bought Yearly License' : 'Baru saja membeli Lisensi Tahunan' ?></p>
             <p class="text-[0.65rem] text-slate-500 mt-1" id="fomo-time">2 menit lalu</p>

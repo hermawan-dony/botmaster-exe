@@ -15,7 +15,7 @@ if (Test-Path $moduleConfigFile) {
     $content = $content -replace "99, 46, 161", "10, 11, 23"
     $content = $content -replace "133, 76, 199", "25, 27, 48"
     $content = $content -replace "177, 121, 241", "35, 37, 65"
-    $content = $content -replace "30, 190, 165", "217, 114, 211"
+    $content = $content -replace "30, 190, 165", "0, 230, 230"
     Set-Content -Path $moduleConfigFile -Value $content
 }
 
