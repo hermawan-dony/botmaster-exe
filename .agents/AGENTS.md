@@ -3,7 +3,7 @@
 Whenever updating or modifying this project, please follow these rules:
 
 1. **License Domain**: Ensure the license validation URL uses `wasender.biz`. The exact URL is:
-   `https://panel.wasender.biz/api/ceklisensi.php`
+   `https://panel.wasender.biz/api/ceklisensi.php`. This must be strictly updated inside `Classes\ClsLicence.vb` (both in `LicenseURL` and `ValidateLicense` function) replacing the default `getbotmaster.com` or `botmaster.us` endpoints. Failure to do so will result in an "Activation code required" error for WAGW users.
 2. **Empty Contact Info**: Always clear out all developer contact information (WhatsApp, Email, Website support) by setting them to empty strings `""` in both launcher configuration files:
    - `Launcher\FrmLauncher.vb`
    - `Botmaster\Customization\FrmLauncher.vb`
