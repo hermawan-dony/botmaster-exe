@@ -188,4 +188,11 @@ Public Class ThemeToolStripRenderer
             End Using
         End If
     End Sub
+
+    Protected Overrides Sub OnRenderItemText(e As ToolStripItemTextRenderEventArgs)
+        If e.Item.Selected Then
+            e.TextColor = Color.White
+        End If
+        MyBase.OnRenderItemText(e)
+    End Sub
 End Class
