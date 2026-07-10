@@ -47,14 +47,26 @@ Module ModuleConfig
     Public Sub InitializeTheme()
         ThemeActive = GetSetting(Application.ProductName, "Theme", "Active", "Dark")
         If ThemeActive = "Purple" Then
-            ColorPrimary = Color.FromArgb(79, 31, 133)
-            ColorSecondary = Color.FromArgb(99, 46, 161)
-            ColorThird = Color.FromArgb(133, 76, 199)
-        ElseIf ThemeActive = "Light" Then
-            ColorPrimary = Color.FromArgb(245, 245, 245)
-            ColorSecondary = Color.FromArgb(225, 228, 232)
-            ColorThird = Color.FromArgb(210, 214, 219)
-        Else ' Dark
+            ColorPrimary = Color.FromArgb(51, 15, 84)
+            ColorSecondary = Color.FromArgb(73, 24, 118)
+            ColorThird = Color.FromArgb(99, 39, 158)
+        ElseIf ThemeActive = "Light" Then ' Sleek Gray
+            ColorPrimary = Color.FromArgb(32, 33, 36)
+            ColorSecondary = Color.FromArgb(43, 45, 49)
+            ColorThird = Color.FromArgb(58, 60, 65)
+        ElseIf ThemeActive = "Blue" Then ' Ocean Blue
+            ColorPrimary = Color.FromArgb(11, 19, 43)
+            ColorSecondary = Color.FromArgb(28, 37, 65)
+            ColorThird = Color.FromArgb(43, 58, 92)
+        ElseIf ThemeActive = "Pink" Then ' Soft Pink
+            ColorPrimary = Color.FromArgb(46, 16, 29)
+            ColorSecondary = Color.FromArgb(70, 24, 45)
+            ColorThird = Color.FromArgb(98, 35, 64)
+        ElseIf ThemeActive = "Red" Then ' Vibrant Red
+            ColorPrimary = Color.FromArgb(46, 11, 11)
+            ColorSecondary = Color.FromArgb(71, 16, 16)
+            ColorThird = Color.FromArgb(99, 24, 24)
+        Else ' Dark (WAGW Default)
             ColorPrimary = Color.FromArgb(15, 17, 33)
             ColorSecondary = Color.FromArgb(10, 11, 23)
             ColorThird = Color.FromArgb(25, 27, 48)
@@ -75,8 +87,6 @@ Module ModuleConfig
         Dim RefColor3 As Color = Color.FromArgb(25, 27, 48)
         Dim RefColor4 As Color = Color.FromArgb(35, 37, 65)
 
-        Dim isLight As Boolean = (ThemeActive = "Light")
-
         For Each ctrl As Control In mainclrl.Controls
             If Not IsNothing(ctrl.BackColor) Then
                 If ctrl.BackColor = RefColor1 Then
@@ -92,14 +102,12 @@ Module ModuleConfig
                     ctrl.ForeColor = Color4
                 End If
 
-                If isLight Then
-                    ' Ensure controls have dark text in light mode
-                    If TypeOf ctrl Is Label OrElse TypeOf ctrl Is CheckBox OrElse TypeOf ctrl Is RadioButton OrElse TypeOf ctrl Is GroupBox OrElse TypeOf ctrl Is Button OrElse TypeOf ctrl Is MenuStrip OrElse TypeOf ctrl Is ToolStrip OrElse TypeOf ctrl Is StatusStrip OrElse TypeOf ctrl Is TabControl OrElse TypeOf ctrl Is TabPage Then
-                        ctrl.ForeColor = Color.FromArgb(40, 40, 40)
-                    ElseIf TypeOf ctrl Is TextBox OrElse TypeOf ctrl Is ComboBox OrElse TypeOf ctrl Is ListBox OrElse TypeOf ctrl Is DataGridView Then
-                        ctrl.BackColor = Color.White
-                        ctrl.ForeColor = Color.Black
-                    End If
+                ' Force high contrast white text and custom backgrounds for all themes
+                If TypeOf ctrl Is Label OrElse TypeOf ctrl Is CheckBox OrElse TypeOf ctrl Is RadioButton OrElse TypeOf ctrl Is GroupBox OrElse TypeOf ctrl Is Button OrElse TypeOf ctrl Is MenuStrip OrElse TypeOf ctrl Is ToolStrip OrElse TypeOf ctrl Is StatusStrip OrElse TypeOf ctrl Is TabControl OrElse TypeOf ctrl Is TabPage Then
+                    ctrl.ForeColor = Color.White
+                ElseIf TypeOf ctrl Is TextBox OrElse TypeOf ctrl Is ComboBox OrElse TypeOf ctrl Is ListBox OrElse TypeOf ctrl Is DataGridView Then
+                    ctrl.BackColor = Color3
+                    ctrl.ForeColor = Color.White
                 End If
 
                 ApplyColor(ctrl)

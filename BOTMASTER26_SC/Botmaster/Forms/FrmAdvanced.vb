@@ -82,13 +82,19 @@ Public Class FrmAdvanced
             cmbTheme.DropDownStyle = ComboBoxStyle.DropDownList
             cmbTheme.Location = New Point(20, 110)
             cmbTheme.Size = New Size(200, 21)
-            cmbTheme.Items.AddRange(New Object() {"Classic Purple", "WAGW Dark (Blue & Pink)", "Light Mode"})
+            cmbTheme.Items.AddRange(New Object() {"Classic Purple", "WAGW Dark (Blue & Pink)", "Sleek Gray", "Ocean Blue", "Soft Pink", "Vibrant Red"})
             
             Dim currentTheme As String = GetSetting(Application.ProductName, "Theme", "Active", "Dark")
             If currentTheme = "Purple" Then
                 cmbTheme.SelectedIndex = 0
             ElseIf currentTheme = "Light" Then
                 cmbTheme.SelectedIndex = 2
+            ElseIf currentTheme = "Blue" Then
+                cmbTheme.SelectedIndex = 3
+            ElseIf currentTheme = "Pink" Then
+                cmbTheme.SelectedIndex = 4
+            ElseIf currentTheme = "Red" Then
+                cmbTheme.SelectedIndex = 5
             Else
                 cmbTheme.SelectedIndex = 1
             End If
@@ -99,6 +105,12 @@ Public Class FrmAdvanced
                     selTheme = "Purple"
                 ElseIf cmbTheme.SelectedIndex = 2 Then
                     selTheme = "Light"
+                ElseIf cmbTheme.SelectedIndex = 3 Then
+                    selTheme = "Blue"
+                ElseIf cmbTheme.SelectedIndex = 4 Then
+                    selTheme = "Pink"
+                ElseIf cmbTheme.SelectedIndex = 5 Then
+                    selTheme = "Red"
                 End If
                 SaveSetting(Application.ProductName, "Theme", "Active", selTheme)
                 MsgBox("Theme updated. Please restart the application to apply changes.", MsgBoxStyle.Information, Application.ProductName)
