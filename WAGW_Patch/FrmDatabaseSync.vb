@@ -294,86 +294,116 @@ Public Class FrmDatabaseSync
 
     Private Sub TimerSync_Tick(sender As Object, e As EventArgs) Handles TimerSync.Tick
         TimerSync.Stop()
-        Try
-            Dim conn As New OdbcConnection(DSN)
-            conn.Open()
-            Dim cmd As New OdbcCommand("SELECT id, destination_number, message_text, media_path FROM outbox WHERE status='pending' OR status IS NULL OR status=''", conn)
-            Dim reader As OdbcDataReader = cmd.ExecuteReader()
-            
-            Dim updates As New List(Of OutboxItem)
-
-            While reader.Read()
-                Dim item As New OutboxItem()
-                item.Id = reader("id").ToString()
-                item.Destination = reader("destination_number").ToString()
-                item.Message = reader("message_text").ToString()
-                item.Media = reader("media_path").ToString()
-                
-                LogMsg("Sending to " & item.Destination)
-                If FrmBrowser.IsWAPILoggedIn Then
-                    Try
-                        If item.Media <> "" AndAlso System.IO.File.Exists(item.Media) Then
-                            ' File / media message
-                            Dim base64 As String = "data:image/jpeg;base64," & Convert.ToBase64String(System.IO.File.ReadAllBytes(item.Media))
-                            Dim filename As String = System.IO.Path.GetFileName(item.Media)
-                            FrmBrowser.SendRegularFile(item.Destination, base64, filename, item.Message, False)
-                        Else
-                            ' Text message
-                            Dim script As String = $"botmaster.sendMessageto('{item.Destination}','{item.Message}',false)"
-                            FrmBrowser.WebView2.ExecuteScriptAsync(script)
-                        End If
-                    Catch ex As Exception
-                        LogMsg("Failed to send: " & ex.Message)
-                    End Try
-                End If
-                updates.Add(item)
-            End While
-            conn.Close()
-
-            If updates.Count > 0 Then
+        System.Threading.Tasks.Task.Run(Sub()
+            Try
+                Dim conn As New OdbcConnection(DSN)
                 conn.Open()
-                For Each item In updates
-                    ' Log into sent table
-                    Try
-                        Dim cmdSent As New OdbcCommand("INSERT INTO sent (destination_number, message_text, media_path, sent_time) VALUES (?, ?, ?, ?)", conn)
-                        cmdSent.Parameters.AddWithValue("?", item.Destination)
-                        cmdSent.Parameters.AddWithValue("?", item.Message)
-                        cmdSent.Parameters.AddWithValue("?", item.Media)
-                        cmdSent.Parameters.AddWithValue("?", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-                        cmdSent.ExecuteNonQuery()
-                    Catch ex As Exception
-                    End Try
+                Dim cmd As New OdbcCommand("SELECT id, wa_mode, wa_no, wa_text, wa_media, wa_file, wa_time FROM outbox", conn)
+                Dim reader As OdbcDataReader = cmd.ExecuteReader()
+                
+                Dim processed As New List(Of OutboxItem)
 
-                    ' Update outbox status
-                    Dim updated As Boolean = False
-                    If Not String.IsNullOrEmpty(item.Id) AndAlso item.Id <> "0" Then
-                        Try
-                            Dim cmdUpd As New OdbcCommand("UPDATE outbox SET status='sent' WHERE id=" & item.Id, conn)
-                            cmdUpd.ExecuteNonQuery()
-                            updated = True
-                        Catch ex As Exception
-                        End Try
-                    End If
+                While reader.Read()
+                    Dim item As New OutboxItem()
+                    item.Id = reader("id").ToString()
+                    item.Mode = reader("wa_mode").ToString()
+                    item.Destination = reader("wa_no").ToString()
+                    item.Message = reader("wa_text").ToString()
+                    item.Media = reader("wa_media").ToString()
+                    item.File = reader("wa_file").ToString()
+                    item.Time = reader("wa_time").ToString()
                     
-                    ' Fallback to update using text/destination if ID fails or is not populated
-                    If Not updated Then
+                    Invoke(Sub() LogMsg("Sending to " & item.Destination))
+                    If FrmBrowser.IsWAPILoggedIn Then
                         Try
-                            Dim cmdUpdFallback As New OdbcCommand("UPDATE outbox SET status='sent' WHERE destination_number=? AND message_text=? AND (status='pending' OR status IS NULL OR status='')", conn)
-                            cmdUpdFallback.Parameters.AddWithValue("?", item.Destination)
-                            cmdUpdFallback.Parameters.AddWithValue("?", item.Message)
-                            cmdUpdFallback.ExecuteNonQuery()
+                            Dim activeMedia As String = ""
+                            If Not String.IsNullOrEmpty(item.Media) AndAlso System.IO.File.Exists(item.Media) Then
+                                activeMedia = item.Media
+                            ElseIf Not String.IsNullOrEmpty(item.File) AndAlso System.IO.File.Exists(item.File) Then
+                                activeMedia = item.File
+                            End If
+
+                            If activeMedia <> "" Then
+                                ' File / media message
+                                Dim base64 As String = "data:image/jpeg;base64," & Convert.ToBase64String(System.IO.File.ReadAllBytes(activeMedia))
+                                Dim filename As String = System.IO.Path.GetFileName(activeMedia)
+                                Invoke(Sub() FrmBrowser.SendRegularFile(item.Destination, base64, filename, item.Message, False))
+                            Else
+                                ' Text message
+                                Invoke(Sub()
+                                    Dim script As String = $"botmaster.sendMessageto('{item.Destination}','{item.Message}',false)"
+                                    FrmBrowser.WebView2.ExecuteScriptAsync(script)
+                                End Sub)
+                            End If
                         Catch ex As Exception
+                            Invoke(Sub() LogMsg("Failed to send: " & ex.Message))
                         End Try
                     End If
-                Next
+                    processed.Add(item)
+                End While
                 conn.Close()
-            End If
-        Catch ex As Exception
-        End Try
-        
-        If IsSyncing Then
-            TimerSync.Start()
-        End If
+
+                If processed.Count > 0 Then
+                    conn.Open()
+                    For Each item In processed
+                        ' Log into sent table
+                        Try
+                            Dim cmdSent As New OdbcCommand("INSERT INTO sent (id, wa_mode, wa_no, wa_text, wa_media, wa_file, wa_time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", conn)
+                            Dim parsedId As Integer = 0
+                            Integer.TryParse(item.Id, parsedId)
+                            Dim parsedMode As Integer = 0
+                            Integer.TryParse(item.Mode, parsedMode)
+                            
+                            cmdSent.Parameters.AddWithValue("?", parsedId)
+                            cmdSent.Parameters.AddWithValue("?", parsedMode)
+                            cmdSent.Parameters.AddWithValue("?", item.Destination)
+                            cmdSent.Parameters.AddWithValue("?", item.Message)
+                            cmdSent.Parameters.AddWithValue("?", item.Media)
+                            cmdSent.Parameters.AddWithValue("?", item.File)
+                            
+                            Dim sentTimeStr As String = item.Time
+                            If String.IsNullOrEmpty(sentTimeStr) Then
+                                sentTimeStr = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                            End If
+                            cmdSent.Parameters.AddWithValue("?", sentTimeStr)
+                            cmdSent.Parameters.AddWithValue("?", "sent")
+                            cmdSent.ExecuteNonQuery()
+                        Catch ex As Exception
+                        End Try
+
+                        ' Delete from outbox
+                        Dim deleted As Boolean = False
+                        If Not String.IsNullOrEmpty(item.Id) AndAlso item.Id <> "0" Then
+                            Try
+                                Dim cmdDel As New OdbcCommand("DELETE FROM outbox WHERE id=" & item.Id, conn)
+                                cmdDel.ExecuteNonQuery()
+                                deleted = True
+                            Catch ex As Exception
+                            End Try
+                        End If
+                        
+                        ' Fallback to delete using text/destination if ID fails or is not populated
+                        If Not deleted Then
+                            Try
+                                Dim cmdDelFallback As New OdbcCommand("DELETE FROM outbox WHERE wa_no=? AND wa_text=?", conn)
+                                cmdDelFallback.Parameters.AddWithValue("?", item.Destination)
+                                cmdDelFallback.Parameters.AddWithValue("?", item.Message)
+                                cmdDelFallback.ExecuteNonQuery()
+                            Catch ex As Exception
+                            End Try
+                        End If
+                    Next
+                    conn.Close()
+                End If
+            Catch ex As Exception
+            End Try
+            
+            Invoke(Sub()
+                If IsSyncing Then
+                    TimerSync.Start()
+                End If
+            End Sub)
+        End Sub)
     End Sub
 
     Public Sub RecordInbox(destination_number As String, message_text As String)
