@@ -364,16 +364,14 @@
                             </div>
                         <?php endif; ?>
 
-                        <!-- Update Box -->
-                        <div id="update-box" class="hidden bg-slate-900/40 rounded-xl p-4 mb-8 border border-white/5 text-center">
-                            <span class="text-xs text-slate-400 font-medium">Last Update: <span id="web-release-date" class="text-slate-200 font-semibold">--</span> (v<span id="web-version">--</span>)</span>
-                        </div>
-
                         <div class="space-y-4">
-                            <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" id="btn-download" class="group relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-violet-500/30 transition-all hover:-translate-y-1 overflow-hidden">
+                            <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" id="btn-download" class="group relative flex flex-col items-center justify-center w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white py-3 px-8 rounded-xl shadow-lg shadow-violet-500/30 transition-all hover:-translate-y-1 overflow-hidden">
                                 <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[-20deg]"></div>
-                                <i class="fa-solid fa-cloud-arrow-down"></i> 
-                                <span><?= $text['btn_download'] ?>26</span>
+                                <div class="flex items-center gap-3 font-bold text-lg">
+                                    <i class="fa-solid fa-cloud-arrow-down"></i> 
+                                    <span id="btn-text"><?= $text['btn_download'] ?>26</span>
+                                </div>
+                                <div id="btn-subtext" class="text-xs text-white/70 mt-1 font-medium hidden">Last Update: --</div>
                             </a>
                             
                             <a href="./request" class="flex items-center justify-center gap-3 w-full bg-slate-800 hover:bg-slate-700 text-amber-400 font-semibold text-lg py-4 px-8 rounded-xl border border-white/5 transition-colors shadow-inner">
@@ -450,7 +448,7 @@
                     <p class="text-slate-400 font-medium"><?= $text['stat_1'] ?></p>
                 </div>
                 <div class="p-4 pt-8 md:pt-4">
-                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200 mb-2 drop-shadow-sm">10x</h4>
+                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200 mb-2 drop-shadow-sm">50x ++</h4>
                     <p class="text-slate-400 font-medium"><?= $text['stat_2'] ?></p>
                 </div>
                 <div class="p-4 pt-8 md:pt-4">
@@ -586,7 +584,15 @@
                     const btnDownload = document.getElementById("btn-download");
                     if (btnDownload) {
                         btnDownload.href = data.download_url;
-                        btnDownload.innerHTML = `<div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[-20deg]"></div><i class="fa-solid fa-cloud-arrow-down"></i> <span><?= $text['btn_download'] ?>${data.version}</span>`;
+                        const btnText = document.getElementById("btn-text");
+                        if (btnText) {
+                            btnText.textContent = `<?= $text['btn_download'] ?>${data.version}`;
+                        }
+                        const btnSubtext = document.getElementById("btn-subtext");
+                        if (btnSubtext) {
+                            btnSubtext.textContent = `Last Update: ${data.release_date}`;
+                            btnSubtext.classList.remove("hidden");
+                        }
                     }
 
                     const mobileBtns = document.querySelectorAll(".mobile-btn-download");
@@ -594,15 +600,6 @@
                         btn.href = data.download_url;
                         btn.innerHTML = `<i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>${data.version}`;
                     });
-
-                    document.getElementById("web-version").textContent = `${data.version}`;
-                    document.getElementById("web-release-date").textContent = data.release_date;
-                    
-                    const ub = document.getElementById("update-box");
-                    if (ub) {
-                        ub.classList.remove("hidden");
-                        ub.style.display = "block";
-                    }
                 })
                 .catch(err => console.error("Gagal load metadata github:", err));
 
