@@ -13,98 +13,98 @@
     
     $t = [
         'id' => [
-            'meta_title' => 'BotMaster | Business WhatsApp Sender Terbaik',
-            'meta_desc' => 'Tingkatkan omzet bisnis Anda dengan BotMaster. Software pengirim pesan WhatsApp massal otomatis, cepat, aman, dan tanpa biaya bulanan.',
+            'meta_title' => 'BotMaster | Aplikasi Broadcast WhatsApp Super Cepat & Anti Banned',
+            'meta_desc' => 'Rahasia ribuan pebisnis tingkatkan omzet! BotMaster adalah software pengirim pesan WhatsApp massal otomatis, cepat, aman, dan 100% tanpa biaya bulanan.',
             'client_area' => 'Client Area',
             'badge_status' => 'Sistem Stabil & Siap Digunakan',
-            'hero_title_1' => 'Kirim Promosi ke ',
+            'hero_title_1' => 'Dominasi Penjualan & Kirim Promosi ke ',
             'hero_title_span' => 'Ribuan Kontak',
-            'hero_title_2' => ' Tanpa Ribet',
-            'hero_desc' => 'Tingkatkan konversi penjualan Anda dengan sistem broadcast WhatsApp otomatis. Tanpa biaya langganan bulanan, lisensi sekali bayar untuk selamanya.',
-            'feat_1' => 'Multi Device Support',
-            'feat_2' => 'Unlimited Pesan',
-            'feat_3' => 'Grab Kontak Grup',
-            'feat_4' => 'Import/Export Mudah',
-            'feat_5' => 'Pesan Personal (Nama, dll)',
-            'feat_6' => 'Bebas Biaya Bulanan',
-            'price_title' => 'Lisensi Lifetime',
-            'price_unit' => '/ 1 PC',
-            'btn_download' => 'Download Update Terbaru',
+            'hero_title_2' => ' Hanya dengan 1 Klik!',
+            'hero_desc' => 'Berhenti membuang waktu balas chat satu per satu! Tingkatkan omzet & konversi Anda hari ini juga dengan sistem auto-broadcast WhatsApp terkuat. 100% Tanpa langganan bulanan!',
+            'feat_1' => 'Koneksi Multi-Device Stabil',
+            'feat_2' => 'Kirim Unlimited Pesan',
+            'feat_3' => 'Grab Kontak Grup Instan',
+            'feat_4' => 'Import/Export Excel Mudah',
+            'feat_5' => 'Personalisasi Sapaan (Nama)',
+            'feat_6' => '100% Bebas Biaya Bulanan',
+            'price_title' => 'Lisensi Tahunan',
+            'price_unit' => '/ 1 PC / Tahun',
+            'btn_download' => 'Download Botmaster TERBARU!! v',
             'btn_gen_license' => 'Generate Lisensi Aktif',
-            'btn_order' => 'Order Lisensi Baru',
-            'guarantee' => '100% Bebas Update Fee Selamanya',
+            'btn_order' => 'Cek Data Lisensi Kamu',
+            'guarantee' => 'Bebas Biaya Update Selama Masa Aktif',
             'chat_telegram' => 'Chat Support via Telegram',
             'chat_whatsapp' => 'Chat Support via WhatsApp',
-            'stat_1' => 'Tingkat Keterkiriman',
-            'stat_2' => 'Lebih Cepat dari Manual',
-            'stat_3' => 'Lisensi Tanpa Batas Waktu',
-            'why_title' => 'Mengapa Memilih BotMaster?',
-            'why_desc' => 'Fitur lengkap yang dirancang khusus untuk mempermudah operasional dan meningkatkan omset bisnis Anda.',
-            'ben_1_title' => 'Efisiensi Waktu & Tenaga',
-            'ben_1_desc' => 'Otomatisasi pengiriman promosi dan follow-up. Tim admin Anda tidak perlu lagi copy-paste pesan satu per satu, sehingga bisa fokus melayani pembeli.',
-            'ben_2_title' => 'Meningkatkan Penjualan',
-            'ben_2_desc' => 'Jangkau kembali database pelanggan lama Anda dengan penawaran menarik secara instan. Follow-up konsisten adalah kunci meningkatkan konversi.',
-            'ben_3_title' => 'Auto Reply Bot',
-            'ben_3_desc' => 'Balas pesan pelanggan secara otomatis berdasarkan kata kunci tertentu. Bisa dikombinasikan dengan tombol interaktif dan katalog produk.',
-            'ben_4_title' => 'Pesan Tepat Sasaran',
-            'ben_4_desc' => 'Fitur personalisasi pesan memungkinkan Anda memanggil nama pelanggan atau menyebutkan detail invoice, membuat pesan terasa lebih intim dan tidak seperti robot.',
-            'ben_5_title' => 'Filter Nomor Aktif',
-            'ben_5_desc' => 'Bersihkan database Anda. Sistem akan memverifikasi nomor WhatsApp yang aktif dan tidak aktif sebelum mengirim, menjaga efisiensi kampanye Anda.',
-            'ben_6_title' => 'Hemat Biaya Operasional',
-            'ben_6_desc' => 'Cukup bayar lisensi sekali untuk penggunaan selamanya di PC Anda. Jauh lebih terjangkau dibandingkan layanan WhatsApp berbayar bulanan.',
-            'vid_title' => 'Lihat Cara Kerjanya',
-            'vid_desc' => 'Tonton demo singkat bagaimana BotMaster mempermudah rutinitas marketing Anda setiap harinya.',
+            'stat_1' => 'Tingkat Keterbacaan (Open Rate)',
+            'stat_2' => 'Lebih Cepat & Efisien',
+            'stat_3' => 'Tanpa Potongan Biaya Bulanan',
+            'why_title' => 'Ubah WhatsApp Anda Menjadi Mesin Pencetak Uang',
+            'why_desc' => 'Fakta: 80% pembeli online di Indonesia lebih suka bertransaksi via WhatsApp. Ini adalah tool marketing WAJIB bagi Pemilik Bisnis, Dropshipper, dan Affiliate untuk meraup profit maksimal.',
+            'ben_1_title' => '🚀 Otomatisasi 100%, Bebas Pusing!',
+            'ben_1_desc' => 'Ucapkan selamat tinggal pada jari keriting! Sistem kami yang akan mengirimkan ribuan promosi & follow-up secara otomatis saat Anda tidur.',
+            'ben_2_title' => '💰 Ledakkan Konversi & Omzet',
+            'ben_2_desc' => 'Jangan biarkan database pelanggan lama Anda menganggur. Bangunkan mereka dengan penawaran bombastis secara instan dan rasakan lonjakan penjualan.',
+            'ben_3_title' => '🤖 CS Robot Pintar (Auto Reply)',
+            'ben_3_desc' => 'Toko Anda kini buka 24/7. Balas pesan pelanggan seketika berdasarkan kata kunci. Tidak ada lagi calon pembeli yang kabur karena respons lambat.',
+            'ben_4_title' => '🎯 Pesan Personal (Anti-Kaku)',
+            'ben_4_desc' => 'Sapa pelanggan dengan namanya! Fitur personalisasi ekstrim kami membuat pesan terasa sangat intim, eksklusif, dan jauh dari kesan robot.',
+            'ben_5_title' => '🛡️ Filter Nomor & Anti-Banned',
+            'ben_5_desc' => 'Jangan buang kuota pesan ke nomor mati! Sistem cerdas kami memverifikasi nomor WA secara live sebelum mengirim, menjaga efektivitas kampanye Anda.',
+            'ben_6_title' => '✂️ Pangkas Biaya Promosi Hingga 90%',
+            'ben_6_desc' => 'Cukup bayar satu kali untuk lisensi tahunan super murah. Jauh lebih hemat dibandingkan biaya iklan medsos atau sewa platform WA berbayar bulanan.',
+            'vid_title' => 'Lihat Kehebatannya Langsung',
+            'vid_desc' => 'Tonton demo singkat bagaimana BotMaster mengambil alih rutinitas marketing yang membosankan menjadi mesin otomatis.',
             'vid_1_title' => 'Fitur Broadcast Masal',
             'vid_2_title' => 'Fitur Filter Nomor Aktif',
-            'footer' => 'BotMaster - Solusi WhatsApp Marketing Otomatis.',
+            'footer' => 'BotMaster - Solusi WhatsApp Marketing Otomatis Terbaik.',
             'lang_switch_id' => 'Indonesia',
             'lang_switch_en' => 'English'
         ],
         'en' => [
-            'meta_title' => 'BotMaster | Best Business WhatsApp Sender',
-            'meta_desc' => 'Increase your business revenue with BotMaster. Fast, safe, and automated bulk WhatsApp sender without monthly subscription fees.',
+            'meta_title' => 'BotMaster | The Ultimate Fast & Safe WhatsApp Broadcaster',
+            'meta_desc' => 'The secret weapon of thousands of businesses! BotMaster is a fast, safe, and automated mass WhatsApp sender with absolutely ZERO monthly fees.',
             'client_area' => 'Client Area',
             'badge_status' => 'System Stable & Ready',
-            'hero_title_1' => 'Send Promotions to ',
+            'hero_title_1' => 'Dominate Sales & Broadcast to ',
             'hero_title_span' => 'Thousands of Contacts',
-            'hero_title_2' => ' Effortlessly',
-            'hero_desc' => 'Boost your sales conversion with our automated WhatsApp broadcast system. No monthly fees, one-time payment for a lifetime license.',
-            'feat_1' => 'Multi Device Support',
-            'feat_2' => 'Unlimited Messages',
-            'feat_3' => 'Grab Group Contacts',
-            'feat_4' => 'Easy Import/Export',
-            'feat_5' => 'Personalized Messages',
-            'feat_6' => 'No Monthly Fees',
-            'price_title' => 'Lifetime License',
-            'price_unit' => '/ 1 PC',
-            'btn_download' => 'Download Latest Update',
+            'hero_title_2' => ' in Just 1 Click!',
+            'hero_desc' => 'Stop wasting time replying manually! Skyrocket your conversion rates today with the most powerful WhatsApp auto-broadcast system. 100% No monthly subscriptions!',
+            'feat_1' => 'Stable Multi-Device Connection',
+            'feat_2' => 'Send Unlimited Messages',
+            'feat_3' => 'Instant Group Contact Grabber',
+            'feat_4' => 'Easy Excel Import/Export',
+            'feat_5' => 'Personalized Greetings (Name)',
+            'feat_6' => '100% Zero Monthly Fees',
+            'price_title' => 'Yearly License',
+            'price_unit' => '/ 1 PC / Year',
+            'btn_download' => 'Download LATEST Botmaster!! v',
             'btn_gen_license' => 'Generate Active License',
-            'btn_order' => 'Order New License',
-            'guarantee' => '100% Free Lifetime Updates',
+            'btn_order' => 'Check Your License Data',
+            'guarantee' => 'Free Updates During Active Period',
             'chat_telegram' => 'Chat Support via Telegram',
             'chat_whatsapp' => 'Chat Support via WhatsApp',
-            'stat_1' => 'Delivery Rate',
-            'stat_2' => 'Faster than Manual',
-            'stat_3' => 'Lifetime License',
-            'why_title' => 'Why Choose BotMaster?',
-            'why_desc' => 'Comprehensive features specifically designed to simplify your operations and boost your business revenue.',
-            'ben_1_title' => 'Time & Effort Efficiency',
-            'ben_1_desc' => 'Automate promotions and follow-ups. Your admin team no longer needs to copy-paste messages one by one.',
-            'ben_2_title' => 'Increase Sales',
-            'ben_2_desc' => 'Instantly reach out to your old customer database with attractive offers. Consistent follow-ups are key to conversions.',
-            'ben_3_title' => 'Auto Reply Bot',
-            'ben_3_desc' => 'Automatically reply to customer messages based on specific keywords. Can be combined with interactive buttons and catalogs.',
-            'ben_4_title' => 'Targeted Messaging',
-            'ben_4_desc' => 'Personalization features allow you to call customers by name or mention invoice details, making messages feel intimate.',
-            'ben_5_title' => 'Active Number Filter',
-            'ben_5_desc' => 'Clean your database. The system verifies active and inactive WhatsApp numbers before sending, maintaining campaign efficiency.',
-            'ben_6_title' => 'Save Operational Costs',
-            'ben_6_desc' => 'Pay the license once for lifetime use on your PC. Much more affordable compared to monthly paid WhatsApp services.',
-            'vid_title' => 'See How It Works',
-            'vid_desc' => 'Watch a short demo of how BotMaster simplifies your daily marketing routine.',
+            'stat_1' => 'High Open & Read Rate',
+            'stat_2' => 'Faster & Highly Efficient',
+            'stat_3' => 'Zero Hidden Monthly Fees',
+            'why_title' => 'Turn Your WhatsApp Into an ATM',
+            'why_desc' => 'Fact: 80% of online buyers prefer transacting via WhatsApp. This is a MUST-HAVE marketing tool for Business Owners, Dropshippers, and Affiliates to maximize profit.',
+            'ben_1_title' => '🚀 100% Automated, Zero Hassle!',
+            'ben_1_desc' => 'Say goodbye to tired fingers! Our system will automatically send thousands of promotions & follow-ups while you sleep.',
+            'ben_2_title' => '💰 Explode Your Conversions',
+            'ben_2_desc' => 'Don\'t let your old customer database sit idle. Wake them up with instant blockbuster offers and experience massive sales spikes.',
+            'ben_3_title' => '🤖 Smart CS Robot (Auto Reply)',
+            'ben_3_desc' => 'Your store is now open 24/7. Reply to customer messages instantly based on keywords. No more losing buyers due to slow responses.',
+            'ben_4_title' => '🎯 Hyper-Personalized Messaging',
+            'ben_4_desc' => 'Greet customers by their names! Our extreme personalization feature makes messages feel highly intimate, exclusive, and human.',
+            'ben_5_title' => '🛡️ Smart Filter & Anti-Banned',
+            'ben_5_desc' => 'Don\'t waste messages on dead numbers! Our smart engine live-verifies WA numbers before sending, keeping your campaigns effective and safe.',
+            'ben_6_title' => '✂️ Slash Marketing Costs by 90%',
+            'ben_6_desc' => 'Pay only once for an incredibly affordable yearly license. Much cheaper than social media ads or expensive monthly WA platforms.',
+            'vid_title' => 'See the Magic In Action',
+            'vid_desc' => 'Watch a short demo of how BotMaster takes over your boring marketing routines and turns them into an automated machine.',
             'vid_1_title' => 'Mass Broadcast Feature',
             'vid_2_title' => 'Active Number Filter Feature',
-            'footer' => 'BotMaster - Automated WhatsApp Marketing Solution.',
+            'footer' => 'BotMaster - The Ultimate Automated WhatsApp Marketing Solution.',
             'lang_switch_id' => 'Indonesia',
             'lang_switch_en' => 'English'
         ]
@@ -112,7 +112,7 @@
     $text = $t[$lang];
 ?>
 <!DOCTYPE html>
-<html lang="<?= $lang ?>">
+<html lang="<?= $lang ?>" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <title><?= $text['meta_title'] ?></title>
@@ -127,336 +127,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#7C3AED',
+                            purpleHover: '#6D28D9',
+                            dark: '#0B1120',
+                            card: 'rgba(30, 41, 59, 0.7)'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 15s infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: .5 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        :root {
-            --primary: #25D366; /* WhatsApp Green */
-            --primary-hover: #128C7E;
-            --accent: #F59E0B; /* Gold for premium feel */
-            --bg-main: #0B1120;
-            --bg-card: rgba(30, 41, 59, 0.7);
-            --bg-card-hover: rgba(30, 41, 59, 0.9);
-            --text-light: #F8FAFC;
-            --text-muted: #94A3B8;
-            --border: rgba(255, 255, 255, 0.08);
-            --font-main: 'Plus Jakarta Sans', sans-serif;
-            --font-display: 'Space Grotesk', sans-serif;
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: var(--font-main);
-            background-color: var(--bg-main);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(37, 211, 102, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+        @keyframes marquee2 {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee { animation: marquee 25s linear infinite; }
+        .animate-marquee2 { animation: marquee2 25s linear infinite; }
+        .background-animate {
             background-size: 200% 200%;
-            background-attachment: fixed;
-            animation: gradientMove 15s ease infinite alternate;
+            animation: bgShimmer 3s linear infinite;
         }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes bgShimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
-        .animate-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Navbar & Language Switcher */
-        .navbar {
-            padding: 1.5rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .logo i { color: var(--primary); }
-
-        .nav-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .lang-switch {
-            display: flex;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.25rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-        .lang-switch a {
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .lang-switch a.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        .lang-switch a:hover:not(.active) {
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 4rem 0 6rem;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        @media (max-width: 992px) {
-            .hero { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-            .nav-actions { flex-direction: column-reverse; }
-        }
-
-        .badge-update {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(37, 211, 102, 0.1);
-            border: 1px solid rgba(37, 211, 102, 0.3);
-            color: var(--primary);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.2);
-        }
-        
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 4vw, 4rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-        .hero h1 span { color: var(--primary); position: relative; }
-        .hero h1 span::after {
-            content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 30%; background: rgba(37, 211, 102, 0.2); z-index: -1;
-        }
-        
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            max-width: 90%;
-        }
-        @media (max-width: 992px) { .hero p { margin: 0 auto 2.5rem; } }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .feat-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.95rem;
-            background: rgba(255,255,255,0.02);
-            padding: 1rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: inset 0 0 0 1px transparent;
-        }
-        .feat-item:hover {
-            border-color: var(--primary);
-            transform: translateY(-4px) scale(1.02);
-            background: rgba(255,255,255,0.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(37, 211, 102, 0.3);
-        }
-        .feat-item i { color: var(--accent); font-size: 1.2rem; }
-
-        /* Pricing Card (Floating & Sticky) */
-        .pricing-wrapper {
-            position: relative;
-        }
-        .pricing-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-radius: 24px;
-            padding: 2.5rem;
-            border: 1px solid var(--border);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.1) inset;
-            position: sticky;
-            top: 2rem;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            background: var(--bg-card-hover);
-            border-color: rgba(255,255,255,0.15);
-        }
-        .pricing-card::before {
-            content: ''; position: absolute; inset: -1px;
-            border-radius: 25px; padding: 1px;
-            background: linear-gradient(135deg, var(--primary), transparent, var(--accent));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-            pointer-events: none;
-            opacity: 0.6;
-            transition: opacity 0.3s;
-        }
-        .pricing-card:hover::before { opacity: 1; }
-
-        .price-title {
-            color: var(--accent); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.5rem;
-        }
-        .price-amount {
-            font-family: var(--font-display); font-size: 3rem; font-weight: 700; margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, #cbd5e1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .price-amount span { font-size: 1rem; color: var(--text-muted); font-weight: 400; font-family: var(--font-main); -webkit-text-fill-color: var(--text-muted); }
-        
-        /* Dynamic Update Panel */
-        .update-box {
-            background: rgba(0,0,0,0.4); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
-        }
-        .update-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem;}
-        .version-tag { background: var(--primary); color: #000; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.8rem; }
-        .date-tag { font-size: 0.8rem; color: var(--text-muted); }
-        .changelog-list { list-style: none; font-size: 0.85rem; color: #cbd5e1; }
-        .changelog-list li { position: relative; padding-left: 1rem; margin-bottom: 0.25rem; }
-        .changelog-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
-
-        .btn-group { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
-        
-        .btn {
-            display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;
-            padding: 1rem 1.5rem; border-radius: 12px; font-weight: 600; font-size: 1rem;
-            text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); border: none; cursor: pointer;
-            position: relative; overflow: hidden;
-        }
-        .btn-main {
-            background: var(--primary); color: #000; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-        }
-        .btn-main::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-20deg); transition: 0.5s;
-        }
-        .btn-main:hover::after { left: 150%; }
-        .btn-main:hover { transform: translateY(-3px); background: var(--primary-hover); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5); }
-        
-        .btn-outline {
-            background: rgba(255,255,255,0.02); color: white; border: 1px solid var(--border);
-        }
-        .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-
-        .btn-secondary {
-            background: rgba(245, 158, 11, 0.1); color: var(--accent); border: 1px solid rgba(245, 158, 11, 0.2);
-        }
-        .btn-secondary:hover { background: rgba(245, 158, 11, 0.2); transform: translateY(-2px); }
-
-        .guarantee { text-align: center; font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem;}
-        .guarantee i { color: var(--accent); font-size: 1.1rem; }
-
-        /* Social Proof / Stats */
-        .stats-section { padding: 4rem 0; text-align: center; position: relative; }
-        .stats-section::before { content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 800px; margin: 0 auto; }
-        .stat-item h4 { font-family: var(--font-display); font-size: 3rem; color: var(--primary); margin-bottom: 0.5rem; text-shadow: 0 0 20px rgba(37, 211, 102, 0.3); }
-        .stat-item p { color: var(--text-muted); font-weight: 500; font-size: 1.1rem; }
-        @media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } }
-
-        /* Benefits Section */
-        .benefits-section { padding: 6rem 0; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.02); }
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 4rem; }
-        .benefit-card {
-            background: rgba(255,255,255,0.015); border: 1px solid var(--border);
-            padding: 2.5rem; border-radius: 20px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative; overflow: hidden;
-        }
-        .benefit-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at top right, rgba(245, 158, 11, 0.1), transparent 60%);
-            opacity: 0; transition: 0.4s; z-index: 0;
-        }
-        .benefit-card > * { position: relative; z-index: 1; }
-        .benefit-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.03); border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
-        .benefit-card:hover::before { opacity: 1; }
-        .benefit-icon { width: 60px; height: 60px; background: rgba(245, 158, 11, 0.1); color: var(--accent); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1.5rem; border: 1px solid rgba(245, 158, 11, 0.2); }
-        .benefit-card h3 { font-size: 1.3rem; font-family: var(--font-display); margin-bottom: 1rem; color: #fff; }
-        .benefit-card p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
-
-        /* Videos Section */
-        .video-section { padding: 6rem 0; border-top: 1px solid var(--border); position: relative; }
-        .section-title { text-align: center; margin-bottom: 4rem; }
-        .section-title h2 { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(to right, #fff, #94A3B8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .section-title p { color: var(--text-muted); max-width: 650px; margin: 0 auto; font-size: 1.1rem; }
-        
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
-        .video-wrapper {
-            background: rgba(255,255,255,0.02); padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border);
-            transition: transform 0.4s, box-shadow 0.4s;
-        }
-        .video-wrapper:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.15); }
-        .video-wrapper iframe { width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .video-wrapper h3 { margin-top: 1.5rem; font-size: 1.2rem; text-align: center; color: #fff; }
-
-        /* Footer */
-        footer { padding: 3rem 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.95rem; background: rgba(0,0,0,0.3); }
-        footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
-
-        /* FOMO Toast */
         .fomo-toast {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: rgba(11, 17, 32, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 1rem;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 999;
-            transform: translateY(100px);
+            transform: translateY(150%);
             opacity: 0;
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
@@ -465,243 +209,338 @@
             transform: translateY(0);
             opacity: 1;
         }
-        .fomo-icon {
-            background: rgba(37, 211, 102, 0.15);
-            color: var(--primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        .fomo-text p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #fff;
-        }
-        .fomo-text p span {
-            font-weight: 700;
-            color: var(--accent);
-        }
-        .fomo-text small {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        /* Mobile Sticky CTA */
-        .mobile-cta { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(11, 17, 32, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid rgba(255,255,255,0.1); padding: 1rem; z-index: 100; text-align: center; box-shadow: 0 -10px 20px rgba(0,0,0,0.5); }
-        .mobile-cta .btn { width: 100%; padding: 1.2rem; font-size: 1.1rem; }
-        @media (max-width: 768px) {
-            .mobile-cta { display: block; }
-            body { padding-bottom: 80px; }
-        }
     </style>
 </head>
-<body>
+<body class="bg-brand-dark text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-fuchsia-500 selection:text-white relative">
 
-    <nav class="navbar container">
-        <a href="#" class="logo">
-            <i class="fa-solid fa-robot"></i> BotMaster
-        </a>
-        <div class="nav-actions">
-            <div class="lang-switch">
-                <a href="?lang=id" class="<?= $lang === 'id' ? 'active' : '' ?>">ID</a>
-                <a href="?lang=en" class="<?= $lang === 'en' ? 'active' : '' ?>">EN</a>
+    <!-- Background Animated Blobs -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-violet-600/20 blur-[100px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-fuchsia-600/10 blur-[100px] animate-blob" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[120px] animate-blob" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Grid Overlay -->
+    <div class="fixed inset-0 z-0 pointer-events-none opacity-[0.03]" style="background-image: linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-slate-900/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img src="https://app.wasender.biz/index_files/botmaster.ico" alt="BotMaster Logo" class="w-10 h-10 rounded-xl shadow-lg shadow-violet-500/30">
+                    <span class="font-display font-bold text-2xl tracking-tight text-white">BotMaster</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex bg-slate-800/80 rounded-lg p-1 border border-white/10">
+                        <a href="?lang=id" class="px-3 py-1 rounded-md text-sm font-medium transition-colors <?= $lang === 'id' ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md' : 'text-slate-400 hover:text-white' ?>">ID</a>
+                        <a href="?lang=en" class="px-3 py-1 rounded-md text-sm font-medium transition-colors <?= $lang === 'en' ? 'bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md' : 'text-slate-400 hover:text-white' ?>">EN</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <main class="container hero">
-        <div class="hero-content animate-up">
-            <div class="badge-update" id="badge-update-status">
-                <i class="fa-solid fa-circle-check"></i> <?= $text['badge_status'] ?>
-            </div>
-            <h1><?= $text['hero_title_1'] ?><span><?= $text['hero_title_span'] ?></span><?= $text['hero_title_2'] ?></h1>
-            <p><?= $text['hero_desc'] ?></p>
-
-            <div class="feature-grid">
-                <div class="feat-item"><i class="fa-solid fa-mobile-screen"></i> <?= $text['feat_1'] ?></div>
-                <div class="feat-item"><i class="fa-solid fa-infinity"></i> <?= $text['feat_2'] ?></div>
-                <div class="feat-item"><i class="fa-solid fa-users"></i> <?= $text['feat_3'] ?></div>
-                <div class="feat-item"><i class="fa-solid fa-file-import"></i> <?= $text['feat_4'] ?></div>
-                <div class="feat-item"><i class="fa-solid fa-user-tag"></i> <?= $text['feat_5'] ?></div>
-                <div class="feat-item"><i class="fa-solid fa-coins"></i> <?= $text['feat_6'] ?></div>
-            </div>
-        </div>
-
-        <div class="pricing-wrapper animate-up delay-1">
-            <div class="pricing-card">
-                <div class="price-title"><?= $text['price_title'] ?></div>
-                <!-- Menampilkan harga selalu dalam IDR sesuai permintaan user -->
-                <div class="price-amount">Rp <?= htmlspecialchars($harga1 ?? '150.000', ENT_QUOTES, 'UTF-8'); ?> <span><?= $text['price_unit'] ?></span></div>
+    <!-- Hero Section -->
+    <main class="pt-32 pb-16 sm:pt-40 sm:pb-24 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
                 
-                <div class="update-box" id="update-box" style="display: none;">
-                    <div class="update-box-header">
-                        <span class="version-tag" id="web-version">v--</span>
-                        <span class="date-tag" id="web-release-date">--</span>
+                <!-- Left Content -->
+                <div class="lg:col-span-6 text-center lg:text-left mb-16 lg:mb-0 relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 font-medium text-sm mb-8 animate-float">
+                        <span class="flex w-2 h-2 rounded-full bg-green-400 animate-pulse-glow"></span>
+                        <?= $text['badge_status'] ?>
                     </div>
-                    <ul class="changelog-list" id="web-changelog">
-                        <!-- Dimuat dari version.json Github -->
-                    </ul>
-                </div>
+                    
+                    <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.1]">
+                        <?= $text['hero_title_1'] ?>
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 pb-2">
+                            <?= $text['hero_title_span'] ?>
+                        </span>
+                        <?= $text['hero_title_2'] ?>
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl text-slate-400 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        <?= $text['hero_desc'] ?>
+                    </p>
 
-                <div class="btn-group">
-                    <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" id="btn-download" class="btn btn-main">
-                        <i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>
-                    </a>
-                    <a href="./request" class="btn btn-secondary" target="_blank">
-                        <i class="fa-solid fa-key"></i> <?= $text['btn_gen_license'] ?>
-                    </a>
-                    <a href="./order" class="btn btn-outline" target="_blank">
-                        <i class="fa-solid fa-cart-shopping"></i> <?= $text['btn_order'] ?>
-                    </a>
-                </div>
-
-                <div class="guarantee">
-                    <i class="fa-solid fa-shield-halved"></i> <?= $text['guarantee'] ?>
-                </div>
-
-                <?php if (!empty($pembayaran)) : ?>
-                    <div style="margin-top: 1.5rem; text-align: center;">
-                        <?php if (!empty($url_reseller) && $url_reseller === "http://app.wasender.biz") : ?>
-                            <a href="https://t.me/wawn1782" target="_blank" style="color: #38bdf8; text-decoration: none; font-size: 0.95rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;">
-                                <i class="fa-brands fa-telegram" style="font-size: 1.2rem;"></i> <?= $text['chat_telegram'] ?>
-                            </a>
-                        <?php else : ?>
-                            <?php
-                            $wa_clean = isset($wa_reseller) ? preg_replace('/[^0-9]/', '', $wa_reseller) : '';
-                            $tpl_text = rawurlencode("Hallo kak, saya mau konsultasi soal Aplikasi Botmaster.");
-                            ?>
-                            <a href="https://api.whatsapp.com/send?phone=<?= $wa_clean; ?>&text=<?= $tpl_text; ?>" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.95rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s;">
-                                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> <?= $text['chat_whatsapp'] ?>
-                            </a>
-                        <?php endif; ?>
+                    <div class="grid grid-cols-2 gap-4 max-w-xl mx-auto lg:mx-0">
+                        <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
+                            <i class="fa-solid fa-mobile-screen-button text-violet-400 text-xl"></i>
+                            <span class="text-sm font-medium text-slate-200"><?= $text['feat_1'] ?></span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
+                            <i class="fa-solid fa-infinity text-fuchsia-400 text-xl"></i>
+                            <span class="text-sm font-medium text-slate-200"><?= $text['feat_2'] ?></span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
+                            <i class="fa-solid fa-users text-blue-400 text-xl"></i>
+                            <span class="text-sm font-medium text-slate-200"><?= $text['feat_3'] ?></span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
+                            <i class="fa-solid fa-file-import text-pink-400 text-xl"></i>
+                            <span class="text-sm font-medium text-slate-200"><?= $text['feat_4'] ?></span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
+                            <i class="fa-solid fa-user-tag text-amber-400 text-xl"></i>
+                            <span class="text-sm font-medium text-slate-200"><?= $text['feat_5'] ?></span>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
+                            <i class="fa-solid fa-coins text-emerald-400 text-xl"></i>
+                            <span class="text-sm font-medium text-slate-200"><?= $text['feat_6'] ?></span>
+                        </div>
                     </div>
-                <?php endif; ?>
+                </div>
 
+                <!-- Right Content: Pricing Card -->
+                <div class="lg:col-span-6 lg:ml-auto w-full max-w-lg mx-auto relative z-10">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl blur opacity-30 animate-pulse-glow"></div>
+                    <!-- Shimmer Wrapper -->
+                    <div class="relative p-[1px] rounded-2xl bg-gradient-to-r from-transparent via-violet-500/50 to-transparent background-animate">
+                    <div class="relative glass-card rounded-2xl p-8 sm:p-10 border-t border-l border-white/20 h-full w-full">
+                        <div class="text-sm font-bold tracking-widest text-fuchsia-400 uppercase mb-4"><?= $text['price_title'] ?></div>
+                        
+                        <div class="flex items-baseline gap-2 mb-8">
+                            <span class="text-5xl font-display font-bold text-white tracking-tight">Rp <?= htmlspecialchars($harga1 ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
+                            <span class="text-slate-400 font-medium"><?= $text['price_unit'] ?></span>
+                        </div>
+
+                        <!-- Update Box -->
+                        <div id="update-box" class="hidden bg-slate-900/60 rounded-xl p-5 mb-8 border border-white/5">
+                            <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-3">
+                                <span id="web-version" class="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-xs font-bold px-3 py-1 rounded-md shadow-lg shadow-violet-500/20">v--</span>
+                                <span id="web-release-date" class="text-xs text-slate-400 font-medium">--</span>
+                            </div>
+                            <ul id="web-changelog" class="text-sm text-slate-300 space-y-2">
+                                <!-- Changelog items injected via JS -->
+                            </ul>
+                        </div>
+
+                        <div class="space-y-4">
+                            <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" id="btn-download" class="group relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-violet-500/30 transition-all hover:-translate-y-1 overflow-hidden">
+                                <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[-20deg]"></div>
+                                <i class="fa-solid fa-cloud-arrow-down"></i> 
+                                <span><?= $text['btn_download'] ?>26</span>
+                            </a>
+                            
+                            <a href="./request" class="flex items-center justify-center gap-3 w-full bg-slate-800 hover:bg-slate-700 text-amber-400 font-semibold text-lg py-4 px-8 rounded-xl border border-white/5 transition-colors shadow-inner">
+                                <i class="fa-solid fa-key"></i> <?= $text['btn_gen_license'] ?>
+                            </a>
+                            
+                            <a href="./order" class="flex items-center justify-center gap-3 w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-lg py-4 px-8 rounded-xl border border-white/5 transition-colors">
+                                <i class="fa-solid fa-database"></i> <?= $text['btn_order'] ?>
+                            </a>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-white/10 text-center space-y-3">
+                            <div class="flex items-center justify-center gap-2 text-sm text-slate-300">
+                                <i class="fa-solid fa-shield-halved text-amber-400"></i>
+                                <?= $text['guarantee'] ?>
+                            </div>
+                            <div class="flex items-center justify-center gap-4">
+                                <?php if (!empty($pembayaran)) : ?>
+                                    <?php if (!empty($url_reseller) && $url_reseller === "http://app.wasender.biz") : ?>
+                                        <a href="https://t.me/wawn1782" target="_blank" class="text-sm text-sky-400 hover:text-sky-300 flex items-center gap-2 transition-colors">
+                                            <i class="fa-brands fa-telegram"></i> <?= $text['chat_telegram'] ?>
+                                        </a>
+                                    <?php else : ?>
+                                        <?php
+                                        $wa_clean = isset($wa_reseller) ? preg_replace('/[^0-9]/', '', $wa_reseller) : '';
+                                        $tpl_text = rawurlencode("Hallo kak, saya mau konsultasi soal Aplikasi Botmaster.");
+                                        ?>
+                                        <a href="https://api.whatsapp.com/send?phone=<?= $wa_clean; ?>&text=<?= $tpl_text; ?>" target="_blank" class="text-sm text-emerald-400 hover:text-emerald-300 flex items-center gap-2 transition-colors">
+                                            <i class="fa-brands fa-whatsapp"></i> <?= $text['chat_whatsapp'] ?>
+                                        </a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </main>
 
-    <section class="stats-section animate-up delay-2">
-        <div class="container stats-grid">
-            <div class="stat-item">
-                <h4>99%</h4>
-                <p><?= $text['stat_1'] ?></p>
+    <!-- Social Proof Marquee -->
+    <section class="py-10 border-y border-white/5 bg-slate-900/50 relative z-10 overflow-hidden">
+        <div class="text-center mb-6">
+            <span class="text-sm font-bold tracking-widest text-slate-500 uppercase">Dipercaya oleh 5.000+ Pebisnis & UMKM di Indonesia</span>
+        </div>
+        <div class="relative flex overflow-x-hidden">
+            <div class="animate-marquee whitespace-nowrap flex items-center gap-16 opacity-40">
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-building"></i> TechCorp</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-shop"></i> Storeedia</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-store"></i> UMKM Maju</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-industry"></i> IndoGrosir</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-cart-shopping"></i> RetailPro</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-basket-shopping"></i> PasarOnline</span>
             </div>
-            <div class="stat-item">
-                <h4>10x</h4>
-                <p><?= $text['stat_2'] ?></p>
-            </div>
-            <div class="stat-item">
-                <h4>∞</h4>
-                <p><?= $text['stat_3'] ?></p>
+            <div class="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-16 opacity-40" style="left: 100%;">
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-building"></i> TechCorp</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-shop"></i> Storeedia</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-store"></i> UMKM Maju</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-industry"></i> IndoGrosir</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-cart-shopping"></i> RetailPro</span>
+                <span class="text-xl font-display font-bold"><i class="fa-solid fa-basket-shopping"></i> PasarOnline</span>
             </div>
         </div>
     </section>
 
-    <section class="benefits-section">
-        <div class="container">
-            <div class="section-title">
-                <h2><?= $text['why_title'] ?></h2>
-                <p><?= $text['why_desc'] ?></p>
-            </div>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-clock"></i></div>
-                    <h3><?= $text['ben_1_title'] ?></h3>
-                    <p><?= $text['ben_1_desc'] ?></p>
+    <!-- Content Sections -->
+    <section class="border-y border-white/5 bg-slate-900/50 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/5">
+                <div class="p-4">
+                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-2 drop-shadow-sm">99%</h4>
+                    <p class="text-slate-400 font-medium"><?= $text['stat_1'] ?></p>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3><?= $text['ben_2_title'] ?></h3>
-                    <p><?= $text['ben_2_desc'] ?></p>
+                <div class="p-4 pt-8 md:pt-4">
+                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-2 drop-shadow-sm">10x</h4>
+                    <p class="text-slate-400 font-medium"><?= $text['stat_2'] ?></p>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-robot"></i></div>
-                    <h3><?= $text['ben_3_title'] ?></h3>
-                    <p><?= $text['ben_3_desc'] ?></p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3><?= $text['ben_4_title'] ?></h3>
-                    <p><?= $text['ben_4_desc'] ?></p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-filter"></i></div>
-                    <h3><?= $text['ben_5_title'] ?></h3>
-                    <p><?= $text['ben_5_desc'] ?></p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fa-solid fa-wallet"></i></div>
-                    <h3><?= $text['ben_6_title'] ?></h3>
-                    <p><?= $text['ben_6_desc'] ?></p>
+                <div class="p-4 pt-8 md:pt-4">
+                    <h4 class="font-display text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-2 drop-shadow-sm">∞</h4>
+                    <p class="text-slate-400 font-medium"><?= $text['stat_3'] ?></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="video-section">
-        <div class="container">
-            <div class="section-title">
-                <h2><?= $text['vid_title'] ?></h2>
-                <p><?= $text['vid_desc'] ?></p>
+    <!-- Features / Benefits Section -->
+    <section class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4"><?= $text['why_title'] ?></h2>
+                <p class="text-lg text-slate-400"><?= $text['why_desc'] ?></p>
             </div>
-            <div class="video-grid">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/UCxjHLwWO4k?list=PL-GUChjQHCJfX7w730Q4Pd6p6lUrcySTZ" title="Demo Broadcast" allowfullscreen></iframe>
-                    <h3><?= $text['vid_1_title'] ?></h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Benefit 1 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:border-violet-500/50">
+                    <div class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bolt text-2xl text-violet-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3"><?= $text['ben_1_title'] ?></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed"><?= $text['ben_1_desc'] ?></p>
                 </div>
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/fKThXedMshY?list=PL-GUChjQHCJfX7w730Q4Pd6p6lUrcySTZ" title="Demo Filter Nomor" allowfullscreen></iframe>
-                    <h3><?= $text['vid_2_title'] ?></h3>
+                <!-- Benefit 2 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:border-violet-500/50">
+                    <div class="w-12 h-12 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chart-line text-2xl text-fuchsia-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3"><?= $text['ben_2_title'] ?></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed"><?= $text['ben_2_desc'] ?></p>
+                </div>
+                <!-- Benefit 3 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:border-violet-500/50">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-robot text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3"><?= $text['ben_3_title'] ?></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed"><?= $text['ben_3_desc'] ?></p>
+                </div>
+                <!-- Benefit 4 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:border-violet-500/50">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bullseye text-2xl text-pink-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3"><?= $text['ben_4_title'] ?></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed"><?= $text['ben_4_desc'] ?></p>
+                </div>
+                <!-- Benefit 5 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:border-violet-500/50">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-filter text-2xl text-amber-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3"><?= $text['ben_5_title'] ?></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed"><?= $text['ben_5_desc'] ?></p>
+                </div>
+                <!-- Benefit 6 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:border-violet-500/50">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-money-bill-wave text-2xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3"><?= $text['ben_6_title'] ?></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed"><?= $text['ben_6_desc'] ?></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="container">
-        <p>&copy; <?= date('Y'); ?> <?= $text['footer'] ?></p>
+    <!-- Video Section -->
+    <section class="py-24 relative z-10 border-t border-white/5 bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-4"><?= $text['vid_title'] ?></h2>
+                <p class="text-lg text-slate-400"><?= $text['vid_desc'] ?></p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+                <div class="glass-card p-4 rounded-2xl group hover:-translate-y-2 transition-transform duration-300 border-white/10 shadow-2xl">
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-white/5">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/fKThXedMshY?list=PL-GUChjQHCJfX7w730Q4Pd6p6lUrcySTZ" title="Demo Broadcast" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-center font-bold text-lg text-white mt-4"><?= $text['vid_1_title'] ?></h3>
+                </div>
+                <div class="glass-card p-4 rounded-2xl group hover:-translate-y-2 transition-transform duration-300 border-white/10 shadow-2xl">
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-white/5">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/fKThXedMshY?list=PL-GUChjQHCJfX7w730Q4Pd6p6lUrcySTZ" title="Demo Filter Nomor" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-center font-bold text-lg text-white mt-4"><?= $text['vid_2_title'] ?></h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-slate-900/80 mt-12 py-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
+            <p>&copy; <?= date('Y'); ?> <?= $text['footer'] ?></p>
+        </div>
     </footer>
 
     <!-- Mobile Sticky CTA -->
-    <div class="mobile-cta">
-        <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" class="btn btn-main">
-            <i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>
+    <div class="lg:hidden fixed bottom-0 left-0 w-full glass-card border-t border-white/10 p-4 z-40 shadow-[0_-10px_20px_rgba(0,0,0,0.5)]">
+        <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" class="mobile-btn-download flex items-center justify-center gap-2 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-violet-500/30">
+            <i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>26
         </a>
     </div>
 
     <!-- FOMO Toast Element -->
-    <div class="fomo-toast" id="fomo-toast">
-        <div class="fomo-icon"><i class="fa-solid fa-check"></i></div>
-        <div class="fomo-text">
-            <p><span id="fomo-name">Seseorang</span> dari <span id="fomo-city">Jakarta</span></p>
-            <p style="font-size: 0.8rem; color: #cbd5e1;"><?= $lang === 'en' ? 'Just bought Lifetime License' : 'Baru saja membeli Lisensi Lifetime' ?></p>
-            <small id="fomo-time">2 menit lalu</small>
+    <div class="fomo-toast fixed bottom-24 lg:bottom-8 left-4 lg:left-8 glass-card p-4 rounded-2xl flex items-center gap-4 z-50 shadow-2xl shadow-black max-w-sm" id="fomo-toast">
+        <div class="w-10 h-10 shrink-0 rounded-full bg-emerald-500/20 flex items-center justify-center">
+            <i class="fa-solid fa-check text-emerald-400"></i>
+        </div>
+        <div>
+            <p class="text-sm text-slate-200 m-0 leading-tight">
+                <span id="fomo-name" class="font-bold text-fuchsia-400">Seseorang</span> dari <span id="fomo-city" class="font-bold text-white">Jakarta</span>
+            </p>
+            <p class="text-[0.75rem] text-slate-400 mt-1 mb-0"><?= $lang === 'en' ? 'Just bought Yearly License' : 'Baru saja membeli Lisensi Tahunan' ?></p>
+            <p class="text-[0.65rem] text-slate-500 mt-1" id="fomo-time">2 menit lalu</p>
         </div>
     </div>
 
-    <!-- Script Dynamic Update Github -->
+    <!-- Script Dynamic Update Github & FOMO -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const metadataUrl = "https://raw.githubusercontent.com/hermawan-dony/botmaster-exe/main/version.json?t=" + new Date().getTime(); // Prevent cache
+            // Github Fetcher
+            const metadataUrl = "https://raw.githubusercontent.com/hermawan-dony/botmaster-exe/main/version.json?t=" + new Date().getTime();
             
             fetch(metadataUrl)
                 .then(response => response.json())
                 .then(data => {
-                    // Update main download button
                     const btnDownload = document.getElementById("btn-download");
                     if (btnDownload) {
                         btnDownload.href = data.download_url;
-                        btnDownload.innerHTML = `<i class="fa-solid fa-cloud-arrow-down"></i> <?= $lang === 'en' ? 'Download v' : 'Download v' ?>${data.version}`;
+                        btnDownload.innerHTML = `<div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[-20deg]"></div><i class="fa-solid fa-cloud-arrow-down"></i> <span><?= $text['btn_download'] ?>${data.version}</span>`;
                     }
 
-                    // Update mobile sticky CTA download link
-                    const mobileBtns = document.querySelectorAll(".mobile-cta .btn-main");
+                    const mobileBtns = document.querySelectorAll(".mobile-btn-download");
                     mobileBtns.forEach(btn => {
                         btn.href = data.download_url;
+                        btn.innerHTML = `<i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>${data.version}`;
                     });
 
                     document.getElementById("web-version").textContent = `v${data.version}`;
@@ -712,18 +551,18 @@
                         changelogList.innerHTML = "";
                         data.changelog.forEach(item => {
                             const li = document.createElement("li");
+                            li.className = "relative pl-4 before:content-['→'] before:absolute before:left-0 before:text-fuchsia-500 before:font-bold";
                             li.textContent = item;
                             changelogList.appendChild(li);
                         });
-                        document.getElementById("update-box").style.display = "block";
-                        document.getElementById("badge-update-status").innerHTML = `<i class="fa-solid fa-rocket"></i> <?= $lang === 'en' ? 'Version' : 'Versi' ?> ${data.version} <?= $lang === 'en' ? 'Available!' : 'Tersedia!' ?>`;
+                        const ub = document.getElementById("update-box");
+                        ub.classList.remove("hidden");
+                        ub.style.display = "block";
                     }
                 })
                 .catch(err => console.error("Gagal load metadata github:", err));
-        });
 
-        // FOMO Notification Script
-        document.addEventListener("DOMContentLoaded", function() {
+            // FOMO Notification Script
             const fomoToast = document.getElementById("fomo-toast");
             const fomoName = document.getElementById("fomo-name");
             const fomoCity = document.getElementById("fomo-city");
@@ -733,28 +572,23 @@
             const cities = ["Jakarta", "Surabaya", "Bandung", "Medan", "Semarang", "Makassar", "Bali", "Yogyakarta", "Palembang", "Balikpapan"];
             
             function showFomo() {
-                // Randomize data
                 const rName = names[Math.floor(Math.random() * names.length)];
                 const rCity = cities[Math.floor(Math.random() * cities.length)];
-                const rTime = Math.floor(Math.random() * 10) + 1; // 1 to 10 minutes ago
+                const rTime = Math.floor(Math.random() * 10) + 1;
                 
                 fomoName.textContent = rName;
                 fomoCity.textContent = rCity;
                 fomoTime.textContent = rTime + (<?= $lang === 'en' ? "' min ago'" : "' menit lalu'" ?>);
 
-                // Show toast
                 fomoToast.classList.add("show");
 
-                // Hide after 5 seconds
                 setTimeout(() => {
                     fomoToast.classList.remove("show");
                 }, 5000);
             }
 
-            // Initial delay before first popup
             setTimeout(() => {
                 showFomo();
-                // Then repeat randomly between 15 to 30 seconds
                 setInterval(() => {
                     showFomo();
                 }, Math.floor(Math.random() * 15000) + 15000);
