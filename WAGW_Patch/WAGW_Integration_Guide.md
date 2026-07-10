@@ -30,33 +30,41 @@ Lalu cari bagian `<EmbeddedResource` dan tambahkan:
     </EmbeddedResource>
 ```
 
-## 3. Tambahkan Menu & Tombol di FrmMain
-Buka `FrmMain.vb` (atau suruh AI mengerjakannya), lalu tambahkan kode ini di baris paling bawah sebelum `End Class`:
+## 3. Tambahkan Logika Menu Dinamis di FrmMain_Load
+Buka `FrmMain.vb` lalu cari fungsi `FrmMain_Load`. Tambahkan kode berikut untuk mengaktifkan WAGW secara dinamis hanya jika lisensi mengandung "wasender":
 ```vb
-    Private Sub DatabaseAutoSyncToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DatabaseAutoSyncToolStripMenuItem.Click
-        Dim frm As New FrmDatabaseSync()
-        frm.ShowDialog()
-    End Sub
+        Dim licKey As String = GetSetting(Application.ProductName, "license", "key", "")
+        If licKey.ToLower().Contains("wasender") Then
+            Me.Text = "Botmaster ++WAGW"
+            Me.MaximizeBox = True
+            Me.FormBorderStyle = FormBorderStyle.Sizable
+            
+            Try
+                Dim runKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Run", True)
+                If GetSetting(Application.ProductName, "AutoRun", "Enabled", "0") = "1" Then
+                    runKey.SetValue(Application.ProductName, Application.ExecutablePath)
+                Else
+                    runKey.DeleteValue(Application.ProductName, False)
+                End If
+            Catch ex As Exception
+            End Try
+            
+            Dim wagwMenuItem As New ToolStripMenuItem("Database Auto-Sync (ODBC)")
+            AddHandler wagwMenuItem.Click, Sub(senderObj, eArgs)
+                                               Dim frm As New FrmDatabaseSync()
+                                               frm.ShowDialog()
+                                           End Sub
 
-    Private Sub WAGWHelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WAGWHelpToolStripMenuItem.Click
-        Dim msg As String = "--- PANDUAN PENGGUNAAN DATABASE AUTO-SYNC WAGW ---" & vbCrLf & vbCrLf &
-                            "INDONESIA:" & vbCrLf &
-                            "1. Buka menu Tools > Database Auto-Sync (ODBC)." & vbCrLf &
-                            "2. Masukkan nama DSN dari database Anda." & vbCrLf &
-                            "3. Klik Start Auto-Sync." & vbCrLf &
-                            "4. Masukkan data pengiriman (nomor WA, pesan, path lampiran) ke tabel 'outbox'." & vbCrLf &
-                            "5. Pesan yang masuk ke WA Anda akan terekam otomatis ke tabel 'inbox'." & vbCrLf & vbCrLf &
-                            "ENGLISH:" & vbCrLf &
-                            "1. Open Tools > Database Auto-Sync (ODBC) menu." & vbCrLf &
-                            "2. Enter your database DSN name." & vbCrLf &
-                            "3. Click Start Auto-Sync." & vbCrLf &
-                            "4. Insert your message data (WA number, text, media path) into the 'outbox' table." & vbCrLf &
-                            "5. Incoming WA messages will be automatically recorded into the 'inbox' table."
+            Dim wagwHelpMenuItem As New ToolStripMenuItem("WAGW Integration Help")
+            AddHandler wagwHelpMenuItem.Click, Sub(senderObj, eArgs)
+                                                   MsgBox("--- PANDUAN PENGGUNAAN DATABASE AUTO-SYNC WAGW ---", MsgBoxStyle.Information, "Botmaster-WAGW Help Guide")
+                                               End Sub
 
-        MsgBox(msg, MsgBoxStyle.Information, "Botmaster-WAGW Help Guide")
-    End Sub
+            ToolsToolStripMenuItem.DropDownItems.Add(wagwMenuItem)
+            HelpToolStripMenuItem.DropDownItems.Add(wagwHelpMenuItem)
+        End If
 ```
-*(Jangan lupa daftarkan item menu `DatabaseAutoSyncToolStripMenuItem` dan `WAGWHelpToolStripMenuItem` di `FrmMain.Designer.vb` agar tombolnya muncul).*
+*(Jangan lupa juga suntikkan `chkAutoRun` CheckBox dinamis ke dalam `FrmAdvanced_Load` untuk memunculkan pengaturan UI AutoRun)*
 
 ## 4. Hook Pesan Masuk (Inbox)
 Buka file `BOTMASTER26_SC\Botmaster\Forms\FrmBrowser.vb`, cari *Sub* bernama `ReceivedMessage(ByVal json As String)`.

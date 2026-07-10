@@ -11,15 +11,18 @@
 
     $lang = isset($_GET['lang']) && $_GET['lang'] === 'en' ? 'en' : 'id';
     
+    $domain = isset($_SERVER['HTTP_HOST']) ? strtolower($_SERVER['HTTP_HOST']) : '';
+    $isWAGW = (strpos($domain, 'wasender.biz') !== false);
+    
     $t = [
         'id' => [
             'meta_title' => 'BotMaster-WAGW | Aplikasi Broadcast & Gateway WhatsApp Super Cepat',
             'meta_desc' => 'Rahasia ribuan pebisnis! BotMaster-WAGW adalah software pengirim pesan WhatsApp & mesin Gateway (ODBC Auto-Sync) otomatis, cepat, aman, tanpa biaya bulanan.',
             'client_area' => 'Client Area',
             'badge_status' => 'WAGW Engine Stable & Ready',
-            'hero_title_1' => 'Dominasi Penjualan & Kirim Promosi ke ',
+            'hero_title_1' => 'Otomatisasi Bisnis & Kirim Pesan ke ',
             'hero_title_span' => 'Ribuan Kontak',
-            'hero_title_2' => ' Hanya dengan 1 Klik!',
+            'hero_title_2' => ' Secara Autopilot 24/7!',
             'hero_desc' => 'Tingkatkan omzet & konversi Anda dengan sistem auto-broadcast dan inovasi terbaru WAGW ODBC Database Auto-Sync (Tarik otomatis dari MySQL/SQL Server). 100% Tanpa langganan bulanan!',
             'feat_1' => 'WAGW ODBC Auto-Sync (NEW!)',
             'feat_2' => 'Premium UI Dark Theme',
@@ -29,7 +32,7 @@
             'feat_6' => '100% Bebas Biaya Bulanan',
             'price_title' => 'Lisensi Tahunan',
             'price_unit' => '/ 1 PC / Tahun',
-            'btn_download' => 'Download Botmaster TERBARU!! v',
+            'btn_download' => 'Download Botmaster-WAGW TERBARU!! v',
             'btn_gen_license' => 'Generate Lisensi Aktif',
             'btn_order' => 'Cek Data Lisensi Kamu',
             'guarantee' => 'Bebas Biaya Update Selama Masa Aktif',
@@ -40,8 +43,8 @@
             'stat_3' => 'Tanpa Potongan Biaya Bulanan',
             'why_title' => 'Ubah WhatsApp Anda Menjadi Mesin Pencetak Uang',
             'why_desc' => 'Fakta: 80% pembeli online di Indonesia lebih suka bertransaksi via WhatsApp. Ini adalah tool marketing WAJIB bagi Pemilik Bisnis, Dropshipper, dan Affiliate untuk meraup profit maksimal.',
-            'ben_1_title' => '🚀 Otomatisasi WAGW Database (NEW!)',
-            'ben_1_desc' => 'Ubah Botmaster menjadi mesin Gateway 24/7! Dengan fitur terbaru WAGW ODBC Auto-Sync, sistem membaca tabel outbox & inbox langsung dari database Anda (MySQL, Oracle, dll) secara otomatis tanpa delay!',
+            'ben_1_title' => '🚀 WAGW ODBC Database Auto-Sync (NEW!)',
+            'ben_1_desc' => 'Ubah Botmaster menjadi mesin Gateway 24/7 (Multi-Database Ready)! Sistem berjalan stealth di latar belakang dan membaca tabel outbox Anda via MySQL, SQL Server, atau ODBC. Cukup INSERT SQL, otomatis kirim Teks & Rich Media (Gambar/File)!',
             'ben_2_title' => '💎 Premium Dark Theme UI',
             'ben_2_desc' => 'Mata tidak cepat lelah! Botmaster kini hadir dengan wajah baru Mode Gelap (Navy Blue & Pink) yang sangat elegan dan profesional untuk operasional jangka panjang.',
             'ben_3_title' => '🤖 CS Robot Pintar (Auto Reply)',
@@ -53,10 +56,10 @@
             'ben_6_title' => '✂️ Pangkas Biaya Promosi Hingga 90%',
             'ben_6_desc' => 'Cukup bayar satu kali untuk lisensi tahunan super murah. Jauh lebih hemat dibandingkan biaya iklan medsos atau sewa platform WA berbayar bulanan.',
             'vid_title' => 'Lihat Kehebatannya Langsung',
-            'vid_desc' => 'Tonton demo singkat bagaimana BotMaster mengambil alih rutinitas marketing yang membosankan menjadi mesin otomatis.',
+            'vid_desc' => 'Tonton demo singkat bagaimana Botmaster-WAGW mengambil alih rutinitas marketing yang membosankan menjadi mesin otomatis.',
             'vid_1_title' => 'Fitur Broadcast Masal',
             'vid_2_title' => 'Fitur Filter Nomor Aktif',
-            'footer' => 'BotMaster - Solusi WhatsApp Marketing Otomatis Terbaik.',
+            'footer' => 'Botmaster-WAGW - Solusi WhatsApp Marketing Otomatis Terbaik.',
             'lang_switch_id' => 'Indonesia',
             'lang_switch_en' => 'English'
         ],
@@ -65,9 +68,9 @@
             'meta_desc' => 'The secret weapon of thousands of businesses! BotMaster-WAGW is an automated WhatsApp sender & Gateway (ODBC Auto-Sync) with ZERO monthly fees.',
             'client_area' => 'Client Area',
             'badge_status' => 'WAGW Engine Stable & Ready',
-            'hero_title_1' => 'Dominate Sales & Broadcast to ',
+            'hero_title_1' => 'Automate Business & Broadcast to ',
             'hero_title_span' => 'Thousands of Contacts',
-            'hero_title_2' => ' in Just 1 Click!',
+            'hero_title_2' => ' 24/7 on Autopilot!',
             'hero_desc' => 'Skyrocket your conversion rates today with the most powerful WhatsApp auto-broadcast system featuring the all-new WAGW ODBC Database Auto-Sync (Connect via MySQL/SQL Server). 100% No monthly subscriptions!',
             'feat_1' => 'WAGW ODBC Auto-Sync (NEW!)',
             'feat_2' => 'Premium UI Dark Theme',
@@ -77,7 +80,7 @@
             'feat_6' => '100% Zero Monthly Fees',
             'price_title' => 'Yearly License',
             'price_unit' => '/ 1 PC / Year',
-            'btn_download' => 'Download LATEST Botmaster!! v',
+            'btn_download' => 'Download LATEST Botmaster-WAGW!! v',
             'btn_gen_license' => 'Generate Active License',
             'btn_order' => 'Check Your License Data',
             'guarantee' => 'Free Updates During Active Period',
@@ -88,8 +91,8 @@
             'stat_3' => 'Zero Hidden Monthly Fees',
             'why_title' => 'Turn Your WhatsApp Into an ATM',
             'why_desc' => 'Fact: 80% of online buyers prefer transacting via WhatsApp. This is a MUST-HAVE marketing tool for Business Owners, Dropshippers, and Affiliates to maximize profit.',
-            'ben_1_title' => '🚀 WAGW Database Automation (NEW!)',
-            'ben_1_desc' => 'Turn Botmaster into a 24/7 Gateway machine! With our latest WAGW ODBC Auto-Sync, the system automatically reads outbox & inbox tables from your database (MySQL, Oracle) without any delays!',
+            'ben_1_title' => '🚀 WAGW ODBC Database Auto-Sync (NEW!)',
+            'ben_1_desc' => 'Turn Botmaster into a 24/7 Headless Gateway machine! Multi-Database Ready (MySQL, SQL Server, ODBC). Just INSERT into the Outbox table, the system will natively dispatch Text and Rich Media (Images, PDFs) seamlessly!',
             'ben_2_title' => '💎 Premium Dark Theme UI',
             'ben_2_desc' => 'Say goodbye to eye strain! Botmaster now comes with a brand-new, highly elegant Dark Mode (Navy Blue & Pink) designed for professional, long-term operations.',
             'ben_3_title' => '🤖 Smart CS Robot (Auto Reply)',
@@ -101,14 +104,38 @@
             'ben_6_title' => '✂️ Slash Marketing Costs by 90%',
             'ben_6_desc' => 'Pay only once for an incredibly affordable yearly license. Much cheaper than social media ads or expensive monthly WA platforms.',
             'vid_title' => 'See the Magic In Action',
-            'vid_desc' => 'Watch a short demo of how BotMaster takes over your boring marketing routines and turns them into an automated machine.',
+            'vid_desc' => 'Watch a short demo of how Botmaster-WAGW takes over your boring marketing routines and turns them into an automated machine.',
             'vid_1_title' => 'Mass Broadcast Feature',
             'vid_2_title' => 'Active Number Filter Feature',
-            'footer' => 'BotMaster - The Ultimate Automated WhatsApp Marketing Solution.',
+            'footer' => 'Botmaster-WAGW - The Ultimate Automated WhatsApp Marketing Solution.',
             'lang_switch_id' => 'Indonesia',
             'lang_switch_en' => 'English'
         ]
     ];
+
+    if (!$isWAGW) {
+        $t['id']['meta_title'] = 'BotMaster | Aplikasi Broadcast WhatsApp Super Cepat';
+        $t['id']['meta_desc'] = 'Rahasia ribuan pebisnis! BotMaster adalah software pengirim pesan WhatsApp otomatis, cepat, aman, tanpa biaya bulanan.';
+        $t['id']['badge_status'] = 'BotMaster Stable & Ready';
+        $t['id']['hero_desc'] = 'Tingkatkan omzet & konversi Anda dengan sistem auto-broadcast. 100% Tanpa langganan bulanan!';
+        $t['id']['feat_1'] = 'Kirim Pesan Tanpa Batas';
+        $t['id']['btn_download'] = 'Download Botmaster TERBARU!! v';
+        $t['id']['ben_1_title'] = '🚀 Kirim Unlimited Pesan';
+        $t['id']['ben_1_desc'] = 'Kirim pesan ke ribuan kontak Anda tanpa batas. Bebas biaya bulanan!';
+        $t['id']['vid_desc'] = 'Tonton demo singkat bagaimana Botmaster mengambil alih rutinitas marketing yang membosankan menjadi mesin otomatis.';
+        $t['id']['footer'] = 'Botmaster - Solusi WhatsApp Marketing Otomatis Terbaik.';
+
+        $t['en']['meta_title'] = 'BotMaster | The Ultimate Fast & Safe WhatsApp Broadcaster';
+        $t['en']['meta_desc'] = 'The secret weapon of thousands of businesses! BotMaster is an automated WhatsApp sender with ZERO monthly fees.';
+        $t['en']['badge_status'] = 'BotMaster Stable & Ready';
+        $t['en']['hero_desc'] = 'Skyrocket your conversion rates today with the most powerful WhatsApp auto-broadcast system. 100% No monthly subscriptions!';
+        $t['en']['feat_1'] = 'Send Unlimited Messages';
+        $t['en']['btn_download'] = 'Download LATEST Botmaster!! v';
+        $t['en']['ben_1_title'] = '🚀 Send Unlimited Messages';
+        $t['en']['ben_1_desc'] = 'Broadcast to thousands of contacts with zero monthly limits!';
+        $t['en']['vid_desc'] = 'Watch a short demo of how Botmaster takes over your boring marketing routines and turns them into an automated machine.';
+        $t['en']['footer'] = 'Botmaster - The Ultimate Automated WhatsApp Marketing Solution.';
+    }
     $text = $t[$lang];
 ?>
 <!DOCTYPE html>
@@ -229,7 +256,7 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center gap-3">
                     <img src="https://app.wasender.biz/index_files/botmaster.ico" alt="BotMaster Logo" class="w-10 h-10 rounded-xl shadow-lg shadow-violet-500/30">
-                    <span class="font-display font-bold text-2xl tracking-tight text-white">BotMaster</span>
+                    <span class="font-display font-bold text-2xl tracking-tight text-white">Botmaster<?= $isWAGW ? '<span class="text-fuchsia-500"> ++WAGW</span>' : '' ?></span>
                 </div>
                 <div class="flex items-center gap-4">
                     <div class="flex bg-slate-800/80 rounded-lg p-1 border border-white/10">
@@ -301,10 +328,20 @@
                     <div class="relative glass-card rounded-2xl p-8 sm:p-10 border-t border-l border-white/20 h-full w-full">
                         <div class="text-sm font-bold tracking-widest text-fuchsia-400 uppercase mb-4"><?= $text['price_title'] ?></div>
                         
-                        <div class="flex items-baseline gap-2 mb-8">
-                            <span class="text-5xl font-display font-bold text-white tracking-tight">Rp <?= htmlspecialchars($harga1 ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
-                            <span class="text-slate-400 font-medium"><?= $text['price_unit'] ?></span>
-                        </div>
+                        <?php if ($isWAGW): ?>
+                            <div class="mb-8">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-3xl font-display font-bold text-white tracking-tight">Mulai dari Rp 10.000</span>
+                                    <span class="text-slate-400 font-medium">/ bulan</span>
+                                </div>
+                                <div class="text-slate-400 font-medium mt-1">atau Rp 99.000 / tahun</div>
+                            </div>
+                        <?php else: ?>
+                            <div class="flex items-baseline gap-2 mb-8">
+                                <span class="text-5xl font-display font-bold text-white tracking-tight">Rp <?= htmlspecialchars($harga1 ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
+                                <span class="text-slate-400 font-medium"><?= $text['price_unit'] ?></span>
+                            </div>
+                        <?php endif; ?>
 
                         <!-- Update Box -->
                         <div id="update-box" class="hidden bg-slate-900/60 rounded-xl p-5 mb-8 border border-white/5">
