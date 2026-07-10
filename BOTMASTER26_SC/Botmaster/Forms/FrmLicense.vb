@@ -71,7 +71,7 @@ Public Class FrmLicense
         If Not IsNothing(result) Then
             If result.IsExsist Then
                 If Not IsNothing(result.Response) Then
-                    If result.Response.RequestKey = Encrypt(getMacAddress) Then
+                    If result.Response.RequestKey = TextBox1.Text Then
                         If srvdate <= Val(result.Response.ExpiryDate) Then
 
                             If result.Response.Status = 1 Then
@@ -85,6 +85,10 @@ Public Class FrmLicense
 
 
                                 SaveSetting(Application.ProductName, "license", "key", LicneseTextBox.Text)
+                                Dim rawMac As String = Decrypt(TextBox1.Text)
+                                If rawMac <> "" Then
+                                    SaveSetting(Application.ProductName, "initiate", "initiatestart", rawMac)
+                                End If
                                 MsgBox("Your license is successfuly activated", MsgBoxStyle.Information, Application.ProductName)
                                 FrmMain.LabelRemaning.Text = TotalDays & " Remaning days"
                                 Me.Hide()
@@ -155,7 +159,7 @@ Public Class FrmLicense
         If Not IsNothing(result) Then
             If result.IsExsist Then
                 If Not IsNothing(result.Response) Then
-                    If result.Response.RequestKey = Encrypt(getMacAddress) Then
+                    If result.Response.RequestKey = TextBox1.Text Then
                         If Val(GetServerDate()) <= Val(result.Response.ExpiryDate) Then
                             If result.Response.Status = 1 Then
                                 LicName.Text = result.Response.Name

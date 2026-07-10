@@ -41,18 +41,19 @@ Module ModuleConfig
             SaveSetting(Application.ProductName, "sfts", "dd", Now.ToString("yyyyMMdd"))
         End If
     End Sub
+    Public ThemeActive As String = "Dark"
     Public SwitchColor As Color
 
     Public Sub InitializeTheme()
-        Dim theme As String = GetSetting(Application.ProductName, "Theme", "Active", "Dark")
-        If theme = "Purple" Then
+        ThemeActive = GetSetting(Application.ProductName, "Theme", "Active", "Dark")
+        If ThemeActive = "Purple" Then
             ColorPrimary = Color.FromArgb(79, 31, 133)
             ColorSecondary = Color.FromArgb(99, 46, 161)
             ColorThird = Color.FromArgb(133, 76, 199)
-        ElseIf theme = "Light" Then
-            ColorPrimary = Color.FromArgb(240, 240, 240)
-            ColorSecondary = Color.FromArgb(255, 255, 255)
-            ColorThird = Color.FromArgb(220, 224, 230)
+        ElseIf ThemeActive = "Light" Then
+            ColorPrimary = Color.FromArgb(245, 245, 245)
+            ColorSecondary = Color.FromArgb(225, 228, 232)
+            ColorThird = Color.FromArgb(210, 214, 219)
         Else ' Dark
             ColorPrimary = Color.FromArgb(15, 17, 33)
             ColorSecondary = Color.FromArgb(10, 11, 23)
@@ -74,7 +75,7 @@ Module ModuleConfig
         Dim RefColor3 As Color = Color.FromArgb(25, 27, 48)
         Dim RefColor4 As Color = Color.FromArgb(35, 37, 65)
 
-        Dim isLight As Boolean = (GetSetting(Application.ProductName, "Theme", "Active", "Dark") = "Light")
+        Dim isLight As Boolean = (ThemeActive = "Light")
 
         For Each ctrl As Control In mainclrl.Controls
             If Not IsNothing(ctrl.BackColor) Then
@@ -92,10 +93,10 @@ Module ModuleConfig
                 End If
 
                 If isLight Then
-                    ' Ensure labels, checkboxes, radiobuttons, groupboxes have dark text in light mode
-                    If TypeOf ctrl Is Label OrElse TypeOf ctrl Is CheckBox OrElse TypeOf ctrl Is RadioButton OrElse TypeOf ctrl Is GroupBox Then
+                    ' Ensure controls have dark text in light mode
+                    If TypeOf ctrl Is Label OrElse TypeOf ctrl Is CheckBox OrElse TypeOf ctrl Is RadioButton OrElse TypeOf ctrl Is GroupBox OrElse TypeOf ctrl Is Button OrElse TypeOf ctrl Is MenuStrip OrElse TypeOf ctrl Is ToolStrip OrElse TypeOf ctrl Is StatusStrip OrElse TypeOf ctrl Is TabControl OrElse TypeOf ctrl Is TabPage Then
                         ctrl.ForeColor = Color.FromArgb(40, 40, 40)
-                    ElseIf TypeOf ctrl Is TextBox Then
+                    ElseIf TypeOf ctrl Is TextBox OrElse TypeOf ctrl Is ComboBox OrElse TypeOf ctrl Is ListBox OrElse TypeOf ctrl Is DataGridView Then
                         ctrl.BackColor = Color.White
                         ctrl.ForeColor = Color.Black
                     End If
