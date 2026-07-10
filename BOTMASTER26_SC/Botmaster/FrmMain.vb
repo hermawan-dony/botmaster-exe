@@ -534,7 +534,8 @@ Public Class FrmMain
                                                If FrmDatabaseSync.ActiveSyncInstance Is Nothing OrElse FrmDatabaseSync.ActiveSyncInstance.IsDisposed Then
                                                    FrmDatabaseSync.ActiveSyncInstance = New FrmDatabaseSync()
                                                End If
-                                               FrmDatabaseSync.ActiveSyncInstance.ShowDialog()
+                                               FrmDatabaseSync.ActiveSyncInstance.Show()
+                                               FrmDatabaseSync.ActiveSyncInstance.BringToFront()
                                            End Sub
             Me.ToolsToolStripMenuItem.DropDownItems.Add(wagwMenuItem)
 
