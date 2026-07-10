@@ -641,13 +641,19 @@ Public Class FrmMain
         BtnMax.Font = New Font("Marlett", 9.5F)
 
 
+        Panel10.Width = 55
+        ButtonSwitch.Width = 28
+        ButtonSwitch.Font = New Font("Calibri", 7.5F, FontStyle.Bold)
         If GetSetting(Application.ProductName, "AutoReply", "Start", "1") = "1" Then
             ButtonSwitch.Dock = DockStyle.Right
             ButtonSwitch.BackColor = SwitchColor
+            ButtonSwitch.Text = "ON"
+            ButtonSwitch.ForeColor = Color.White
         Else
             ButtonSwitch.Dock = DockStyle.Left
             ButtonSwitch.BackColor = Color.FromArgb(237, 237, 237)
-
+            ButtonSwitch.Text = "OFF"
+            ButtonSwitch.ForeColor = Color.DarkGray
         End If
 
         CheckBox1.Checked = CBool(GetSetting(Application.ProductName, "Buttons", "IncludeButtons", "0"))
@@ -955,10 +961,14 @@ Public Class FrmMain
         If ButtonSwitch.Dock = DockStyle.Left Then
             ButtonSwitch.Dock = DockStyle.Right
             ButtonSwitch.BackColor = SwitchColor
+            ButtonSwitch.Text = "ON"
+            ButtonSwitch.ForeColor = Color.White
             SaveSetting(Application.ProductName, "AutoReply", "Start", "1")
         Else
             ButtonSwitch.Dock = DockStyle.Left
             ButtonSwitch.BackColor = Color.FromArgb(237, 237, 237)
+            ButtonSwitch.Text = "OFF"
+            ButtonSwitch.ForeColor = Color.DarkGray
             SaveSetting(Application.ProductName, "AutoReply", "Start", "0")
         End If
     End Sub
