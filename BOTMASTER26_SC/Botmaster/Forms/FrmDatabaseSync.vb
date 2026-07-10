@@ -95,7 +95,7 @@ Public Class FrmDatabaseSync
         
         LoadODBCSources()
         TimerSync.Interval = 5000
-        Me.Text = "WAGW Auto-Sync"
+        Me.Text = "++WAGW"
     End Sub
 
     Private Sub LoadODBCSources()
@@ -367,6 +367,12 @@ Public Class FrmDatabaseSync
     End Sub
 
     Private Sub TimerSync_Tick(sender As Object, e As EventArgs) Handles TimerSync.Tick
+        Dim isBrowserLoggedIn As Boolean = False
+        Try
+            isBrowserLoggedIn = FrmBrowser.IsWAPILoggedIn()
+        Catch
+        End Try
+
         TimerSync.Stop()
         System.Threading.Tasks.Task.Run(Sub()
             Try
@@ -389,7 +395,7 @@ Public Class FrmDatabaseSync
                     
                     Dim sentSuccessfully As Boolean = False
                     
-                    If FrmBrowser.IsWAPILoggedIn() Then
+                    If isBrowserLoggedIn Then
                         WasLoginWarningLogged = False
                         If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated Then
                             ActiveSyncInstance.BeginInvoke(Sub() ActiveSyncInstance.LogMsg("Sending to " & item.Destination))

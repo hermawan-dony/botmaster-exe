@@ -529,7 +529,7 @@ Public Class FrmMain
             LabelWAGW.Visible = False
             Me.Panel3.Controls.Add(LabelWAGW)
 
-            Dim wagwMenuItem As New ToolStripMenuItem("Whatsapp Gateway")
+            Dim wagwMenuItem As New ToolStripMenuItem("++WAGW")
             AddHandler wagwMenuItem.Click, Sub(senderObj, eArgs)
                                                If FrmDatabaseSync.ActiveSyncInstance Is Nothing OrElse FrmDatabaseSync.ActiveSyncInstance.IsDisposed Then
                                                    FrmDatabaseSync.ActiveSyncInstance = New FrmDatabaseSync()

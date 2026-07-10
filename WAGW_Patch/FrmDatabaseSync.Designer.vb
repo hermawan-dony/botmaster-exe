@@ -217,7 +217,7 @@ Partial Class FrmDatabaseSync
         Me.Name = "FrmDatabaseSync"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "WAGW Auto-Sync"
+        Me.Text = "++WAGW"
         CType(Me.dgvOutbox, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvSent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvInbox, System.ComponentModel.ISupportInitialize).EndInit()
