@@ -5,53 +5,55 @@ Public Class FrmDatabaseSync
     Private DSN As String = ""
 
     Private Sub FrmDatabaseSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
+        Try
+            Me.Icon = GetAppIcon()
+        Catch ex As Exception
+        End Try
         Text = "Database Auto-Sync"
-        TextBoxDSN.Text = "DSN=BotmasterDB;"
+        LoadODBCSources()
         TimerSync.Interval = 5000
-
-        Dim btnTest As New Button()
-        btnTest.Name = "BtnTestSQL"
-        btnTest.Text = "Test SQL"
-        btnTest.Size = New System.Drawing.Size(100, 30)
-        btnTest.Location = New System.Drawing.Point(10, BtnOK.Top)
-        AddHandler btnTest.Click, AddressOf BtnTestSQL_Click
-        Me.Controls.Add(btnTest)
     End Sub
 
-    Private Sub BtnTestSQL_Click(sender As Object, e As EventArgs)
-        Dim testFrm As New Form()
-        testFrm.Text = "Test SQL INSERT"
-        testFrm.Size = New System.Drawing.Size(500, 200)
-        testFrm.StartPosition = FormStartPosition.CenterParent
-        
-        Dim txtQuery As New TextBox()
-        txtQuery.Multiline = True
-        txtQuery.Dock = DockStyle.Fill
-        txtQuery.Text = "INSERT INTO outbox (destination_number, message_text) VALUES ('628123456789', 'Halo, ini pesan otomatis dari SQL!');"
-        
-        Dim btnExec As New Button()
-        btnExec.Text = "Execute SQL"
-        btnExec.Dock = DockStyle.Bottom
-        btnExec.Height = 40
-        AddHandler btnExec.Click, Sub(s, ea)
-            Try
-                Dim conn As New OdbcConnection(TextBoxDSN.Text)
-                conn.Open()
-                Dim cmd As New OdbcCommand(txtQuery.Text, conn)
-                cmd.ExecuteNonQuery()
-                conn.Close()
-                MsgBox("Test query executed successfully! Check the Auto-Sync logs if WAGW is running.", vbInformation)
-                testFrm.Close()
-            Catch ex As Exception
-                MsgBox("Error: " & ex.Message, vbCritical)
-            End Try
-        End Sub
-        
-        testFrm.Controls.Add(txtQuery)
-        testFrm.Controls.Add(btnExec)
-        Try : ThemeManager.ApplyTheme(testFrm) : Catch : End Try
-        testFrm.ShowDialog()
+    Private Sub LoadODBCSources()
+        TextBoxDSN.Items.Clear()
+        Try
+            Dim userDSNKey As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\ODBC\ODBC.INI\ODBC Data Sources")
+            If userDSNKey IsNot Nothing Then
+                For Each valName As String In userDSNKey.GetValueNames()
+                    TextBoxDSN.Items.Add("DSN=" & valName & ";")
+                Next
+            End If
+            
+            Dim sysDSNKey As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\ODBC\ODBC.INI\ODBC Data Sources")
+            If sysDSNKey IsNot Nothing Then
+                For Each valName As String In sysDSNKey.GetValueNames()
+                    Dim dsnStr As String = "DSN=" & valName & ";"
+                    If Not TextBoxDSN.Items.Contains(dsnStr) Then
+                        TextBoxDSN.Items.Add(dsnStr)
+                    End If
+                Next
+            End If
+            
+            Dim sysDSNKey32 As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\WOW6432Node\ODBC\ODBC.INI\ODBC Data Sources")
+            If sysDSNKey32 IsNot Nothing Then
+                For Each valName As String In sysDSNKey32.GetValueNames()
+                    Dim dsnStr As String = "DSN=" & valName & ";"
+                    If Not TextBoxDSN.Items.Contains(dsnStr) Then
+                        TextBoxDSN.Items.Add(dsnStr)
+                    End If
+                Next
+            End If
+
+            If TextBoxDSN.Items.Count > 0 Then
+                TextBoxDSN.SelectedIndex = 0
+            Else
+                TextBoxDSN.Items.Add("DSN=BotmasterDB;")
+                TextBoxDSN.SelectedIndex = 0
+            End If
+        Catch ex As Exception
+            TextBoxDSN.Items.Add("DSN=BotmasterDB;")
+            TextBoxDSN.SelectedIndex = 0
+        End Try
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
@@ -64,10 +66,6 @@ Public Class FrmDatabaseSync
             IsSyncing = False
             BtnOK.Text = "Start Auto-Sync"
             LogMsg("Auto-Sync stopped.")
-            If Application.OpenForms("FrmMain") IsNot Nothing Then
-                Dim lbl As Label = TryCast(Application.OpenForms("FrmMain").Controls.Find("LblWagwStatus", True).FirstOrDefault(), Label)
-                If lbl IsNot Nothing Then lbl.Visible = False
-            End If
         Else
             Try
                 DSN = TextBoxDSN.Text
@@ -91,25 +89,6 @@ Public Class FrmDatabaseSync
                 IsSyncing = True
                 BtnOK.Text = "Stop Auto-Sync"
                 LogMsg("Auto-Sync started. Connected to DSN.")
-
-                If Application.OpenForms("FrmMain") IsNot Nothing Then
-                    Dim mainFrm As Form = Application.OpenForms("FrmMain")
-                    Dim lbl As Label = TryCast(mainFrm.Controls.Find("LblWagwStatus", True).FirstOrDefault(), Label)
-                    If lbl Is Nothing Then
-                        lbl = New Label()
-                        lbl.Name = "LblWagwStatus"
-                        lbl.Text = "WAGW ACTIVATED!!"
-                        lbl.ForeColor = System.Drawing.Color.LimeGreen
-                        lbl.BackColor = System.Drawing.Color.Transparent
-                        lbl.Font = New System.Drawing.Font("Segoe UI", 16, System.Drawing.FontStyle.Bold)
-                        lbl.AutoSize = True
-                        lbl.Location = New System.Drawing.Point(mainFrm.Width - 300, 25)
-                        lbl.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-                        mainFrm.Controls.Add(lbl)
-                        lbl.BringToFront()
-                    End If
-                    lbl.Visible = True
-                End If
             Catch ex As Exception
                 MsgBox("Connection failed: " & ex.Message, vbCritical)
             End Try

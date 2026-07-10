@@ -21,7 +21,7 @@ Partial Class FrmDatabaseSync
         Me.LabelDSN = New System.Windows.Forms.Label()
         Me.BtnCancel = New System.Windows.Forms.Button()
         Me.BtnOK = New System.Windows.Forms.Button()
-        Me.TextBoxDSN = New System.Windows.Forms.TextBox()
+        Me.TextBoxDSN = New System.Windows.Forms.ComboBox()
         Me.ListBoxLog = New System.Windows.Forms.ListBox()
         Me.TimerSync = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
@@ -57,7 +57,8 @@ Partial Class FrmDatabaseSync
         '
         Me.TextBoxDSN.Location = New System.Drawing.Point(20, 34)
         Me.TextBoxDSN.Name = "TextBoxDSN"
-        Me.TextBoxDSN.Size = New System.Drawing.Size(406, 20)
+        Me.TextBoxDSN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.TextBoxDSN.Size = New System.Drawing.Size(406, 21)
         Me.TextBoxDSN.TabIndex = 4
         Me.TextBoxDSN.Text = "DSN=MyDatabase;"
         '
@@ -94,7 +95,7 @@ Partial Class FrmDatabaseSync
     Friend WithEvents LabelDSN As Label
     Friend WithEvents BtnCancel As Button
     Friend WithEvents BtnOK As Button
-    Friend WithEvents TextBoxDSN As TextBox
+    Friend WithEvents TextBoxDSN As ComboBox
     Friend WithEvents ListBoxLog As ListBox
     Friend WithEvents TimerSync As Timer
 End Class
