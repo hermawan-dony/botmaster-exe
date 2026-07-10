@@ -75,7 +75,7 @@ Public Class FrmAdvanced
             cmbTheme.Location = New Point(80, 27)
             cmbTheme.DropDownStyle = ComboBoxStyle.DropDownList
             cmbTheme.Text = GetSetting(Application.ProductName, "Settings", "AppTheme", "Cyberpunk")
-            AddHandler cmbTheme.SelectedIndexChanged, Sub(s, e)
+            AddHandler cmbTheme.SelectedIndexChanged, Sub(senderObj, eventArgs)
                                                           SaveSetting(Application.ProductName, "Settings", "AppTheme", cmbTheme.Text)
                                                           ThemeManager.ApplyTheme(Me)
                                                           If Application.OpenForms("FrmMain") IsNot Nothing Then ThemeManager.ApplyTheme(Application.OpenForms("FrmMain"))
