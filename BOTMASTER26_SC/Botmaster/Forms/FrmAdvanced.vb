@@ -1,4 +1,4 @@
-﻿Public Class FrmAdvanced
+Public Class FrmAdvanced
     Private Sub BtnAddFamiliarAccount_Click(sender As Object, e As EventArgs) Handles BtnAddFamiliarAccount.Click
         FrmAddFamiliarAccount.ShowDialog()
         If FrmAddFamiliarAccount.AccountNumber <> "" Then
@@ -18,6 +18,7 @@
     End Sub
 
     Private Sub FrmAdvanced_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
         Me.BtnAddFamiliarAccount.Text = GetLangbyKey("FrmAdvanced.BtnAddFamiliarAccount")
         Me.BtnDeleteFamiliarAccount.Text = GetLangbyKey("FrmAdvanced.BtnDeleteFamiliarAccount")
@@ -51,6 +52,47 @@
         GetMessages(LstMessages)
 
         GetSendingSettings()
+        
+        Try
+            Dim grp As New GroupBox()
+            grp.Text = "Application Appearance & Startup"
+            grp.Location = New Point(26, 280)
+            grp.Size = New Size(380, 110)
+
+            Dim lblTheme As New Label()
+            lblTheme.Text = "Theme:"
+            lblTheme.Location = New Point(15, 25)
+            lblTheme.AutoSize = True
+            grp.Controls.Add(lblTheme)
+
+            Dim cmbTheme As New ComboBox()
+            cmbTheme.Name = "CmbTheme"
+            cmbTheme.Items.Add("Cyberpunk")
+            cmbTheme.Items.Add("Enterprise Dark")
+            cmbTheme.Location = New Point(80, 22)
+            cmbTheme.DropDownStyle = ComboBoxStyle.DropDownList
+            cmbTheme.Text = GetSetting(Application.ProductName, "Settings", "AppTheme", "Cyberpunk")
+            grp.Controls.Add(cmbTheme)
+
+            Dim chkAutoRun As New CheckBox()
+            chkAutoRun.Name = "ChkAutoRun"
+            chkAutoRun.Text = "Run at Windows Startup"
+            chkAutoRun.Location = New Point(15, 55)
+            chkAutoRun.AutoSize = True
+            chkAutoRun.Checked = CBool(GetSetting(Application.ProductName, "Settings", "AutoRun", "False"))
+            grp.Controls.Add(chkAutoRun)
+
+            Dim chkAutoHide As New CheckBox()
+            chkAutoHide.Name = "ChkAutoHide"
+            chkAutoHide.Text = "Start Minimized (System Tray)"
+            chkAutoHide.Location = New Point(15, 80)
+            chkAutoHide.AutoSize = True
+            chkAutoHide.Checked = CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False"))
+            grp.Controls.Add(chkAutoHide)
+
+            Me.TabPage1.Controls.Add(grp)
+        Catch ex As Exception
+        End Try
         GroupBox1.Enabled = CheckBox1.Checked
         GroupBox2.Enabled = CheckBox2.Checked
 
@@ -120,6 +162,32 @@
         GroupBox2.Enabled = CheckBox2.Checked
     End Sub
     Public Sub SaveSendingSettings()
+        Try
+            Dim cmbTheme As ComboBox = DirectCast(Me.TabPage1.Controls.Find("CmbTheme", True).FirstOrDefault(), ComboBox)
+            Dim chkAutoRun As CheckBox = DirectCast(Me.TabPage1.Controls.Find("ChkAutoRun", True).FirstOrDefault(), CheckBox)
+            Dim chkAutoHide As CheckBox = DirectCast(Me.TabPage1.Controls.Find("ChkAutoHide", True).FirstOrDefault(), CheckBox)
+
+            If cmbTheme IsNot Nothing Then
+                SaveSetting(Application.ProductName, "Settings", "AppTheme", cmbTheme.Text)
+            End If
+            If chkAutoRun IsNot Nothing Then
+                SaveSetting(Application.ProductName, "Settings", "AutoRun", chkAutoRun.Checked.ToString())
+                Try
+                    Dim regKey As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\Microsoft\Windows\CurrentVersion\Run", True)
+                    If chkAutoRun.Checked Then
+                        regKey.SetValue(Application.ProductName, Application.ExecutablePath)
+                    Else
+                        regKey.DeleteValue(Application.ProductName, False)
+                    End If
+                Catch
+                End Try
+            End If
+            If chkAutoHide IsNot Nothing Then
+                SaveSetting(Application.ProductName, "Settings", "AutoStartMinimized", chkAutoHide.Checked.ToString())
+            End If
+        Catch ex As Exception
+        End Try
+
         SaveSetting(ApplicationTitle, "SendingConfig", "Speed", CmbSpeed.SelectedIndex)
         SaveSetting(ApplicationTitle, "SendingConfig", "DelayStart", WaitFrom.Value)
         SaveSetting(ApplicationTitle, "SendingConfig", "DelayEnd", WaitTo.Value)

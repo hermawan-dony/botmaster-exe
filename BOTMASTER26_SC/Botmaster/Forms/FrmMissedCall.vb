@@ -1,3 +1,3 @@
-﻿Public Class FrmMissedCall
+Public Class FrmMissedCall
 
 End Class

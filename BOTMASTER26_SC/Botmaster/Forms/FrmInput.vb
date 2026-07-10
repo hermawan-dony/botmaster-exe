@@ -1,6 +1,7 @@
-﻿Public Class FrmInput
+Public Class FrmInput
     Public CountryCode As String
     Private Sub FrmInput_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         TextBox1.Text = ""
         Me.DialogResult = DialogResult.None
     End Sub

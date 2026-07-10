@@ -1,9 +1,10 @@
-﻿
+
 Public Class FrmFilter
     Private ForceStop As Boolean
 
     <Obsolete>
     Private Sub FrmFilter_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ApplyColor(Me)
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         '' Form:FrmFilter

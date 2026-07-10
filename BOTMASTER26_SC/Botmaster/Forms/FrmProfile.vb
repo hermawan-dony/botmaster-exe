@@ -1,5 +1,6 @@
-﻿Public Class FrmProfile
+Public Class FrmProfile
     Private Sub FrmProfile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         TextBox1.Text = ""
     End Sub
 

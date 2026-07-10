@@ -1,4 +1,4 @@
-﻿Imports System.Net
+Imports System.Net
 Imports Microsoft.Web
 Imports Microsoft.Web.WebView2
 Imports Microsoft.Web.WebView2.Core

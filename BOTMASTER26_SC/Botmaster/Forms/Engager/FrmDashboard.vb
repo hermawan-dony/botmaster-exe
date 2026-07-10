@@ -1,4 +1,4 @@
-﻿Imports System.Threading
+Imports System.Threading
 Imports System.Web.UI.WebControls
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports Newtonsoft
@@ -27,6 +27,7 @@ Public Class FrmDashboard
     End Sub
 
     Private Sub FrmDashboardvb_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ApplyColor(Me)
     End Sub
 

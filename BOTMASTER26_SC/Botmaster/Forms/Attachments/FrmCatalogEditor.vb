@@ -1,4 +1,4 @@
-﻿Public Class FrmCatalogEditor
+Public Class FrmCatalogEditor
     Private Catalog As WACatalogDetails
     Public currentCatalogFile As String
     Public CatalogFileName As String
@@ -9,6 +9,7 @@
     End Sub
 
     Private Sub FrmCatalogBuilder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
         If currentCatalogFile <> "" Then
             Try

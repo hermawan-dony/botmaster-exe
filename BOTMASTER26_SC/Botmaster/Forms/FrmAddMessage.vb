@@ -1,4 +1,4 @@
-﻿Public Class FrmAddMessage
+Public Class FrmAddMessage
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Me.Close()
@@ -13,6 +13,7 @@
     End Sub
 
     Private Sub FrmAddMessage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         TxtMessage.Text = ""
     End Sub
 End Class

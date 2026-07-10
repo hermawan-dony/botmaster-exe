@@ -1,4 +1,4 @@
-﻿Public Class FrmSendingMode
+Public Class FrmSendingMode
     Public DatetoSend As DateTime
     Private Sub ButtonOK_Click(sender As Object, e As EventArgs) Handles ButtonOK.Click
 
@@ -9,6 +9,7 @@
 
     End Sub
     Private Sub FrmSendingMode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
     End Sub
 

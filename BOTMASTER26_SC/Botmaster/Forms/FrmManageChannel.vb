@@ -1,9 +1,10 @@
-﻿Public Class FrmManageChannel
+Public Class FrmManageChannel
     Public Action As Integer
 
     Dim CurrentDirectory As String = ""
     Public ChannelItem As ListViewItem
     Private Sub FrmManageChannel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
         If Action = 0 Then
             TextBox1.Text = ""

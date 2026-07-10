@@ -1,3 +1,3 @@
-﻿Public Class FrmVcard
+Public Class FrmVcard
 
 End Class

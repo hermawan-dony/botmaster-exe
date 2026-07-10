@@ -1,5 +1,6 @@
-﻿Public Class FrmAddButton
+Public Class FrmAddButton
     Private Sub FrmAddButton_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ComboBox1.Text = "Reply"
         TextBox1.Text = ""
         TextBox2.Text = ""

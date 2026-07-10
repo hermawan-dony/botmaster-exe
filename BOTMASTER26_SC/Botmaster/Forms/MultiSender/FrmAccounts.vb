@@ -1,8 +1,9 @@
-﻿Imports System.ComponentModel
+Imports System.ComponentModel
 Imports Newtonsoft
 Imports Newtonsoft.Json
 Public Class FrmAccounts
     Private Sub FrmAccounts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
     End Sub
 

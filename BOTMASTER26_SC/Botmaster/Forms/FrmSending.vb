@@ -1,4 +1,4 @@
-﻿Imports System.ComponentModel
+Imports System.ComponentModel
 
 Public Class FrmSending
     Public DeliveryMode As Integer
@@ -81,6 +81,7 @@ Public Class FrmSending
 
 
     Private Sub FrmSending_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ApplyColor(Me)
 
 

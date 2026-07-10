@@ -1,4 +1,4 @@
-﻿Public Class FrmGPTPrompt
+Public Class FrmGPTPrompt
 
     Sub New()
 
@@ -9,6 +9,7 @@
 
     End Sub
     Private Sub FrmGPTPrompt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
     End Sub
 

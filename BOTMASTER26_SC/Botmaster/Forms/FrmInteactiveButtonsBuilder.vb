@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 Imports Newtonsoft.Json.Linq
 
 Public Class FrmInteactiveButtonsBuilder
@@ -110,6 +110,7 @@ Public Class FrmInteactiveButtonsBuilder
     End Function
 
     Private Sub FrmInteactiveButtonsBuilder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
     End Sub
 End Class

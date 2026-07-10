@@ -1,4 +1,4 @@
-﻿Imports Newtonsoft.Json
+Imports Newtonsoft.Json
 
 Public Class FrmMainButtons
     Private Reply As String = "{id: '{{VALUE}}',text: '{{TEXT}}'}"
@@ -202,6 +202,7 @@ Public Class FrmMainButtons
 
 
     Private Sub FrmMainButtons_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ComboReply1.SelectedIndex = 0
         ComboReply2.SelectedIndex = 0
         ComboReply3.SelectedIndex = 0

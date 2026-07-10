@@ -1,4 +1,4 @@
-﻿Public Class FrmSpintax
+Public Class FrmSpintax
     Public spintax As String
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         DialogResult = DialogResult.Cancel
@@ -28,6 +28,7 @@
     End Sub
 
     Private Sub FrmSpintax_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         Dim t As Object
         For Each t In Me.Controls
             If t.name.ToString.StartsWith("TextBox") Then

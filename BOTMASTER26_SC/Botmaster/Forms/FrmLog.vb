@@ -1,4 +1,4 @@
-﻿Imports System.ComponentModel
+Imports System.ComponentModel
 
 Public Class FrmLog
 
@@ -33,6 +33,7 @@ Public Class FrmLog
     End Sub
 
     Private Sub FrmLog_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         Me.MenuStrip1.Text = GetLangbyKey("FrmLog.MenuStrip1")
         Me.FileToolStripMenuItem.Text = GetLangbyKey("FrmLog.FileToolStripMenuItem")
         Me.SaveLogToolStripMenuItem.Text = GetLangbyKey("FrmLog.SaveLogToolStripMenuItem")

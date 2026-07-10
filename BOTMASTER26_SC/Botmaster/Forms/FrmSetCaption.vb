@@ -1,4 +1,4 @@
-﻿Public Class FrmSetCaption
+Public Class FrmSetCaption
     Private Sub BtnEmoji_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
 
     End Sub
@@ -52,6 +52,7 @@
     End Sub
 
     Private Sub FrmSetCaption_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
     End Sub
 

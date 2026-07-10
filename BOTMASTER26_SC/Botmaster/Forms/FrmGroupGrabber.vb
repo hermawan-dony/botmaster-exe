@@ -1,5 +1,5 @@
-﻿Public Class FrmGroupGrabber
-    ' ✅ Make this Shared so it's accessible even when form is closing
+Public Class FrmGroupGrabber
+    ' ? Make this Shared so it's accessible even when form is closing
     Public Shared ForceStopFetching As Boolean = False
 
     Private Async Sub BtnFetchGroups_Click(sender As Object, e As EventArgs) Handles BtnFetchGroups.Click
@@ -92,6 +92,7 @@
     End Sub
 
     Private Sub FrmGroupGrabber_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ListView1.Items.Clear()
         GetCount()
         ForceStopFetching = False ' Reset flag when form loads
@@ -127,12 +128,12 @@
         ' Reset the flag before starting
         ForceStopFetching = False
 
-        ' ✅ Capture checked items on UI thread BEFORE starting background task
+        ' ? Capture checked items on UI thread BEFORE starting background task
         Dim checkedGroups As New List(Of String)
         For Each item As ListViewItem In ListView1.CheckedItems
             checkedGroups.Add(item.Tag.ToString())
             If ForceStopFetching Then
-                Debug.WriteLine("⛔ Fetching stopped by user in Button1 loop")
+                Debug.WriteLine("? Fetching stopped by user in Button1 loop")
                 Button1.Enabled = True
                 Button2.Enabled = False
                 Exit For
@@ -149,20 +150,20 @@
         Button1.Enabled = False
         Button2.Enabled = True
 
-        Debug.WriteLine($"🚀 Starting fetch for {checkedGroups.Count} groups")
+        Debug.WriteLine($"?? Starting fetch for {checkedGroups.Count} groups")
 
         ' Process groups sequentially (not in background task)
         ' This is necessary because responses come asynchronously via WebMessage
         For Each groupTag As String In checkedGroups
             ' Check the flag before processing each group
             If ForceStopFetching Then
-                Debug.WriteLine("⛔ Fetching stopped by user in Button1 loop")
+                Debug.WriteLine("? Fetching stopped by user in Button1 loop")
                 Button1.Enabled = True
                 Button2.Enabled = False
                 Exit For
             End If
 
-            Debug.WriteLine($"📤 Requesting participants for group: {groupTag}")
+            Debug.WriteLine($"?? Requesting participants for group: {groupTag}")
             ' Request group participants (response will come via WebMessage)
             FrmBrowser.getGroupParticipantIDs(groupTag)
 
@@ -176,25 +177,25 @@
         If ForceStopFetching Then
             Button1.Enabled = True
             Button2.Enabled = False
-            Debug.WriteLine("✋ Button1 loop ended due to ForceStop")
+            Debug.WriteLine("? Button1 loop ended due to ForceStop")
         Else
-            Debug.WriteLine("✅ All group participant requests sent")
+            Debug.WriteLine("? All group participant requests sent")
         End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Debug.WriteLine("🛑 ============ Button2 (Stop) clicked ============")
-        Debug.WriteLine($"📍 ForceStopFetching BEFORE: {ForceStopFetching}")
+        Debug.WriteLine("?? ============ Button2 (Stop) clicked ============")
+        Debug.WriteLine($"?? ForceStopFetching BEFORE: {ForceStopFetching}")
         ForceStopFetching = True
         Task.Run(Async Function()
                      Await Task.Delay(3000) ' Wait 3 seconds
                      ForceStopFetching = False
-                     Debug.WriteLine("🔄 ForceStopFetching reset to False after delay")
+                     Debug.WriteLine("?? ForceStopFetching reset to False after delay")
                  End Function)
 
-        Debug.WriteLine($"📍 ForceStopFetching AFTER: {ForceStopFetching}")
-        Debug.WriteLine("⛔ Force stop requested - FLAG SET TO TRUE")
-        Debug.WriteLine("🛑 ============================================")
+        Debug.WriteLine($"?? ForceStopFetching AFTER: {ForceStopFetching}")
+        Debug.WriteLine("? Force stop requested - FLAG SET TO TRUE")
+        Debug.WriteLine("?? ============================================")
     End Sub
 
     Private Sub BtnExport_Click(sender As Object, e As EventArgs) Handles BtnExport.Click
@@ -224,19 +225,19 @@
     ''' </summary>
     Private Sub FrmGroupGrabber_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         ' Set the flag to stop fetching when form is closing
-        Debug.WriteLine("🚪 ============ Form closing - Setting ForceStop ============")
-        Debug.WriteLine($"📍 ForceStopFetching BEFORE: {ForceStopFetching}")
+        Debug.WriteLine("?? ============ Form closing - Setting ForceStop ============")
+        Debug.WriteLine($"?? ForceStopFetching BEFORE: {ForceStopFetching}")
 
         ForceStopFetching = True
 
-        Debug.WriteLine($"📍 ForceStopFetching AFTER: {ForceStopFetching}")
-        Debug.WriteLine("⛔ Form closing - ForceStopFetching set to True")
+        Debug.WriteLine($"?? ForceStopFetching AFTER: {ForceStopFetching}")
+        Debug.WriteLine("? Form closing - ForceStopFetching set to True")
 
         ' Give a moment for the flag to be checked
         Application.DoEvents()
         System.Threading.Thread.Sleep(100)
 
-        Debug.WriteLine("🚪 ============================================")
+        Debug.WriteLine("?? ============================================")
 
         ' Optional: You can cancel the close and just hide if needed
         ' e.Cancel = True
@@ -248,7 +249,7 @@
     ''' </summary>
     Private Sub FrmGroupGrabber_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         ForceStopFetching = True
-        Debug.WriteLine("🚪 Form closed - ForceStopFetching set to True (FormClosed event)")
+        Debug.WriteLine("?? Form closed - ForceStopFetching set to True (FormClosed event)")
     End Sub
 
     Private Sub FrmGroupGrabber_Closed(sender As Object, e As EventArgs) Handles Me.Closed

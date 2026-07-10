@@ -1,4 +1,4 @@
-﻿Public Class FrmEngager
+Public Class FrmEngager
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         AddForm(FrmWhatsApp)
     End Sub
@@ -12,6 +12,7 @@
         SaveInstances()
     End Sub
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         LoadInstances()
         AddForm(FrmDashboard)
     End Sub

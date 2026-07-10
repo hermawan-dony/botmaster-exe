@@ -1,4 +1,4 @@
-﻿Public Class FrmIntances
+Public Class FrmIntances
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         AddWAInstance()
     End Sub

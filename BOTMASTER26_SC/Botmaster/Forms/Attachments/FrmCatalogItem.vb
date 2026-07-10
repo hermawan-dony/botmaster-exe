@@ -1,4 +1,4 @@
-﻿Public Class FrmCatalogItem
+Public Class FrmCatalogItem
     Public ItemName As String
     Public ItemDescription As String
     Public action As Integer
@@ -14,6 +14,7 @@
     End Sub
 
     Private Sub FrmCatalogItem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         If action = 1 Then
             ItemName = ""
             ItemDescription = ""

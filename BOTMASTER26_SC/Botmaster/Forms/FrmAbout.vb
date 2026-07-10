@@ -1,4 +1,4 @@
-﻿Imports System.Reflection
+Imports System.Reflection
 
 Public Class FrmAbout
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
@@ -6,6 +6,7 @@ Public Class FrmAbout
     End Sub
 
     Private Sub FrmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
         ApplyColor(Me)
         LinkLabel1.Text = WebsiteName

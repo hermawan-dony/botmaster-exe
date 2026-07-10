@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 Imports Newtonsoft.Json
 
 Public Class FrmRules
@@ -181,6 +181,7 @@ Public Class FrmRules
     End Sub
 
     Private Sub FrmAutoReply_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ComboBox1.Text = "="
         If Not IsNothing(Rule) Then
             Try

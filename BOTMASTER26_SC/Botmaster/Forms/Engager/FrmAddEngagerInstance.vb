@@ -1,7 +1,8 @@
-﻿Public Class FrmAddEngagerInstance
+Public Class FrmAddEngagerInstance
     Private action As Integer
     Public AccountName As String
     Private Sub FrmAddIntance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         action = 0
         TextBox1.Text = ""
     End Sub

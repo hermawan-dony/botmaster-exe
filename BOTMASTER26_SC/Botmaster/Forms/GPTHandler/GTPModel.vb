@@ -1,4 +1,4 @@
-﻿Public Class GTPModel
+Public Class GTPModel
     Public Property APIKey As String
     Public Property Language As String
     Public Property SystemMessage As String

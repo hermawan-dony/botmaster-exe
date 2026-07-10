@@ -1,7 +1,8 @@
-﻿Public Class FrmCatalogBuilder
+Public Class FrmCatalogBuilder
     Private Catalog As WACatalogDetails
     Public CatalogFileName As String = ""
     Private Sub FrmCatalogBuilder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ReturnedCatalogFileName = ""
         If CatalogFileName <> "" Then
             Try

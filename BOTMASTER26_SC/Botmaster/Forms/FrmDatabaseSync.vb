@@ -5,6 +5,7 @@ Public Class FrmDatabaseSync
     Private DSN As String = ""
 
     Private Sub FrmDatabaseSync_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         Text = "Database Auto-Sync"
         TextBoxDSN.Text = "DSN=BotmasterDB;"
         TimerSync.Interval = 5000

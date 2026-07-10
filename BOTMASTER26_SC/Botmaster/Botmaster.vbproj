@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{600E5E63-C388-4A0C-8B7A-277BC3E2E13D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>BotMaster.My.MyApplication</StartupObject>
+    <RootNamespace>BotMaster</RootNamespace>
+    <AssemblyName>Botmaster-WAGW</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Botmaster.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Botmaster.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>BotmasterIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>2B74480BBAD6E93C141F342F53D0A82141A51120</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>BulkWhatsappSender_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>Botmaster.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>Botmaster.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>Botmaster.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>Botmaster.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Http, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Http.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.1.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\Microsoft.VisualStudio.OLE.Interop.7.10.6071\lib\Microsoft.VisualStudio.OLE.Interop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\Microsoft.VisualStudio.Shell.Interop.7.10.6072\lib\net11\Microsoft.VisualStudio.Shell.Interop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextManager.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\Microsoft.VisualStudio.TextManager.Interop.7.10.6071\lib\net11\Microsoft.VisualStudio.TextManager.Interop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1150.38, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1150.38\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.1150.38, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1150.38\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.1150.38, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1150.38\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenAI_API, Version=1.11.0.0, Culture=neutral, PublicKeyToken=1b0a4c0430762146, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenAI.1.11.0\lib\netstandard2.0\OpenAI_API.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.6.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Customization\FrmLauncher.Designer.vb">
+      <DependentUpon>FrmLauncher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Customization\FrmLauncher.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Attachments\AttachmentModule.vb" />
+    <Compile Include="Forms\Attachments\FrmMainButtons.Designer.vb">
+      <DependentUpon>FrmMainButtons.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attachments\FrmMainButtons.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Attachments\FrmVcard.Designer.vb">
+      <DependentUpon>FrmVcard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attachments\FrmVcard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCalls.Designer.vb">
+      <DependentUpon>FrmCalls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCalls.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMissedCall.Designer.vb">
+      <DependentUpon>FrmMissedCall.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMissedCall.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GPTHandler\FrmGPT.Designer.vb">
+      <DependentUpon>FrmGPT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GPTHandler\FrmGPT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GPTHandler\FrmGPTPrompt.Designer.vb">
+      <DependentUpon>FrmGPTPrompt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GPTHandler\FrmGPTPrompt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GPTHandler\GPTModule.vb" />
+    <Compile Include="Forms\GPTHandler\GTPModel.vb" />
+    <Compile Include="Forms\MultiSender\FrmAccounts.Designer.vb">
+      <DependentUpon>FrmAccounts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MultiSender\FrmAccounts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MultiSender\FrmAccountsSending.Designer.vb">
+      <DependentUpon>FrmAccountsSending.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MultiSender\FrmAccountsSending.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MultiSender\FrmAddAccount.Designer.vb">
+      <DependentUpon>FrmAddAccount.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MultiSender\FrmAddAccount.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Engager\EngagerInstance.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\Engager\EngagerModule.vb" />
+    <Compile Include="Forms\Engager\FrmAddEngagerInstance.Designer.vb">
+      <DependentUpon>FrmAddEngagerInstance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Engager\FrmAddEngagerInstance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Engager\FrmDashboard.Designer.vb">
+      <DependentUpon>FrmDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Engager\FrmDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Engager\FrmEngager.Designer.vb">
+      <DependentUpon>FrmEngager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Engager\FrmEngager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Engager\FrmMessages.Designer.vb">
+      <DependentUpon>FrmMessages.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Engager\FrmMessages.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Engager\FrmWhatsApp.Designer.vb">
+      <DependentUpon>FrmWhatsApp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Engager\FrmWhatsApp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAddIntance.Designer.vb">
+      <DependentUpon>FrmAddIntance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAddIntance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Attachments\FrmCatalogBuilder.Designer.vb">
+      <DependentUpon>FrmCatalogBuilder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attachments\FrmCatalogBuilder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Attachments\FrmCatalogEditor.Designer.vb">
+      <DependentUpon>FrmCatalogEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attachments\FrmCatalogEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Attachments\FrmCatalogItem.Designer.vb">
+      <DependentUpon>FrmCatalogItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Attachments\FrmCatalogItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmIntances.Designer.vb">
+      <DependentUpon>FrmIntances.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmIntances.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmInteactiveButtonsBuilder.Designer.vb">
+      <DependentUpon>FrmInteactiveButtonsBuilder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmInteactiveButtonsBuilder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMulitChannelSend.Designer.vb">
+      <DependentUpon>FrmMulitChannelSend.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMulitChannelSend.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmProfile.Designer.vb">
+      <DependentUpon>FrmProfile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmProfile.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MultiSender\MultiSenderModule.vb" />
+    <Compile Include="Forms\MultiSender\WAWebview2.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\AttachmentModel\LocationModel.vb" />
+    <Compile Include="Models\Chat.vb" />
+    <Compile Include="Models\Chatstate.vb" />
+    <Compile Include="Models\CheckNumResponseModel.vb" />
+    <Compile Include="Models\ClsAttachment.vb" />
+    <Compile Include="Models\ClsAutoReplyMessage.vb" />
+    <Compile Include="Classes\ClsBase64.vb" />
+    <Compile Include="Models\ClsChannelModel.vb" />
+    <Compile Include="Classes\ClsFileImports.vb" />
+    <Compile Include="Models\ClsLangModel.vb" />
+    <Compile Include="Classes\ClsLicence.vb" />
+    <Compile Include="Classes\ClsNumberGenerator.vb" />
+    <Compile Include="Models\ClsRuleModel.vb" />
+    <Compile Include="Classes\ClsSendingSettings.vb" />
+    <Compile Include="Classes\ClsSpecialDirectories.vb" />
+    <Compile Include="Models\ClsStatus.vb" />
+    <Compile Include="Models\ClsWhatsAppContact.vb" />
+    <Compile Include="Classes\ClsLanguage.vb" />
+    <Compile Include="Classes\ClsManualImport.vb" />
+    <Compile Include="Models\ClsSendingConfig.vb" />
+    <Compile Include="Classes\DropShadow.vb" />
+    <Compile Include="Models\Contact.vb" />
+    <Compile Include="Models\FetchedGroups.vb" />
+    <Compile Include="Models\GroupMetadata.vb" />
+    <Compile Include="Models\Id.vb" />
+    <Compile Include="Models\InputMessage.vb" />
+    <Compile Include="Models\ItemRow.vb" />
+    <Compile Include="Models\LastKeyModel.vb" />
+    <Compile Include="Models\LastReceivedKey.vb" />
+    <Compile Include="Models\LicenseModel.vb" />
+    <Compile Include="Models\DestinationModel.vb" />
+    <Compile Include="Models\MessageSentModel.vb" />
+    <Compile Include="Models\MessageSentStatusModel.vb" />
+    <Compile Include="Models\Participant.vb" />
+    <Compile Include="Models\Presence.vb" />
+    <Compile Include="Models\ProfilePicThumbObj.vb" />
+    <Compile Include="Models\ReceivedMessage.vb" />
+    <Compile Include="Models\ReceivedMessage2.vb" />
+    <Compile Include="Models\ReceiveMessage.vb" />
+    <Compile Include="Models\Sender.vb" />
+    <Compile Include="Models\SendingMode.vb" />
+    <Compile Include="Models\UniqueShortNameMap.vb" />
+    <Compile Include="Models\UserDetails.vb" />
+    <Compile Include="Forms\FrmAbout.Designer.vb">
+      <DependentUpon>FrmAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAdd.Designer.vb">
+      <DependentUpon>FrmAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAddFamiliarAccount.Designer.vb">
+      <DependentUpon>FrmAddFamiliarAccount.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAddFamiliarAccount.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAddMessage.Designer.vb">
+      <DependentUpon>FrmAddMessage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAddMessage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAdvanced.Designer.vb">
+      <DependentUpon>FrmAdvanced.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAdvanced.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoReply\FrmAutoReply.Designer.vb">
+      <DependentUpon>FrmAutoReply.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AutoReply\FrmAutoReply.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmBrowser.Designer.vb">
+      <DependentUpon>FrmBrowser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmBrowser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmFilter.Designer.vb">
+      <DependentUpon>FrmFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmFilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmGroupGrabber.Designer.vb">
+      <DependentUpon>FrmGroupGrabber.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmGroupGrabber.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmImportFromFiles.Designer.vb">
+      <DependentUpon>FrmImportFromFiles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmImportFromFiles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmInput.Designer.vb">
+      <DependentUpon>FrmInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLanguage.Designer.vb">
+      <DependentUpon>FrmLanguage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLanguage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDatabaseSync.Designer.vb">
+      <DependentUpon>FrmDatabaseSync.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmDatabaseSync.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLicense.Designer.vb">
+      <DependentUpon>FrmLicense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLicense.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLog.Designer.vb">
+      <DependentUpon>FrmLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmManageChannel.Designer.vb">
+      <DependentUpon>FrmManageChannel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmManageChannel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmReceived.Designer.vb">
+      <DependentUpon>FrmReceived.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmReceived.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmReceivedMessage.Designer.vb">
+      <DependentUpon>FrmReceivedMessage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmReceivedMessage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoReply\FrmRules.Designer.vb">
+      <DependentUpon>FrmRules.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AutoReply\FrmRules.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSending.Designer.vb">
+      <DependentUpon>FrmSending.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSending.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSendingMode.Designer.vb">
+      <DependentUpon>FrmSendingMode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSendingMode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSendingType.Designer.vb">
+      <DependentUpon>FrmSendingType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSendingType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSentCampain.Designer.vb">
+      <DependentUpon>FrmSentCampain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSentCampain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSpintax.Designer.vb">
+      <DependentUpon>FrmSpintax.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSpintax.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmChannels.Designer.vb">
+      <DependentUpon>FrmChannels.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmChannels.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.vb">
+      <DependentUpon>FrmMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmManualImports.Designer.vb">
+      <DependentUpon>FrmManualImports.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmManualImports.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmNumberGenerator.Designer.vb">
+      <DependentUpon>FrmNumberGenerator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmNumberGenerator.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSplash.Designer.vb">
+      <DependentUpon>FrmSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSetCaption.Designer.vb">
+      <DependentUpon>FrmSetCaption.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSetCaption.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\WACatalog.vb" />
+    <Compile Include="Models\WACatalogDetails.vb" />
+    <Compile Include="Models\whatsAppContactModel.vb" />
+    <Compile Include="Models\WhatsAppGroupModel.vb" />
+    <Compile Include="ModuleConfig.vb" />
+    <Compile Include="Modules\Browser.vb" />
+    <Compile Include="Modules\ThemeManager.vb" />
+    <Compile Include="Modules\BulkControl.vb" />
+    <Compile Include="Modules\CefSharpModule.vb" />
+    <Compile Include="Modules\Language.vb" />
+    <Compile Include="Modules\MultiChannelControl.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Modules\WhatsappBulkSenderModule.vb" />
+    <Compile Include="UserControl\CatalogCategory.Designer.vb">
+      <DependentUpon>CatalogCategory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\CatalogCategory.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\CatalogItem.Designer.vb">
+      <DependentUpon>CatalogItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\CatalogItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\Waintance.vb">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Customization\FrmLauncher.resx">
+      <DependentUpon>FrmLauncher.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attachments\FrmMainButtons.resx">
+      <DependentUpon>FrmMainButtons.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attachments\FrmVcard.resx">
+      <DependentUpon>FrmVcard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCalls.resx">
+      <DependentUpon>FrmCalls.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMissedCall.resx">
+      <DependentUpon>FrmMissedCall.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GPTHandler\FrmGPT.resx">
+      <DependentUpon>FrmGPT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GPTHandler\FrmGPTPrompt.resx">
+      <DependentUpon>FrmGPTPrompt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MultiSender\FrmAccountsSending.resx">
+      <DependentUpon>FrmAccountsSending.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MultiSender\FrmAddAccount.resx">
+      <DependentUpon>FrmAddAccount.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Engager\FrmAddEngagerInstance.resx">
+      <DependentUpon>FrmAddEngagerInstance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Engager\FrmDashboard.resx">
+      <DependentUpon>FrmDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Engager\FrmEngager.resx">
+      <DependentUpon>FrmEngager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Engager\FrmMessages.resx">
+      <DependentUpon>FrmMessages.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Engager\FrmWhatsApp.resx">
+      <DependentUpon>FrmWhatsApp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAbout.resx">
+      <DependentUpon>FrmAbout.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MultiSender\FrmAccounts.resx">
+      <DependentUpon>FrmAccounts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAdd.resx">
+      <DependentUpon>FrmAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAddFamiliarAccount.resx">
+      <DependentUpon>FrmAddFamiliarAccount.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAddIntance.resx">
+      <DependentUpon>FrmAddIntance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAddMessage.resx">
+      <DependentUpon>FrmAddMessage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAdvanced.resx">
+      <DependentUpon>FrmAdvanced.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutoReply\FrmAutoReply.resx">
+      <DependentUpon>FrmAutoReply.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmBrowser.resx">
+      <DependentUpon>FrmBrowser.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attachments\FrmCatalogBuilder.resx">
+      <DependentUpon>FrmCatalogBuilder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attachments\FrmCatalogEditor.resx">
+      <DependentUpon>FrmCatalogEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Attachments\FrmCatalogItem.resx">
+      <DependentUpon>FrmCatalogItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmFilter.resx">
+      <DependentUpon>FrmFilter.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmGroupGrabber.resx">
+      <DependentUpon>FrmGroupGrabber.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmImportFromFiles.resx">
+      <DependentUpon>FrmImportFromFiles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmInput.resx">
+      <DependentUpon>FrmInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmIntances.resx">
+      <DependentUpon>FrmIntances.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmInteactiveButtonsBuilder.resx">
+      <DependentUpon>FrmInteactiveButtonsBuilder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLanguage.resx">
+      <DependentUpon>FrmLanguage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmDatabaseSync.resx">
+      <DependentUpon>FrmDatabaseSync.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLicense.resx">
+      <DependentUpon>FrmLicense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLog.resx">
+      <DependentUpon>FrmLog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmManageChannel.resx">
+      <DependentUpon>FrmManageChannel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMulitChannelSend.resx">
+      <DependentUpon>FrmMulitChannelSend.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmProfile.resx">
+      <DependentUpon>FrmProfile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmReceived.resx">
+      <DependentUpon>FrmReceived.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmReceivedMessage.resx">
+      <DependentUpon>FrmReceivedMessage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutoReply\FrmRules.resx">
+      <DependentUpon>FrmRules.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSending.resx">
+      <DependentUpon>FrmSending.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSendingMode.resx">
+      <DependentUpon>FrmSendingMode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSendingType.resx">
+      <DependentUpon>FrmSendingType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSentCampain.resx">
+      <DependentUpon>FrmSentCampain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSpintax.resx">
+      <DependentUpon>FrmSpintax.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmChannels.resx">
+      <DependentUpon>FrmChannels.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmManualImports.resx">
+      <DependentUpon>FrmManualImports.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmNumberGenerator.resx">
+      <DependentUpon>FrmNumberGenerator.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSplash.resx">
+      <DependentUpon>FrmSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSetCaption.resx">
+      <DependentUpon>FrmSetCaption.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\CatalogCategory.resx">
+      <DependentUpon>CatalogCategory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\CatalogItem.resx">
+      <DependentUpon>CatalogItem.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\English.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Languages\Español.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Languages\Français.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Languages\indonesia.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Languages\Português.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Languages\русский.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Languages\عربي.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BotmasterIcon.ico" />
+    <Content Include="Engines\botmaster.v1.0.0.0.1.js" />
+    <Content Include="Graphics\icon.ico" />
+    <None Include="Resources\GetPhoneNumber.txt" />
+    <None Include="Resources\Untitled-1.png" />
+    <None Include="Resources\logicon.png" />
+    <None Include="Resources\wa.png" />
+    <None Include="Resources\receivedmsg.png" />
+    <None Include="Resources\virtualnumber.png" />
+    <None Include="Resources\profile.png" />
+    <None Include="Resources\imoji.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\deletemsg.png" />
+    <None Include="Resources\addmsg.png" />
+    <None Include="Resources\BizWSIcon.ico" />
+    <None Include="Resources\SplashScreen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.1150.38\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.1150.38\build\Microsoft.Web.WebView2.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1150.38\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1150.38\build\Microsoft.Web.WebView2.targets')" />
+  <Import Project="..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="AfterCompile">
+  </Target>
+</Project>

@@ -1,9 +1,10 @@
-﻿Public Class FrmCalls
+Public Class FrmCalls
     Public DestinationsList As New List(Of String)
     Dim IsPaused As Boolean = False
     Dim StartCall As Task
     Dim SendingIndex As Integer = 0
     Private Sub FrmCalls_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ProgressBar1.Maximum = DestinationsList.Count
         ProgressBar1.Value = 0
         Label1.Text = $"Proccessing Calls 0/{ProgressBar1.Maximum}"

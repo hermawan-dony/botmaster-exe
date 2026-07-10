@@ -1,4 +1,4 @@
-﻿Public Class FrmNumberGenerator
+Public Class FrmNumberGenerator
     Public ImportResults As New List(Of WhatsAppContact)
     Public SourceForm As Integer
 

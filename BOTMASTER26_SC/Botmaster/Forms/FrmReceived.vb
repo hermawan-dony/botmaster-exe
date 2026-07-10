@@ -1,4 +1,4 @@
-﻿Public Class FrmReceived
+Public Class FrmReceived
     Sub New()
 
         ' This call is required by the designer.

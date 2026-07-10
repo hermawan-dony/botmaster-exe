@@ -1,4 +1,4 @@
-﻿Public Class FrmWhatsApp
+Public Class FrmWhatsApp
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtnAddAccount.Click
         AddWhatsAppAccount()
     End Sub

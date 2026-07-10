@@ -1,4 +1,4 @@
-﻿Imports Microsoft.Web.WebView2.Core
+Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
 Imports Newtonsoft.Json
 Public Class WAWebview2

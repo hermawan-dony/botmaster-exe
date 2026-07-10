@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 Imports Microsoft.VisualBasic.FileIO
 
 Public Class FrmImportFromFiles
@@ -272,6 +272,7 @@ Public Class FrmImportFromFiles
     End Sub
 
     Private Sub FrmImportFromFiles_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         currentFileName = ""
     End Sub
 

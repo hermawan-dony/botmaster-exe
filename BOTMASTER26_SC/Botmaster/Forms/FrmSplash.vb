@@ -1,4 +1,4 @@
-﻿Imports System.Net
+Imports System.Net
 Imports System.Reflection
 Imports Microsoft.Web.WebView2.Core
 
@@ -61,6 +61,7 @@ Public Class FrmSplash
 
 
     Private Sub FrmSplash_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
         FrmLauncher.SetTheme()
 
@@ -123,9 +124,37 @@ Public Class FrmSplash
 
         Me.Hide()
         FrmMain.CmdAgrs = CmdArgs
-        FrmMain.Show()
-        FrmMain.Focus()
-        FrmMain.Activate()
+        
+        Dim isMinimized As Boolean = CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False"))
+        If isMinimized Then
+            Dim trayIcon As New NotifyIcon()
+            trayIcon.Icon = Me.Icon
+            trayIcon.Text = Application.ProductName
+            trayIcon.Visible = True
+            
+            AddHandler trayIcon.DoubleClick, Sub(s, ev)
+                                                 FrmMain.Show()
+                                                 FrmMain.WindowState = FormWindowState.Normal
+                                                 FrmMain.ShowInTaskbar = True
+                                                 FrmMain.Activate()
+                                                 trayIcon.Visible = False
+                                             End Sub
+                                             
+            AddHandler FrmMain.SizeChanged, Sub(s, ev)
+                                                If FrmMain.WindowState = FormWindowState.Minimized AndAlso CBool(GetSetting(Application.ProductName, "Settings", "AutoStartMinimized", "False")) Then
+                                                    FrmMain.ShowInTaskbar = False
+                                                    trayIcon.Visible = True
+                                                End If
+                                            End Sub
+            FrmMain.WindowState = FormWindowState.Minimized
+            FrmMain.ShowInTaskbar = False
+            FrmMain.Show()
+            FrmMain.Hide()
+        Else
+            FrmMain.Show()
+            FrmMain.Focus()
+            FrmMain.Activate()
+        End If
     End Sub
 
     Private Sub LabelStatus_Click(sender As Object, e As EventArgs) Handles LabelStatus.Click

@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 Imports Newtonsoft.Json
 
 Public Class FrmAutoReply
@@ -186,6 +186,7 @@ Public Class FrmAutoReply
     End Sub
 
     Private Sub FrmAutoReply_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         If IO.File.Exists(ClsSpecialDirectories.Getdata & "autoreply.json") Then
             Try
                 Dim _jsonResult As ClsAutoReplyMessage = Newtonsoft.Json.JsonConvert.DeserializeObject(Of ClsAutoReplyMessage)(IO.File.ReadAllText(ClsSpecialDirectories.Getdata & "autoreply.json"))

@@ -1,3 +1,3 @@
-﻿Public Class FrmMulitChannelSend
+Public Class FrmMulitChannelSend
 
 End Class

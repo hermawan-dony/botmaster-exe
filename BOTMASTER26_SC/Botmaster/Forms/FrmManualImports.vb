@@ -1,4 +1,4 @@
-﻿Public Class FrmManualImports
+Public Class FrmManualImports
     Public SourceForm As Integer
     Public ImportResults As New List(Of WhatsAppContact)
     Public CurrentImportContext As ManualImport
@@ -46,6 +46,7 @@
     End Sub
 
     Private Sub FrmManualImports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         LstNumbers.Items.Clear()
         TxtNumbers.Text = ""
         If CurrentImportContext IsNot Nothing AndAlso CurrentImportContext.IsLIDMode Then

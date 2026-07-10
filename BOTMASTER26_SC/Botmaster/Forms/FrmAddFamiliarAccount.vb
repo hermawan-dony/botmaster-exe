@@ -1,4 +1,4 @@
-﻿Public Class FrmAddFamiliarAccount
+Public Class FrmAddFamiliarAccount
     Public AccountNumber As String
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Me.Close()
@@ -24,6 +24,7 @@
     End Sub
 
     Private Sub FrmAddFamiliarAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         AccountNumber = ""
         TxtAccount.Text = ""
     End Sub

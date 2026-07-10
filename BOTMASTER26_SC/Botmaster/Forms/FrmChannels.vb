@@ -1,4 +1,4 @@
-﻿Public Class FrmChannels
+Public Class FrmChannels
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Me.Close()
     End Sub
@@ -36,6 +36,7 @@
     End Sub
 
     Private Sub FrmChannels_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         'Dim channels As List(Of ClsChannelModel)
         'Dim channel As ClsChannelModel
         'Dim k As New frmSenders

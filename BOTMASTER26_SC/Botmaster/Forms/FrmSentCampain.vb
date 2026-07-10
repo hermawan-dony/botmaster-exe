@@ -1,4 +1,4 @@
-﻿Public Class FrmSentCampain
+Public Class FrmSentCampain
     Sub New()
 
         ' This call is required by the designer.
@@ -8,6 +8,7 @@
 
     End Sub
     Private Sub FrmSentCampain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         LoadReportShowToday()
     End Sub
 

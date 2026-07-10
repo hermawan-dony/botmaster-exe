@@ -11,6 +11,7 @@ Public Class FrmLicense
 
     <Obsolete>
     Private Sub FrmLicense_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeManager.ApplyTheme(Me)
         ApplyColor(Me)
         TextBox1.Text = Encrypt(getMacAddress)
         On Error Resume Next

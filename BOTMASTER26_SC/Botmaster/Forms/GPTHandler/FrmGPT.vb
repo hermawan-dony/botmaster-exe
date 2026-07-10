@@ -1,4 +1,4 @@
-﻿Imports System.IO
+Imports System.IO
 Imports Newtonsoft.Json
 
 Public Class FrmGPT
@@ -119,6 +119,7 @@ Public Class FrmGPT
     End Sub
 
     Private Sub FrmGPT_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         PopulateLanguagesComboBox()
         MyGTPModel = CurrentGPTSetting
         If Not IsNothing(CurrentGPTSetting) Then

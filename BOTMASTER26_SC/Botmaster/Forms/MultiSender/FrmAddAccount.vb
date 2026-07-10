@@ -1,7 +1,8 @@
-﻿Imports System.Text.RegularExpressions
+Imports System.Text.RegularExpressions
 
 Public Class FrmAddAccount
     Private Sub FrmAddAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
     End Sub
     ' create a function to accept only alphanumeric

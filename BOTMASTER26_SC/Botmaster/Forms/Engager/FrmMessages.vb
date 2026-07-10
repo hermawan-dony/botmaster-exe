@@ -1,4 +1,4 @@
-﻿Public Class FrmMessages
+Public Class FrmMessages
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim dg As New OpenFileDialog
         dg.Filter = "*.txt|*.txt"

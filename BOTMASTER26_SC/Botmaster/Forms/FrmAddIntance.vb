@@ -1,6 +1,7 @@
-﻿Public Class FrmAddIntance
+Public Class FrmAddIntance
     Public InstanceName As String
     Private Sub FrmAddIntance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         TextBox1.Text = ""
     End Sub
     Private Function IsValidName(ByVal Name As String) As Boolean

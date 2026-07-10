@@ -1,4 +1,4 @@
-﻿Public Class FrmSendingType
+Public Class FrmSendingType
     Public Result As Integer
     Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
 
@@ -6,6 +6,7 @@
 
     <Obsolete>
     Private Sub FrmSendingType_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
         ApplyColor(Me)
         If LicenseMode Then
             CheckLicense()

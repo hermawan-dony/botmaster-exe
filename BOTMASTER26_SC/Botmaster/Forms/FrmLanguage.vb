@@ -1,5 +1,6 @@
-﻿Public Class FrmLanguage
+Public Class FrmLanguage
     Private Sub FrmLanguage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
     End Sub
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()

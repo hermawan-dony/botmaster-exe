@@ -1,4 +1,4 @@
-﻿Public Class FrmReceivedMessage
+Public Class FrmReceivedMessage
     Public WhatsAppID As String
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
         Me.Close()
@@ -10,6 +10,7 @@
     End Sub
 
     Private Sub FrmReceivedMessage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try : ThemeManager.ApplyTheme(Me) : Catch : End Try
 
     End Sub
 End Class
