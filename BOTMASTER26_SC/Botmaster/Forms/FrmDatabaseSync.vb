@@ -80,7 +80,18 @@ Public Class FrmDatabaseSync
             Me.Icon = GetAppIcon()
         Catch ex As Exception
         End Try
-        Text = "Database Auto-Sync"
+        Dim accountNum As String = "628512345678"
+        Try
+            If FrmMain.Label3 IsNot Nothing AndAlso FrmMain.Label3.Text.StartsWith("Account:") Then
+                Dim num As String = FrmMain.Label3.Text.Substring(8).Trim()
+                If num <> "N/A" AndAlso num <> "" Then
+                    accountNum = num
+                End If
+            End If
+        Catch
+        End Try
+        TextBoxSQL.Text = $"INSERT INTO outbox (wa_no, wa_text) VALUES ('{accountNum}', 'Test WAGW message')"
+        
         LoadODBCSources()
         TimerSync.Interval = 5000
     End Sub
@@ -364,13 +375,13 @@ Public Class FrmDatabaseSync
 
                 While reader.Read()
                     Dim item As New OutboxItem()
-                    item.Id = reader("id").ToString()
-                    item.Mode = reader("wa_mode").ToString()
-                    item.Destination = reader("wa_no").ToString()
-                    item.Message = reader("wa_text").ToString()
-                    item.Media = reader("wa_media").ToString()
-                    item.File = reader("wa_file").ToString()
-                    item.Time = reader("wa_time").ToString()
+                    item.Id = If(IsDBNull(reader("id")), "", reader("id").ToString())
+                    item.Mode = If(IsDBNull(reader("wa_mode")), "", reader("wa_mode").ToString())
+                    item.Destination = If(IsDBNull(reader("wa_no")), "", reader("wa_no").ToString())
+                    item.Message = If(IsDBNull(reader("wa_text")), "", reader("wa_text").ToString())
+                    item.Media = If(IsDBNull(reader("wa_media")), "", reader("wa_media").ToString())
+                    item.File = If(IsDBNull(reader("wa_file")), "", reader("wa_file").ToString())
+                    item.Time = If(IsDBNull(reader("wa_time")), "", reader("wa_time").ToString())
                     
                     Dim sentSuccessfully As Boolean = False
                     
@@ -475,6 +486,9 @@ Public Class FrmDatabaseSync
                     conn.Close()
                 End If
             Catch ex As Exception
+                If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated Then
+                    ActiveSyncInstance.BeginInvoke(Sub() ActiveSyncInstance.LogMsg("Sync error: " & ex.Message))
+                End If
             End Try
             
             If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated AndAlso Not ActiveSyncInstance.IsDisposed Then

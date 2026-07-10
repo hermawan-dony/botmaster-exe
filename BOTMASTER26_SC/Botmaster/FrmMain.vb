@@ -515,12 +515,17 @@ Public Class FrmMain
             LabelWAGW.Font = New Font("Calibri", 12.0F, FontStyle.Bold)
             LabelWAGW.AutoSize = True
             LabelWAGW.TextAlign = ContentAlignment.MiddleCenter
-            LabelWAGW.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-            LabelWAGW.Location = New Point(760, 4)
+            LabelWAGW.Anchor = AnchorStyles.Top
+            LabelWAGW.Location = New Point((Me.Panel3.Width - 180) \ 2, 4)
             AddHandler LabelWAGW.Paint, Sub(s, pe)
                                             Dim l As Label = CType(s, Label)
                                             pe.Graphics.DrawRectangle(New Pen(Color.LimeGreen, 2.0F), 0, 0, l.Width - 1, l.Height - 1)
                                         End Sub
+            AddHandler Me.Panel3.Resize, Sub(s, ev)
+                                             If LabelWAGW IsNot Nothing Then
+                                                 LabelWAGW.Left = (Me.Panel3.Width - LabelWAGW.Width) \ 2
+                                             End If
+                                         End Sub
             LabelWAGW.Visible = False
             Me.Panel3.Controls.Add(LabelWAGW)
 
