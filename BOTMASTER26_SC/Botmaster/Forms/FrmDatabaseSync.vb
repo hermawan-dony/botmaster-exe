@@ -59,6 +59,7 @@ Public Class FrmDatabaseSync
                 FrmMain.LabelWAGW.Text = "  WAGW Activated (" & dsnName & ")!!  "
                 FrmMain.LabelWAGW.Visible = True
             End If
+            RefreshGrids()
             LogMsg("Auto-Sync started automatically.")
         Catch ex As Exception
             LogMsg("AutoStart Connection failed: " & ex.Message)
@@ -342,6 +343,7 @@ Public Class FrmDatabaseSync
                     FrmMain.LabelWAGW.Text = "  WAGW Activated (" & dsnName & ")!!  "
                     FrmMain.LabelWAGW.Visible = True
                 End If
+                RefreshGrids()
                 LogMsg("Auto-Sync started. Connected to DSN.")
             Catch ex As Exception
                 MsgBox("Connection failed: " & ex.Message, vbCritical)
@@ -357,6 +359,7 @@ Public Class FrmDatabaseSync
             Dim rows As Integer = cmd.ExecuteNonQuery()
             testConn.Close()
             MsgBox("SQL Query executed successfully. Rows affected: " & rows, MsgBoxStyle.Information, "SQL Test Success")
+            RefreshGrids()
             LogMsg("SQL Test executed successfully.")
         Catch ex As Exception
             MsgBox("SQL Error: " & ex.Message, MsgBoxStyle.Critical, "SQL Test Failed")
@@ -387,6 +390,7 @@ Public Class FrmDatabaseSync
                     Dim sentSuccessfully As Boolean = False
                     
                     If FrmBrowser.IsWAPILoggedIn() Then
+                        WasLoginWarningLogged = False
                         If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated Then
                             ActiveSyncInstance.BeginInvoke(Sub() ActiveSyncInstance.LogMsg("Sending to " & item.Destination))
                         End If
@@ -426,6 +430,13 @@ Public Class FrmDatabaseSync
                                 ActiveSyncInstance.BeginInvoke(Sub() ActiveSyncInstance.LogMsg("Failed to send: " & ex.Message))
                             End If
                         End Try
+                    Else
+                        If Not WasLoginWarningLogged Then
+                            If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated Then
+                                ActiveSyncInstance.BeginInvoke(Sub() ActiveSyncInstance.LogMsg("WA Web is not connected/ready. Please click 'Open WhatsApp' and log in."))
+                            End If
+                            WasLoginWarningLogged = True
+                        End If
                     End If
                     
                     If sentSuccessfully Then
@@ -495,6 +506,7 @@ Public Class FrmDatabaseSync
             If ActiveSyncInstance IsNot Nothing AndAlso ActiveSyncInstance.IsHandleCreated AndAlso Not ActiveSyncInstance.IsDisposed Then
                 ActiveSyncInstance.BeginInvoke(Sub()
                     If ActiveSyncInstance.IsSyncing Then
+                        ActiveSyncInstance.RefreshGrids()
                         ActiveSyncInstance.TimerSync.Start()
                     End If
                 End Sub)
@@ -523,6 +535,76 @@ Public Class FrmDatabaseSync
             Catch ex As Exception
             End Try
         End If
+    End Sub
+
+    Public Shared WasLoginWarningLogged As Boolean = False
+
+    Public Sub RefreshGrids()
+        If Not IsSyncing Then Return
+        
+        System.Threading.Tasks.Task.Run(Sub()
+            Try
+                Dim conn As New OdbcConnection(DSN)
+                conn.Open()
+                
+                Dim dtOutbox As New DataTable()
+                Using cmd As New OdbcCommand("SELECT * FROM outbox", conn)
+                    Using adapter As New OdbcDataAdapter(cmd)
+                        adapter.Fill(dtOutbox)
+                    End Using
+                End Using
+                
+                Dim dtSent As New DataTable()
+                Using cmd As New OdbcCommand("SELECT * FROM sent", conn)
+                    Using adapter As New OdbcDataAdapter(cmd)
+                        adapter.Fill(dtSent)
+                    End Using
+                End Using
+                
+                Dim dtInbox As New DataTable()
+                Using cmd As New OdbcCommand("SELECT * FROM inbox", conn)
+                    Using adapter As New OdbcDataAdapter(cmd)
+                        adapter.Fill(dtInbox)
+                    End Using
+                End Using
+                
+                conn.Close()
+                
+                If Me.IsHandleCreated AndAlso Not Me.IsDisposed Then
+                    Me.BeginInvoke(Sub()
+                        BindGridSafely(dgvOutbox, dtOutbox, "id DESC")
+                        BindGridSafely(dgvSent, dtSent, "id DESC")
+                        BindGridSafely(dgvInbox, dtInbox, "id DESC")
+                    End Sub)
+                End If
+            Catch ex As Exception
+            End Try
+        End Sub)
+    End Sub
+
+    Private Sub BindGridSafely(dgv As DataGridView, dt As DataTable, sortExpr As String)
+        Try
+            If dt.Rows.Count = 0 Then
+                dgv.DataSource = dt
+                Return
+            End If
+            Dim dv As New DataView(dt)
+            If dt.Columns.Contains(sortExpr.Split(" "c)(0)) Then
+                dv.Sort = sortExpr
+            End If
+            Dim sortedDt As DataTable = dv.ToTable()
+            If sortedDt.Rows.Count > 10 Then
+                Dim newDt As DataTable = sortedDt.Clone()
+                For i As Integer = 0 To 9
+                    newDt.ImportRow(sortedDt.Rows(i))
+                Next
+                dgv.DataSource = newDt
+            Else
+                dgv.DataSource = sortedDt
+            End If
+        Catch
+            dgv.DataSource = dt
+        End Try
     End Sub
 
     Private Sub LogMsg(msg As String)

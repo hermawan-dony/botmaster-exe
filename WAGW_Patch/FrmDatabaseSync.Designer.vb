@@ -111,12 +111,90 @@ Partial Class FrmDatabaseSync
         Me.BtnTestSQL.TabIndex = 10
         Me.BtnTestSQL.Text = "Run SQL Test"
         Me.BtnTestSQL.UseVisualStyleBackColor = True
+        Me.TabControlGrids.Controls.Add(Me.TabPageOutbox)
+        Me.TabControlGrids.Controls.Add(Me.TabPageSent)
+        Me.TabControlGrids.Controls.Add(Me.TabPageInbox)
+        Me.TabControlGrids.Location = New System.Drawing.Point(445, 12)
+        Me.TabControlGrids.Name = "TabControlGrids"
+        Me.TabControlGrids.SelectedIndex = 0
+        Me.TabControlGrids.Size = New System.Drawing.Size(490, 370)
+        Me.TabControlGrids.TabIndex = 11
+        '
+        'TabPageOutbox
+        '
+        Me.TabPageOutbox.Controls.Add(Me.dgvOutbox)
+        Me.TabPageOutbox.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageOutbox.Name = "TabPageOutbox"
+        Me.TabPageOutbox.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageOutbox.Size = New System.Drawing.Size(482, 344)
+        Me.TabPageOutbox.Text = "Outbox (Last 10)"
+        Me.TabPageOutbox.UseVisualStyleBackColor = True
+        '
+        'dgvOutbox
+        '
+        Me.dgvOutbox.AllowUserToAddRows = False
+        Me.dgvOutbox.AllowUserToDeleteRows = False
+        Me.dgvOutbox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvOutbox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvOutbox.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvOutbox.Location = New System.Drawing.Point(3, 3)
+        Me.dgvOutbox.Name = "dgvOutbox"
+        Me.dgvOutbox.ReadOnly = True
+        Me.dgvOutbox.Size = New System.Drawing.Size(476, 338)
+        Me.dgvOutbox.TabIndex = 0
+        '
+        'TabPageSent
+        '
+        Me.TabPageSent.Controls.Add(Me.dgvSent)
+        Me.TabPageSent.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageSent.Name = "TabPageSent"
+        Me.TabPageSent.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageSent.Size = New System.Drawing.Size(482, 344)
+        Me.TabPageSent.Text = "Sent (Last 10)"
+        Me.TabPageSent.UseVisualStyleBackColor = True
+        '
+        'dgvSent
+        '
+        Me.dgvSent.AllowUserToAddRows = False
+        Me.dgvSent.AllowUserToDeleteRows = False
+        Me.dgvSent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvSent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvSent.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvSent.Location = New System.Drawing.Point(3, 3)
+        Me.dgvSent.Name = "dgvSent"
+        Me.dgvSent.ReadOnly = True
+        Me.dgvSent.Size = New System.Drawing.Size(476, 338)
+        Me.dgvSent.TabIndex = 0
+        '
+        'TabPageInbox
+        '
+        Me.TabPageInbox.Controls.Add(Me.dgvInbox)
+        Me.TabPageInbox.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageInbox.Name = "TabPageInbox"
+        Me.TabPageInbox.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageInbox.Size = New System.Drawing.Size(482, 344)
+        Me.TabPageInbox.Text = "Inbox (Last 10)"
+        Me.TabPageInbox.UseVisualStyleBackColor = True
+        '
+        'dgvInbox
+        '
+        Me.dgvInbox.AllowUserToAddRows = False
+        Me.dgvInbox.AllowUserToDeleteRows = False
+        Me.dgvInbox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvInbox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvInbox.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvInbox.Location = New System.Drawing.Point(3, 3)
+        Me.dgvInbox.Name = "dgvInbox"
+        Me.dgvInbox.ReadOnly = True
+        Me.dgvInbox.Size = New System.Drawing.Size(476, 338)
+        Me.dgvInbox.TabIndex = 0
         '
         'FrmDatabaseSync
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(447, 400)
+        Me.ClientSize = New System.Drawing.Size(950, 400)
+        Me.Controls.Add(Me.TabControlGrids)
         Me.Controls.Add(Me.LabelActivated)
         Me.Controls.Add(Me.LabelSQL)
         Me.Controls.Add(Me.TextBoxSQL)
@@ -133,6 +211,13 @@ Partial Class FrmDatabaseSync
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "WAGW Auto-Sync"
+        CType(Me.dgvOutbox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvSent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvInbox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControlGrids.ResumeLayout(False)
+        Me.TabPageOutbox.ResumeLayout(False)
+        Me.TabPageSent.ResumeLayout(False)
+        Me.TabPageInbox.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -148,5 +233,11 @@ Partial Class FrmDatabaseSync
     Friend WithEvents LabelSQL As Label
     Friend WithEvents TextBoxSQL As TextBox
     Friend WithEvents BtnTestSQL As Button
+    Friend WithEvents TabControlGrids As TabControl
+    Friend WithEvents TabPageOutbox As TabPage
+    Friend WithEvents TabPageSent As TabPage
+    Friend WithEvents TabPageInbox As TabPage
+    Friend WithEvents dgvOutbox As DataGridView
+    Friend WithEvents dgvSent As DataGridView
+    Friend WithEvents dgvInbox As DataGridView
 End Class
-
