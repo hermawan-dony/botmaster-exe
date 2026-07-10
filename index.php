@@ -211,7 +211,7 @@
         }
     </style>
 </head>
-<body class="bg-brand-dark text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-cyan-500 selection:text-white relative">
+<body class="bg-brand-dark text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-fuchsia-600 selection:text-white relative">
 
     <!-- Background Animated Blobs -->
     <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
@@ -271,7 +271,7 @@
                             <span class="text-sm font-medium text-slate-200"><?= $text['feat_1'] ?></span>
                         </div>
                         <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
-                            <i class="fa-solid fa-infinity text-cyan-400 text-xl"></i>
+                            <i class="fa-solid fa-infinity text-fuchsia-400 text-xl"></i>
                             <span class="text-sm font-medium text-slate-200"><?= $text['feat_2'] ?></span>
                         </div>
                         <div class="flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors">
@@ -295,11 +295,11 @@
 
                 <!-- Right Content: Pricing Card -->
                 <div class="lg:col-span-6 lg:ml-auto w-full max-w-lg mx-auto relative z-10">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-violet-500 to-cyan-400 rounded-2xl blur opacity-30 animate-pulse-glow"></div>
+                    <div class="absolute -inset-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl blur opacity-30 animate-pulse-glow"></div>
                     <!-- Shimmer Wrapper -->
                     <div class="relative p-[1px] rounded-2xl bg-gradient-to-r from-transparent via-violet-500/50 to-transparent background-animate">
                     <div class="relative glass-card rounded-2xl p-8 sm:p-10 border-t border-l border-white/20 h-full w-full">
-                        <div class="text-sm font-bold tracking-widest text-cyan-400 uppercase mb-4"><?= $text['price_title'] ?></div>
+                        <div class="text-sm font-bold tracking-widest text-fuchsia-400 uppercase mb-4"><?= $text['price_title'] ?></div>
                         
                         <div class="flex items-baseline gap-2 mb-8">
                             <span class="text-5xl font-display font-bold text-white tracking-tight">Rp <?= htmlspecialchars($harga1 ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
@@ -309,7 +309,7 @@
                         <!-- Update Box -->
                         <div id="update-box" class="hidden bg-slate-900/60 rounded-xl p-5 mb-8 border border-white/5">
                             <div class="flex justify-between items-center mb-4 border-b border-white/5 pb-3">
-                                <span id="web-version" class="bg-gradient-to-r from-violet-600 to-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-md shadow-lg shadow-violet-500/20">v--</span>
+                                <span id="web-version" class="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-xs font-bold px-3 py-1 rounded-md shadow-lg shadow-violet-500/20">v--</span>
                                 <span id="web-release-date" class="text-xs text-slate-400 font-medium">--</span>
                             </div>
                             <ul id="web-changelog" class="text-sm text-slate-300 space-y-2">
@@ -318,7 +318,7 @@
                         </div>
 
                         <div class="space-y-4">
-                            <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" id="btn-download" class="group relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-violet-600 to-cyan-500 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-violet-500/30 transition-all hover:-translate-y-1 overflow-hidden">
+                            <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" id="btn-download" class="group relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-violet-500/30 transition-all hover:-translate-y-1 overflow-hidden">
                                 <div class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-[-20deg]"></div>
                                 <i class="fa-solid fa-cloud-arrow-down"></i> 
                                 <span><?= $text['btn_download'] ?>26</span>
@@ -428,8 +428,8 @@
                 </div>
                 <!-- Benefit 2 -->
                 <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:border-violet-500/50">
-                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-chart-line text-2xl text-cyan-400"></i>
+                    <div class="w-12 h-12 rounded-xl bg-fuchsia-600/10 border border-cyan-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chart-line text-2xl text-fuchsia-400"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3"><?= $text['ben_2_title'] ?></h3>
                     <p class="text-slate-400 text-sm leading-relaxed"><?= $text['ben_2_desc'] ?></p>
@@ -503,7 +503,7 @@
 
     <!-- Mobile Sticky CTA -->
     <div class="lg:hidden fixed bottom-0 left-0 w-full glass-card border-t border-white/10 p-4 z-40 shadow-[0_-10px_20px_rgba(0,0,0,0.5)]">
-        <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" class="mobile-btn-download flex items-center justify-center gap-2 w-full bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-violet-500/30">
+        <a href="https://github.com/hermawan-dony/botmaster-exe/raw/main/botmaster26.zip" class="mobile-btn-download flex items-center justify-center gap-2 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold py-3 rounded-xl shadow-lg shadow-violet-500/30">
             <i class="fa-solid fa-cloud-arrow-down"></i> <?= $text['btn_download'] ?>26
         </a>
     </div>
@@ -515,7 +515,7 @@
         </div>
         <div>
             <p class="text-sm text-slate-200 m-0 leading-tight">
-                <span id="fomo-name" class="font-bold text-cyan-400">Seseorang</span> dari <span id="fomo-city" class="font-bold text-white">Jakarta</span>
+                <span id="fomo-name" class="font-bold text-fuchsia-400">Seseorang</span> dari <span id="fomo-city" class="font-bold text-white">Jakarta</span>
             </p>
             <p class="text-[0.75rem] text-slate-400 mt-1 mb-0"><?= $lang === 'en' ? 'Just bought Yearly License' : 'Baru saja membeli Lisensi Tahunan' ?></p>
             <p class="text-[0.65rem] text-slate-500 mt-1" id="fomo-time">2 menit lalu</p>

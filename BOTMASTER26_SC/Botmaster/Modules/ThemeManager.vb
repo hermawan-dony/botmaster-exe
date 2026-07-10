@@ -18,7 +18,7 @@ Public Module ThemeManager
             Else ' Cyberpunk
                 bMain = Color.FromArgb(10, 11, 23)
                 bContainer = Color.FromArgb(15, 17, 33)
-                accent = Color.FromArgb(0, 230, 230)
+                accent = Color.FromArgb(217, 114, 211)
             End If
             
             frm.BackColor = bMain
