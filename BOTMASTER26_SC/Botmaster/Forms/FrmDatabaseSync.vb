@@ -3,6 +3,7 @@ Imports System.Data.Odbc
 Public Class FrmDatabaseSync
     Public IsSyncing As Boolean = False
     Public DSN As String = ""
+    Private messagesSentCount As Integer = 0
 
     Public Shared ActiveSyncInstance As FrmDatabaseSync
 
@@ -468,6 +469,32 @@ Public Class FrmDatabaseSync
                     
                     If sentSuccessfully Then
                         processed.Add(item)
+                        If ActiveSyncInstance IsNot Nothing Then
+                            ActiveSyncInstance.messagesSentCount += 1
+                            
+                            Dim delayStart As Integer = Val(GetSetting(ApplicationTitle, "SendingConfig", "DelayStart", "1"))
+                            Dim delayEnd As Integer = Val(GetSetting(ApplicationTitle, "SendingConfig", "DelayEnd", "2"))
+                            Dim activateSleep As Boolean = CBool(GetSetting(ApplicationTitle, "SendingConfig", "ActivateSleep", "false"))
+                            Dim sleepAfter As Integer = Val(GetSetting(ApplicationTitle, "SendingConfig", "SleepAfter", "20"))
+                            Dim sleepFor As Integer = Val(GetSetting(ApplicationTitle, "SendingConfig", "SleepFor", "5"))
+                            
+                            Dim delayMs As Integer = 1000
+                            If delayEnd >= delayStart Then
+                                Dim rand As New Random()
+                                delayMs = rand.Next(delayStart, delayEnd + 1) * 1000
+                            Else
+                                delayMs = delayStart * 1000
+                            End If
+                            
+                            System.Threading.Thread.Sleep(delayMs)
+                            
+                            If activateSleep AndAlso sleepAfter > 0 AndAlso (ActiveSyncInstance.messagesSentCount Mod sleepAfter = 0) Then
+                                If ActiveSyncInstance.IsHandleCreated Then
+                                    ActiveSyncInstance.BeginInvoke(Sub() ActiveSyncInstance.LogMsg($"Sleep mode active. Pausing for {sleepFor} seconds..."))
+                                End If
+                                System.Threading.Thread.Sleep(sleepFor * 1000)
+                            End If
+                        End If
                     End If
                 End While
                 conn.Close()
