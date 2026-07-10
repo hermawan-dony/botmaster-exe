@@ -36,23 +36,32 @@ Public Module ThemeManager
                 c.ForeColor = foreCol
             End If
             
-            If TypeOf c Is TextBox OrElse TypeOf c Is ComboBox OrElse TypeOf c Is ListBox OrElse TypeOf c Is RichTextBox Then
+            If TypeOf c Is TextBox Then
                 c.BackColor = bContainer
                 c.ForeColor = foreCol
-                Try
-                    ' Remove border for modern look if flat
-                    DirectCast(c, TextBoxBase).BorderStyle = BorderStyle.FixedSingle
-                Catch
-                End Try
+                DirectCast(c, TextBox).BorderStyle = BorderStyle.FixedSingle
+            End If
+            If TypeOf c Is RichTextBox Then
+                c.BackColor = bContainer
+                c.ForeColor = foreCol
+                DirectCast(c, RichTextBox).BorderStyle = BorderStyle.FixedSingle
+            End If
+            If TypeOf c Is ListBox OrElse TypeOf c Is ComboBox OrElse TypeOf c Is NumericUpDown Then
+                c.BackColor = bContainer
+                c.ForeColor = foreCol
+            End If
+            If TypeOf c Is ListView Then
+                c.BackColor = bContainer
+                c.ForeColor = foreCol
+                ' We can't change ListView header color easily in pure WinForms without owner draw, but at least rows will be dark.
             End If
             
             If TypeOf c Is Button Then
                 Dim btn As Button = DirectCast(c, Button)
-                If btn.FlatStyle = FlatStyle.Flat OrElse btn.FlatStyle = FlatStyle.Popup Then
-                    btn.BackColor = accent
-                    btn.ForeColor = If(accent.R + accent.G + accent.B > 382, Color.Black, Color.White)
-                    btn.FlatAppearance.BorderSize = 0
-                End If
+                btn.FlatStyle = FlatStyle.Flat
+                btn.BackColor = accent
+                btn.ForeColor = If(accent.R + accent.G + accent.B > 382, Color.Black, Color.White)
+                btn.FlatAppearance.BorderSize = 0
             End If
             
             If TypeOf c Is Label OrElse TypeOf c Is CheckBox OrElse TypeOf c Is RadioButton Then
