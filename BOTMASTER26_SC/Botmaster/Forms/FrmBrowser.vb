@@ -598,7 +598,7 @@ Public Class FrmBrowser
             LogReceivedMessage(json)
 
             Dim remoteNumber As String = remoteJid.ToLowerInvariant().Replace("@c.us", "").Replace("@lid", "")
-            
+
             ' Hook for Database Sync Inbox
             Try
                 FrmDatabaseSync.RecordInbox(remoteNumber, body)
@@ -1487,13 +1487,11 @@ Public Class FrmBrowser
 
 #Region "Form Events & Stubs"
 
-    Private Sub FrmBrowser_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        Me.Dispose()
-    End Sub
-
-    Private Sub FrmBrowser_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        e.Cancel = True
-        Me.Hide()
+    Private Sub FrmBrowser_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If e.CloseReason = CloseReason.UserClosing Then
+            e.Cancel = True
+            Me.Hide()
+        End If
     End Sub
 
     Private Sub WebView2_Click(sender As Object, e As EventArgs) Handles WebView2.Click
